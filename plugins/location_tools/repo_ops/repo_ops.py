@@ -89,6 +89,7 @@ def set_current_issue(instance_id: str = None,
             logging.info(f'[{rank}] Processed {CURRENT_ISSUE_ID}')
         except Exception as e:
             logging.error(f'[{rank}] Error processing {CURRENT_ISSUE_ID}: {e}')
+            return
     else:
         G = pickle.load(open(graph_index_file, "rb"))
         
