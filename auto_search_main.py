@@ -363,13 +363,13 @@ def run_localize(rank, args, bug_queue, log_queue, output_file_lock, traj_file_l
                     ctx = mp.get_context('fork')  # use fork to inherit context!!
                     result_queue = ctx.Manager().Queue()
                     tools = None
-                    if args.use_function_calling:
-                        tools = function_calling.get_tools(
-                            codeact_enable_search_keyword=True,
-                            codeact_enable_search_entity=True,
-                            codeact_enable_tree_structure_traverser=True,
-                            simple_desc = args.simple_desc,
-                        )
+                    # if args.use_function_calling:
+                    tools = function_calling.get_tools(
+                        codeact_enable_search_keyword=True,
+                        codeact_enable_search_entity=True,
+                        codeact_enable_tree_structure_traverser=True,
+                        simple_desc = args.simple_desc,
+                    )
                     process = ctx.Process(target=auto_search_process, kwargs={
                         'result_queue': result_queue,
                         'model_name': args.model,
