@@ -88,6 +88,7 @@ def set_current_issue(instance_id: str = None,
                 pickle.dump(G, f)
             logging.info(f'[{rank}] Processed {CURRENT_ISSUE_ID}')
         except Exception as e:
+            # added exception handler for repo_ops.py at line 90-92, to prevent single graph building failure stopping the whole process
             logging.error(f'[{rank}] Error processing {CURRENT_ISSUE_ID}: {e}')
             return
     else:
