@@ -39,6 +39,7 @@ def get_arg():
                  # fine-tuned model
                  "openai/qwen-7B", "openai/qwen-7B-128k", "openai/ft-qwen-7B", "openai/ft-qwen-7B-128k",
                  "openai/qwen-32B", "openai/qwen-32B-128k", "openai/ft-qwen-32B", "openai/ft-qwen-32B-128k",
+                 "openai/czlll/Qwen2.5-Coder-7B-CL", "openai/czlll/Qwen2.5-Coder-32B-CL"
         ]
     )
     # 是否启用 LLM 原生 Function Calling 能力
@@ -86,7 +87,7 @@ if __name__ == "__main__":
     arg = get_arg()
     if not arg.localize:
         arg.localize = True
-
+    arg.model = "openai/czlll/Qwen2.5-Coder-7B-CL"
     start_time = time.time()
     localize(arg)
     end_time = time.time()
