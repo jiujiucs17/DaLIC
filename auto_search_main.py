@@ -397,7 +397,8 @@ def run_localize(rank, args, bug_queue, log_queue, output_file_lock, traj_file_l
                         loc_result, messages, traj_data = result
                         
                 except litellm.BadRequestError as e:
-                    logger.warning(f'{e}. Try again.')
+                    logger.warning(f'{e}. BadRequestError Try again.')
+                    max_attempt_num = max_attempt_num - 1
                     continue
                 except APITimeoutError:
                     logger.warning(f"APITimeoutError. Try again.")
