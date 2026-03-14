@@ -773,8 +773,10 @@ def bm25_content_retrieve(
         retriever = load_retriever(persist_path)
     else:
         repo_playground = get_repo_save_dir()
+        logging.info(f"!@#$Setting up repository for BM25 retrieval at {repo_playground}...")
         repo_dir = setup_repo(instance_data=instance, repo_base_dir=repo_playground, dataset=None, split=None)
         absolute_repo_dir = os.path.abspath(repo_dir)
+        logging.info(f"!@#$trying to save BM25 index at {persist_path}...")
         retriever = build_code_retriever(absolute_repo_dir, persist_path=persist_path,
                                          similarity_top_k=similarity_top_k)
 

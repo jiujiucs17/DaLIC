@@ -1,6 +1,7 @@
 import os
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
+os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
 os.environ["HOSTED_VLLM_API_BASE"] = "https://ccmx1s8a0dh9wi-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
@@ -32,7 +33,7 @@ def get_arg():
     parser.add_argument("--used_list", type=str, default='selected_ids')
     
     # 指定用来存放所有输出文件（如日志、追踪轨迹、结果 JSONL）的目录
-    parser.add_argument("--output_folder", type=str, default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs"))
+    parser.add_argument("--output_folder", type=str, default=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "outputs"))
     # 用来存放每次预测的未合并原始结果的文件名
     parser.add_argument("--output_file", type=str, default="loc_outputs.jsonl")
     # 用来存放运行 --merge 之后合并重排序的最终文件的名字
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     if not arg.localize:
         arg.localize = True
     arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
-    arg.num_processes = 15
+    arg.num_processes = 1
     start_time = time.time()
     localize(arg)
     end_time = time.time()

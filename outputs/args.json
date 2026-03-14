@@ -13,7 +13,7 @@
     "model": "openai/gpt-4o-2024-05-13",
     "use_function_calling": false,
     "simple_desc": false,
-    "max_attempt_num": 1,
+    "max_attempt_num": 2,
     "num_samples": 1,
     "num_processes": -1,
     "log_level": "INFO",

@@ -21,6 +21,8 @@ from dependency_graph.build_graph import (
 )
 
 import warnings
+import logging
+logger = logging.getLogger(__name__)
 
 warnings.simplefilter('ignore', FutureWarning)
 
@@ -99,8 +101,8 @@ def build_code_retriever_from_repo(repo_path,
         max_chunks=max_chunks,
         repo_path=repo_path,
     )
+    logging.info(f"!@#$preparing the retriver")
     prepared_nodes = splitter.get_nodes_from_documents(docs, show_progress=show_progress)
-
     # We can pass in the index, docstore, or list of nodes to create the retriever
     retriever = BM25Retriever.from_defaults(
         nodes=prepared_nodes,
@@ -108,8 +110,11 @@ def build_code_retriever_from_repo(repo_path,
         stemmer=Stemmer.Stemmer("english"),
         language="english",
     )
+    logging.info(f"!@#$Built BM25 retriever with {len(prepared_nodes)} nodes from repo at {repo_path}.")
+    logging.info(f"!@#$deciding whether to persist BM25 index at {persist_path}...")
     if persist_path:
         retriever.persist(persist_path)
+        logging.info(f"!@#$BM25 index persisted at {persist_path}.")
     return retriever
     # keyword = 'FORBIDDEN_ALIAS_PATTERN'
     # retrieved_nodes = retriever.retrieve(keyword)

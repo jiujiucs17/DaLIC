@@ -12,7 +12,7 @@ def setup_github_repo(repo: str, base_commit: str, base_dir: str = "/tmp/repos")
     repo_url = f"https://github.com/{repo}.git"
     path = f"{base_dir}/{repo_name}"
     logger.info(
-        f"Clone Github repo {repo_url} to {path} and checkout commit {base_commit}"
+        f"!@#$Clone repo {os.path.basename(repo_url.rstrip('/'))} to {path} and checkout commit {base_commit}"
     )
     if not os.path.exists(path):
         os.makedirs(path)
@@ -24,20 +24,45 @@ def setup_github_repo(repo: str, base_commit: str, base_dir: str = "/tmp/repos")
 
 def maybe_clone(repo_url, repo_dir):
     if not os.path.exists(f"{repo_dir}/.git"):
-        logger.info(f"Cloning repo '{repo_url}'")
-        # Clone the repo if the directory doesn't exist
-        result = subprocess.run(
-            ["git", "clone", repo_url, repo_dir],
-            check=True,
-            text=True,
-            capture_output=True,
+        local_repo_cache = os.getenv("LOCAL_REPO_CACHE", "").strip()
+        local_repo_name = os.path.basename(repo_url.rstrip("/"))
+        local_repo_path = (
+            os.path.join(local_repo_cache, local_repo_name) if local_repo_cache else None
         )
 
-        if result.returncode == 0:
-            logger.info(f"Repo '{repo_url}' was cloned to '{repo_dir}'")
-        else:
-            logger.info(f"Failed to clone repo '{repo_url}' to '{repo_dir}'")
-            raise ValueError(f"Failed to clone repo '{repo_url}' to '{repo_dir}'")
+        clone_sources = []
+        if local_repo_path and os.path.exists(local_repo_path):
+            clone_sources.append(local_repo_path)
+        clone_sources.append(repo_url)
+
+        last_error = None
+        for clone_source in clone_sources:
+            logger.info(f"!@#$Cloning repo '{clone_source}' to '{repo_dir}'")
+            try:
+                result = subprocess.run(
+                    ["git", "clone", clone_source, repo_dir],
+                    check=True,
+                    text=True,
+                    capture_output=True,
+                )
+                if result.returncode == 0:
+                    logger.info(f"!@#$Repo '{clone_source}' was cloned to '{repo_dir}'")
+                    return
+            except subprocess.CalledProcessError as e:
+                last_error = e
+                logger.warning(
+                    f"!@#$Failed to clone repo '{clone_source}' to '{repo_dir}': {e.stderr}"
+                )
+                for item in os.listdir(repo_dir):
+                    item_path = os.path.join(repo_dir, item)
+                    if os.path.isdir(item_path):
+                        subprocess.run(["rm", "-rf", item_path], check=True)
+                    else:
+                        os.remove(item_path)
+
+        raise ValueError(
+            f"!@#$Failed to clone repo '{repo_url}' to '{repo_dir}'"
+        ) from last_error
 
 
 def pull_latest(repo_dir):

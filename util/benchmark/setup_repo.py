@@ -4,6 +4,9 @@ from datasets import load_dataset
 from util.benchmark.git_repo_manager import setup_github_repo
 import argparse
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def load_instances(
     dataset_name: str = "princeton-nlp/SWE-bench_Lite", split: str = "test"
@@ -42,6 +45,7 @@ def setup_repo(
         github_repo_path = f"swe-bench/{repo_dir_name}"
     else:
         github_repo_path = instance_data["repo"]
+    logging.info(f"!@#$calling setup_github_repo with repo {github_repo_path} and base commit {instance_data['base_commit']}... ")
     return setup_github_repo(
         repo=github_repo_path,
         base_commit=instance_data["base_commit"],
