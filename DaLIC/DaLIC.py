@@ -99,7 +99,7 @@ if __name__ == "__main__":
     if not arg.localize:
         arg.localize = True
     arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
-    arg.num_processes = 1
+    arg.num_processes = 10
     start_time = time.time()
     localize(arg)
     end_time = time.time()
