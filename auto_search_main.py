@@ -5,7 +5,7 @@ import logging
 import logging.handlers
 import time
 import toml
-from queue import Empty
+from queue import Empty, Queue
 from typing import List
 from tqdm import tqdm
 from copy import deepcopy
@@ -360,8 +360,6 @@ def run_localize(rank, args, bug_queue, log_queue, output_file_lock, traj_file_l
                         "content": get_task_instruction(bug, include_pr=True, include_hint=True),
                     })
                     
-                    ctx = mp.get_context('fork')  # use fork to inherit context!!
-                    result_queue = ctx.Manager().Queue()
                     tools = None
                     # if args.use_function_calling:
                     tools = function_calling.get_tools(
@@ -370,23 +368,37 @@ def run_localize(rank, args, bug_queue, log_queue, output_file_lock, traj_file_l
                         codeact_enable_tree_structure_traverser=True,
                         simple_desc = args.simple_desc,
                     )
-                    process = ctx.Process(target=auto_search_process, kwargs={
-                        'result_queue': result_queue,
+                    auto_search_kwargs = {
                         'model_name': args.model,
                         'messages': messages,
                         'fake_user_msg': auto_search.FAKE_USER_MSG_FOR_LOC,
                         'temp': 1,
                         'tools': tools,
                         'use_function_calling': args.use_function_calling,
-                    })
-                    process.start()
-                    process.join(timeout=args.timeout)
-                    if process.is_alive():
-                        logger.warning(f"{instance_id} attempt {max_attempt_num} execution flow "
-                                        f"reconstruction exceeded timeout. Terminating.")
-                        process.terminate()
-                        process.join()
-                        raise TimeoutError
+                    }
+                    if args.num_processes == 1:
+                        result_queue = Queue()
+                        auto_search_kwargs['result_queue'] = result_queue
+                        logger.info(
+                            f"{instance_id} running auto search in-process because num_processes=1."
+                        )
+                        auto_search_process(**auto_search_kwargs)
+                    else:
+                        ctx = mp.get_context('fork')  # use fork to inherit context!!
+                        result_queue = ctx.Manager().Queue()
+                        auto_search_kwargs['result_queue'] = result_queue
+                        process = ctx.Process(
+                            target=auto_search_process,
+                            kwargs=auto_search_kwargs,
+                        )
+                        process.start()
+                        process.join(timeout=args.timeout)
+                        if process.is_alive():
+                            logger.warning(f"{instance_id} attempt {max_attempt_num} execution flow "
+                                            f"reconstruction exceeded timeout. Terminating.")
+                            process.terminate()
+                            process.join()
+                            raise TimeoutError
                     
                     # loc_result, messages, traj_data = result_queue.get()
                     result = result_queue.get()
