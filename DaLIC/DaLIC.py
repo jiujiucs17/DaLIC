@@ -1,8 +1,11 @@
 import os
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://tpk6mzacon0077-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://ccmx1s8a0dh9wi-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
+
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 
 from auto_search_main import *
@@ -57,7 +60,7 @@ def get_arg():
                         help="Use simplified function descriptions due to certain LLM limitations. Set to False for better performance when using Claude.")
     
     # 遇到框架报错或超时时重新尝试生成的最大次数
-    parser.add_argument("--max_attempt_num", type=int, default=1, 
+    parser.add_argument("--max_attempt_num", type=int, default=2, 
                         help='Only use in generating training trajectories.')
     # 每次为同一个 issue 生成的定位结果采样数，后续通过 --merge 聚合
     parser.add_argument("--num_samples", type=int, default=1)
@@ -95,6 +98,7 @@ if __name__ == "__main__":
     if not arg.localize:
         arg.localize = True
     arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
+    arg.num_processes = 15
     start_time = time.time()
     localize(arg)
     end_time = time.time()
