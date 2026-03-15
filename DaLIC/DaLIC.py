@@ -2,7 +2,7 @@ import os
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
 os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://ccmx1s8a0dh9wi-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://kx65e2d1b997it-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
 import sys
@@ -102,5 +102,6 @@ if __name__ == "__main__":
     arg.num_processes = 10
     start_time = time.time()
     localize(arg)
+    merge(arg)
     end_time = time.time()
     logging.info("Total time: {:.4f} min".format((end_time - start_time)/60))

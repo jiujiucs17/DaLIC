@@ -50,12 +50,18 @@ def div_no_nan(a: Tensor, b: Tensor, na_value: Optional[float] = 0.) -> Tensor:
 
 
 def normalized_dcg(pred_target: Tensor, ideal_target: Tensor, k: Optional[int] = None) -> Tensor:
+    if k == -1:
+        # 如果 k 是 -1，则使用预测结果的实际长度
+        k = pred_target.shape[1]
     pred_target = pred_target[:, :k]
     ideal_target = ideal_target[:, :k]
     return div_no_nan(_dcg(pred_target), _dcg(ideal_target)).mean(0)
 
 
 def recall_at_k(pred_target: Tensor, ideal_target: Tensor, k: Optional[int] = None) -> Tensor:
+    if k == -1:
+        # 如果 k 是 -1，则使用预测结果的实际长度
+        k = pred_target.shape[1]
     pred_target = pred_target[:, :k]  # 只考虑前 k 个预测结果
     relevant = (pred_target == 1).sum(dim=-1)  # 计算预测中相关文档的个数
     total_relevant = (ideal_target == 1).sum(dim=-1)  # 计算所有相关文档的个数
@@ -64,6 +70,9 @@ def recall_at_k(pred_target: Tensor, ideal_target: Tensor, k: Optional[int] = No
 
 
 def acc_at_k(pred_target: Tensor, ideal_target: Tensor, k: Optional[int] = None) -> Tensor:
+    if k == -1:
+        # 如果 k 是 -1，则使用预测结果的实际长度
+        k = pred_target.shape[1]
     pred_target = pred_target[:, :k]  # 只考虑前 k 个预测结果
     ideal_target = ideal_target[:, :k]
     
@@ -75,6 +84,9 @@ def acc_at_k(pred_target: Tensor, ideal_target: Tensor, k: Optional[int] = None)
 
 
 def precision_at_k(pred_target: Tensor, ideal_target: Tensor, k: Optional[int] = None) -> Tensor:
+    if k == -1:
+        # 如果 k 是 -1，则使用预测结果的实际长度
+        k = pred_target.shape[1]
     pred_target = pred_target[:, :k]  # 只考虑前 k 个预测结果
     relevant = (pred_target == 1).sum(dim=-1)  # 计算预测中相关文档的个数
     precision = relevant / k  # 计算 Precision@k
@@ -373,7 +385,8 @@ def cal_metrics_w_dataset(loc_file, key,
         name = METRIC_NAME[metric]
         for k in k_values:
             value = metric_func(_pred_target, _ideal_target, k=k)
-            result[f'{name}@{k}'] = round(value.item(), 4)
+            suffix = "full" if k == -1 else k
+            result[f'{name}@{suffix}'] = round(value.item(), 4)
             
     return result
 
@@ -385,9 +398,9 @@ def evaluate_results(loc_file, level2key_dict,
                      k_values_list=None):
     if not k_values_list:
         k_values_list = [
-            [1, 3, 5],
-            [5, 10],
-            [5, 10]
+            [1, 3, 5, -1],
+            [5, 10, -1],
+            [5, 10, -1]
         ]
     file_res = cal_metrics_w_dataset(loc_file, level2key_dict['file'], 'file', dataset, split, 
                             metrics=metrics,
@@ -402,8 +415,9 @@ def evaluate_results(loc_file, level2key_dict,
                             k_values=k_values_list[2],
                             selected_list=selected_list)
 
-    all_df = pd.concat([pd.DataFrame(res, index=[0])
-                          for res in [file_res, module_res, function_res]], 
-                        axis=1, 
-                        keys=['file', 'module', 'function'])
+    # all_df = pd.concat([pd.DataFrame(res, index=[0])
+    #                       for res in [file_res, module_res, function_res]], 
+    #                     axis=1, 
+    #                     keys=['file', 'module', 'function'])
+    all_df = {'file': file_res, 'module': module_res, 'function': function_res}
     return all_df
