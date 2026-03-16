@@ -49,6 +49,7 @@ def setup_repo(
     return setup_github_repo(
         repo=github_repo_path,
         base_commit=instance_data["base_commit"],
+        fixed_commit=instance_data["fixed_commit"],
         base_dir=repo_base_dir,
     )
 

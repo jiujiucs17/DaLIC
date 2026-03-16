@@ -307,6 +307,10 @@ def cal_metrics_w_dataset(loc_file, key,
                 fn = func.split(':')[0]
                 if fn not in gt_dict[instance['instance_id']]:
                     gt_dict[instance['instance_id']].append(fn)
+            for func in instance['added_functions']:
+                fn = func.split(':')[0]
+                if fn not in gt_dict[instance['instance_id']]:
+                    gt_dict[instance['instance_id']].append(fn)
         elif eval_level == 'module':
             for func in instance['edit_functions']:
                 fn = func.split(':')[0]
@@ -314,8 +318,22 @@ def cal_metrics_w_dataset(loc_file, key,
                 mid = f'{fn}:{mname}'
                 if mid not in gt_dict[instance['instance_id']]:
                     gt_dict[instance['instance_id']].append(mid)
+            for func in instance['added_functions']:
+                fn = func.split(':')[0]
+                mname = func.split(':')[-1].split('.')[0]
+                mid = f'{fn}:{mname}'
+                if mid not in gt_dict[instance['instance_id']]:
+                    gt_dict[instance['instance_id']].append(mid)
         elif eval_level == 'function':
             for func in instance['edit_functions']:
+                fn = func.split(':')[0]
+                mname = func.split(':')[-1]
+                if mname.endswith('.__init__'):
+                    mname = mname[:(len(mname)-len('.__init__'))]
+                mid = f'{fn}:{mname}'
+                if mid not in gt_dict[instance['instance_id']]:
+                    gt_dict[instance['instance_id']].append(mid)
+            for func in instance['added_functions']:
                 fn = func.split(':')[0]
                 mname = func.split(':')[-1]
                 if mname.endswith('.__init__'):
