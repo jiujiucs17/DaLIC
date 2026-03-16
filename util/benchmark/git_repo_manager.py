@@ -7,7 +7,7 @@ def get_repo_dir_name(repo: str):
     return repo.replace("/", "_")
 
 
-def setup_github_repo(repo: str, base_commit: str, base_dir: str = "/tmp/repos") -> str:
+def setup_github_repo(repo: str, base_commit: str, fixed_commit: str, base_dir: str = "/tmp/repos") -> str:
     repo_name = get_repo_dir_name(repo)
     repo_url = f"https://github.com/{repo}.git"
     path = f"{base_dir}/{repo_name}"
@@ -18,7 +18,10 @@ def setup_github_repo(repo: str, base_commit: str, base_dir: str = "/tmp/repos")
         os.makedirs(path)
         logger.info(f"Directory '{path}' was created.")
     maybe_clone(repo_url, path)
-    checkout_commit(path, base_commit)
+    if fixed_commit is not None:
+        checkout_commit(path, fixed_commit)
+    else:
+        raise ValueError(f"Fixed commit is None for repo {repo_name}")
     return path
 
 
