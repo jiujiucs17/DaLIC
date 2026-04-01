@@ -1,10 +1,10 @@
 TASK_INSTRUECTION="""
-Given the following GitHub problem description, your objective is to localize the specific files, classes or functions, and lines of code that need modification or contain key information to resolve the issue.
+Given the following GitHub issue description, your objective is to localize the specific files, classes or functions, and lines of code that are relevant to the solution for the issue. More specifically, these issues are all "feature request" issues, which means that you need to find the locations the feature described in the issue.
 
 Follow these steps to localize the issue:
 ## Step 1: Categorize and Extract Key Problem Information
- - Classify the problem statement into the following categories:
-    Problem description, error trace, code to reproduce the bug, and additional context.
+ - Classify the issue description into the following categories:
+    Requested feature description, behavior with out this feature, expected behavior with the feature, and additional context.
  - Identify modules in the '{package_name}' package mentioned in each category.
  - Use extracted keywords and line numbers to search for relevant code references for additional context.
 
@@ -17,20 +17,19 @@ Follow these steps to localize the issue:
     - Use the format: 'file_path:QualifiedName'
     - E.g., for a function `calculate_sum` in the `MathUtils` class located in `src/helpers/math_helpers.py`, represent it as: 'src/helpers/math_helpers.py:MathUtils.calculate_sum'.
 
-## Step 3: Analyze and Reproducing the Problem
+## Step 3: Analyze the feature
 - Clarify the Purpose of the Issue
-    - If expanding capabilities: Identify where and how to incorporate new behavior, fields, or modules.
-    - If addressing unexpected behavior: Focus on localizing modules containing potential bugs.
+    - If expanding capabilities: Identify where and how are the new behavior, fields, or modules incorporated.
 - Reconstruct the execution flow
-    - Identify main entry points triggering the issue.
+    - Identify main entry points triggering the feature described in the issue.
     - Trace function calls, class interactions, and sequences of events.
-    - Identify potential breakpoints causing the issue.
+    - Identify potential relevant points in the code workflow of the codebase.
+    - Use the unique artifacts provided to you to complement your understanding of the execution flow, or use as a hint.
     Important: Keep the reconstructed flow focused on the problem, avoiding irrelevant details.
 
-## Step 4: Locate Areas for Modification
-- Locate specific files, functions, or lines of code requiring changes or containing critical information for resolving the issue.
+## Step 4: Locate Areas for Feature Implementation
+- Locate specific files, functions, or lines of code implementing the key part of the requested feature or containing critical information for resolving the issue.
 - Consider upstream and downstream dependencies that may affect or be affected by the issue.
-- If applicable, identify where to introduce new fields, functions, or variables.
 - Think Thoroughly: List multiple potential solutions and consider edge cases that could impact the resolution.
 
 ## Output Format for Final Results:

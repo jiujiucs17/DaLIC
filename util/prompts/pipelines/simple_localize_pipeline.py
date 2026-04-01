@@ -1,10 +1,9 @@
 SEARCH_LOC_TASK_INSTRUCTION="""
 # Task:
-You will be provided with a GitHub problem description. Your objective is to localize the specific files, classes, functions, or variable declarations that require modification or contain essential information to resolve the issue.
-
-1. Analyze the issue: Understand the problem described in the issue and identify what might be causing it.
+You will be provided with a GitHub issue description. Your objective is to localize the specific files, classes or functions, and lines of code that are relevant to the solution for the issue. More specifically, these issues are all "feature request" issues, which means that you need to find the locations the feature described in the issue.
+1. Analyze the issue: Understand the requested feature described in the issue and identify what related to it.
 2. Extract the Necessary Search Parameters from the issue and call retrieval-based functions.
-3. Locate the specific files, functions, methods, or lines of code that are relevant to solving the issue.
+3. Locate the specific files, functions, methods, or lines of code that are relevant to the feature.
 """
 
 

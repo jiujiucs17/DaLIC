@@ -46,6 +46,8 @@ from util.runtime.fn_call_converter import (
     convert_non_fncall_messages_to_fncall_messages,
     STOP_WORDS as NON_FNCALL_STOP_WORDS
 )
+
+from DaLIC.prompt_generator import build_instance_dalic_info_prompt
 # litellm.set_verbose=True
 # os.environ['LITELLM_LOG'] = 'DEBUG
 
@@ -369,9 +371,19 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                         })
 
                     logger.info(f"==== {instance_id} start auto search ====")
+                    task_instruction = get_task_instruction(
+                        bug, include_pr=True, include_hint=True
+                    )
+                    dalic_context = build_instance_dalic_info_prompt(
+                        with_data_deps=False, instance_id=instance_id
+                    )
                     messages.append({
                         "role": "user",
-                        "content": get_task_instruction(bug, include_pr=True, include_hint=True),
+                        "content": (
+                            f"{task_instruction}\n\n"
+                            "Supplemental context information:\n"
+                            f"{dalic_context}"
+                        ),
                     })
                     
                     tools = None

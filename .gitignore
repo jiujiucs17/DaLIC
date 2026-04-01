@@ -183,3 +183,7 @@ sft/
 config.toml
 unsloth_compiled_cache/
 wandb/
+
+# DaLIC tracing results
+DaLIC/vt_results*
+outputs/*
