@@ -37,6 +37,13 @@ Your final output should list the locations requiring modification, wrapped with
 Each location should include the file path, class name (if applicable), function name, or line numbers, ordered by importance.
 Your answer would better include about 5 files.
 
+IMPORTANT FORMAT RULES:
+- Output ONLY the location block, followed by `<finish></finish>`.
+- Do NOT include explanations, bullets, headings, numbering, summaries, or notes before or after the location block.
+- Each file path MUST appear on its own line and end with `.py`.
+- Do NOT write `file.py:QualifiedName` on a single line in the final answer.
+- After a file path line, use separate `line:`, `class:`, and `function:` lines as needed.
+
 ### Examples:
 ```
 full_path1/file1.py
@@ -59,10 +66,35 @@ Return just the location(s)
 Note: Your thinking should be thorough and so it's fine if it's very long.
 """
 
+FINAL_OUTPUT_REWRITE_REMINDER = """
+Your last answer did not follow the required final output format.
+
+Rewrite your final answer now using this exact structure:
+
+```
+path/to/file1.py
+line: 10-20
+class: MyClass
+function: my_function
+
+path/to/file2.py
+line: 42
+function: another_function
+```
+<finish></finish>
+
+Rules:
+- Output ONLY one fenced code block, then `<finish></finish>`
+- Each file path must be on its own line and end with `.py`
+- Do NOT use `file.py:QualifiedName` on one line
+- Do NOT include explanations, headings, bullets, numbering, or any prose
+- Return just the location(s)
+"""
+
 FAKE_USER_MSG_FOR_LOC = (
     'Verify if the found locations contain all the necessary information to address the issue, and check for any relevant references in other parts of the codebase that may not have appeared in the search results. '
     'If not, continue searching for additional locations related to the issue.\n'
     'Verify that you have carefully analyzed the impact of the found locations on the repository, especially their dependencies. '
-    'If you think you have solved the task, please send your final answer (including the former answer and reranking) to user through message and then call `finish` to finish.\n'
+    'If you think you have solved the task, rewrite your final answer into the required location-only format, output ONLY the location block, and then call `finish` to finish.\n'
     'IMPORTANT: YOU SHOULD NEVER ASK FOR HUMAN HELP.\n'
 )

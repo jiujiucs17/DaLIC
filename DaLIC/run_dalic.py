@@ -15,7 +15,7 @@ litellm.set_verbose=False
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
 os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://ezo2psrlnu5b3q-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://4kw5qrmteq7x9q-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
 
@@ -67,9 +67,11 @@ config = {
 }
 output_folder_root = os.path.join(os.path.dirname(__file__), "outputs")
 
-def save_eval_results_txt(eval_results, output_file):
+def save_eval_results_txt(args,eval_results, output_file):
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, "w") as f:
+        f.write(f"Evaluation results for dataset: {args.dataset}, split: {args.split}\n")
+        f.write(f"Model: {args.model}\n")
         for result_name, result_df in eval_results.items():
             f.write(f"===== {result_name} =====\n")
             if isinstance(result_df, pd.DataFrame):
@@ -140,7 +142,7 @@ def get_arg(output_folder = None,
     # 设置 logging 的日志级别
     parser.add_argument("--log_level", type=str, default='INFO')
     # 单个 issue 并行进程最多允许运行的时间（秒）
-    parser.add_argument("--timeout", type=int, default=1500)
+    parser.add_argument("--timeout", type=int, default=2100)
     # 重新运行之前未能找到合法预测文件的 instance_id
     parser.add_argument("--rerun_empty_location", action="store_true")
 
@@ -171,29 +173,30 @@ def get_arg(output_folder = None,
     return args
 
 if __name__ == "__main__":
-    # print start time
-    # print(f"Start time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
-    # for config_name, (use_dalic, use_data_deps) in config.items():
-    #     for i in tqdm(range(5), desc=f"Running {config_name}"):
-    #         output_folder_runtime = os.path.join(output_folder_root, f"{config_name}_run_{i+1}")
-    #         arg = get_arg(output_folder=output_folder_runtime, 
-    #                       use_dalic=use_dalic, 
-    #                       use_data_deps=use_data_deps)
-    #         arg.localize = True
-    #         arg.dataset = "JJcs17/Loc-Bench-add_fixed_commit"
-    #         arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
-    #         arg.num_processes = 5
+    # # print start time
+    arg = None
+    print(f"Start time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
+    for config_name, (use_dalic, use_data_deps) in config.items():
+        for i in tqdm(range(5), desc=f"Running {config_name}"):
+            output_folder_runtime = os.path.join(output_folder_root, f"{config_name}_run_{i+1}")
+            arg = get_arg(output_folder=output_folder_runtime, 
+                          use_dalic=use_dalic, 
+                          use_data_deps=use_data_deps)
+            arg.localize = True
+            arg.dataset = "JJcs17/Loc-Bench-add_fixed_commit"
+            arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
+            arg.num_processes = 5
 
-    #         # write the arguments
-    #         with open(f"{arg.output_folder}/args.json", "w") as f:
-    #             json.dump(vars(arg), f, indent=4)
-    #             print(f"Finished running {config_name} for 5 times.")
+            # write the arguments
+            with open(f"{arg.output_folder}/args.json", "w") as f:
+                json.dump(vars(arg), f, indent=4)
 
-    #         start_time = time.time()
-    #         localize(arg)
-    #         merge(arg)
-    #         end_time = time.time()
-    #         logging.info("Total time: {:.4f} min".format((end_time - start_time)/60))
+            start_time = time.time()
+            localize(arg)
+            merge(arg)
+            end_time = time.time()
+            logging.info("Total time: {:.4f} min".format((end_time - start_time)/60))
+        print(f"Finished running {config_name} for 5 times.")
 
     # evaluate results
     eval_results = {}
@@ -220,7 +223,7 @@ if __name__ == "__main__":
         print(f"Finished evaluating results for {config_name}.")
 
     eval_results_file = os.path.join(output_folder_root, "eval_results.txt")
-    save_eval_results_txt(eval_results, eval_results_file)
+    save_eval_results_txt(arg,eval_results, eval_results_file)
     print(f"Saved evaluation results to {eval_results_file}.")
 
 

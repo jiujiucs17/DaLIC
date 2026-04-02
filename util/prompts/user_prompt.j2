@@ -218,11 +218,28 @@ Found method `create_billing_data` in file `shopping_web/services/order_service.
 
 
 ASSISTANT:
-In `order_service.py`, the `initiate_order` function creates `billing_info` without including `payment_id`.
-As a result, `billing_service.process_billing()` receives `billing_info` without `payment_id`, leading to the error when `process_payment()` is called.
+```
+shopping_web/services/order_service.py
+line: 12-18
+function: initiate_order
 
-Conclusion:
-The root cause of the error is that process_payment() is being called without a valid payment_id. Both the process_order() and process_billing() functions need to ensure payment_id is correctly generated and included in the data passed to process_payment().
+shopping_web/services/billing_service.py
+line: 31-33
+function: process_billing
+
+shopping_web/services/order_service.py
+line: 50-55
+function: process_order
+
+shopping_web/services/payment_service.py
+line: 45-50
+function: process_payment
+
+shopping_web/db/transaction_repository.py
+line: 14-18
+class: TransactionRepository
+function: insert_transaction
+```
 <finish></finish>
 
 --- END OF EXAMPLE ---

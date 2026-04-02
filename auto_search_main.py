@@ -112,13 +112,32 @@ def get_task_instruction(instance: dict, task: str = 'auto_search', include_pr=F
     return instruction
 
 
+def has_valid_loc_output(instance_id: str, raw_output: str) -> bool:
+    if not raw_output or not raw_output.strip():
+        return False
+
+    try:
+        found_files, _, _ = get_loc_results_from_raw_outputs(instance_id, [raw_output])
+    except Exception:
+        logging.exception(
+            "Failed to validate final output format for %s.", instance_id
+        )
+        return False
+
+    return bool(found_files and found_files[0])
+
+
 def auto_search_process(result_queue,
                         model_name, messages, fake_user_msg,
                         tools = None,
                         traj_data=None,
                         temp=1.0,
                         max_iteration_num=20,
-                        use_function_calling=True):
+                        use_function_calling=True,
+                        instance_id: str = "",
+                        final_output_validator=None,
+                        invalid_output_reminder: str = "",
+                        max_format_retry_num: int = 2):
     if tools and ('hosted_vllm' in model_name or 'qwen' in model_name.lower() 
     #             #   or model_name=='azure/gpt-4o' 
     #             #   or model_name == 'litellm_proxy/o3-mini-2025-01-31'
@@ -145,6 +164,7 @@ def auto_search_process(result_queue,
     cur_interation_num = 0
     last_message = None
     finish = False
+    format_retry_num = max_format_retry_num
     while not finish:
         cur_interation_num += 1
         if cur_interation_num == max_iteration_num:
@@ -231,10 +251,28 @@ def auto_search_process(result_queue,
         actions = parser.parse(response)
         if not isinstance(actions, List):
             actions = [actions]
+        retry_for_format = False
         for action in actions:
             logging.debug(action.action_type)
             if action.action_type == ActionType.FINISH:
-                final_output = action.thought
+                final_output = action.thought.strip()
+                if (
+                    final_output_validator is not None
+                    and not final_output_validator(final_output)
+                ):
+                    logging.warning(
+                        "Final response format invalid for %s. Remaining rewrite retries: %d",
+                        instance_id,
+                        format_retry_num,
+                    )
+                    logging.info("\nInvalid Final Response:=\n" + final_output)
+                    if format_retry_num > 0:
+                        format_retry_num -= 1
+                        reminder = invalid_output_reminder or fake_user_msg
+                        messages.append({"role": "user", "content": reminder})
+                        traj_msgs.append({"role": "user", "content": reminder})
+                        retry_for_format = True
+                        break
                 logging.info('='*15)
                 logging.info("\nFinal Response:=\n" + final_output)
                 finish = True # break
@@ -281,6 +319,9 @@ def auto_search_process(result_queue,
             else:
                 logging.warning('Error Action!')
                 # return
+
+        if retry_for_format:
+            continue
 
     # save traj
     traj_data = {
@@ -379,7 +420,10 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                         with_data_deps=args.use_data_deps, instance_id=instance_id
                     )
                     if args.use_dalic:
-                        logger.info(f"==== {instance_id} include DaLIC context ({"with" if args.use_data_deps else "without"} data_deps) in prompt ====")
+                        data_deps_label = "with" if args.use_data_deps else "without"
+                        logger.info(
+                            f"==== {instance_id} include DaLIC context ({data_deps_label} data_deps) in prompt ===="
+                        )
                         messages.append({
                             "role": "user",
                             "content": (
@@ -415,6 +459,9 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                         temp=1,
                         tools=tools,
                         use_function_calling=args.use_function_calling,
+                        instance_id=instance_id,
+                        final_output_validator=lambda output: has_valid_loc_output(instance_id, output),
+                        invalid_output_reminder=auto_search.FINAL_OUTPUT_REWRITE_REMINDER,
                     )
                     
                     # loc_result, messages, traj_data = result_queue.get()
@@ -424,6 +471,14 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                         # print(f"Error occurred in subprocess: {result['error']}")
                     else:
                         loc_result, messages, traj_data = result
+
+                    if not has_valid_loc_output(instance_id, loc_result):
+                        logger.warning(
+                            "Final output for %s still does not match the required location format. Retrying from a new attempt.",
+                            instance_id,
+                        )
+                        max_attempt_num = max_attempt_num - 1
+                        continue
                         
                 except litellm.BadRequestError as e:
                     logger.warning(f'{e}. BadRequestError Try again.')

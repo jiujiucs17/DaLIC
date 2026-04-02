@@ -175,6 +175,49 @@ METRIC_NAME = {
 }
 
 
+def _calc_full_metric_from_lists(metric, pred_locs_list, gt_locs_list):
+    scores = []
+    for pred_locs, gt_locs in zip(pred_locs_list, gt_locs_list):
+        gt_set = set(gt_locs)
+        pred_hits = [1 if loc in gt_set else 0 for loc in pred_locs]
+        pred_len = len(pred_hits)
+        gt_len = len(gt_locs)
+
+        if metric == 'precision':
+            score = sum(pred_hits) / pred_len if pred_len else 0.0
+        elif metric == 'recall':
+            score = sum(pred_hits) / gt_len if gt_len else 0.0
+        elif metric == 'acc':
+            score = 1.0 if sum(pred_hits) == gt_len else 0.0
+        elif metric == 'ndcg':
+            if pred_len == 0:
+                score = 0.0
+            else:
+                pred_target = torch.tensor([pred_hits], dtype=torch.float32)
+                ideal_hits = [1] * min(gt_len, pred_len) + [0] * max(pred_len - gt_len, 0)
+                ideal_target = torch.tensor([ideal_hits], dtype=torch.float32)
+                score = normalized_dcg(pred_target, ideal_target, k=pred_len).item()
+        elif metric == 'map':
+            if pred_len == 0:
+                score = 0.0
+            else:
+                ap = 0.0
+                relevant_count = 0
+                for rank, hit in enumerate(pred_hits, start=1):
+                    if hit:
+                        relevant_count += 1
+                        ap += relevant_count / rank
+                score = ap / pred_len
+        else:
+            raise ValueError(f"Unsupported metric for full evaluation: {metric}")
+
+        scores.append(score)
+
+    if not scores:
+        return 0.0
+    return sum(scores) / len(scores)
+
+
 def cal_metrics_w_file(gt_file, loc_file, key,
                 level,
                 k_values, # < 100
@@ -185,7 +228,8 @@ def cal_metrics_w_file(gt_file, loc_file, key,
                 ):
     assert key in ['found_files', 'found_modules', 'found_entities', 'docs']
     
-    max_k = max(k_values)
+    positive_k_values = [k for k in k_values if k != -1]
+    max_k = max(positive_k_values) if positive_k_values else 0
     # loc_output = load_jsonl(loc_file)
     gt_dict = load_gt_dict(gt_file, level)
     if key == 'docs' and level == 'file':
@@ -202,7 +246,7 @@ def cal_metrics_w_file(gt_file, loc_file, key,
                         func_n = func_n[:(len(func_n)-len('.__init__'))]
                     pred_funcs[i] = f"{fle}.py:{func_n.strip('/').replace('/', '.')}"
                 elif level == 'module':
-                    module_name = f'{fle}.py:{func_n.strip('/').split('/')[0]}'
+                    module_name = f"{fle}.py:{func_n.strip('/').split('/')[0]}"
                     if module_name not in pred_modules:
                         pred_modules.append(module_name)
                     pred_dict[ins] = pred_modules
@@ -221,6 +265,8 @@ def cal_metrics_w_file(gt_file, loc_file, key,
         
     _gt_labels = []
     _pred_labels = []
+    full_pred_locs = []
+    full_gt_locs = []
     
     # for loc in loc_output:
     for instance_id in gt_dict.keys():
@@ -228,11 +274,16 @@ def cal_metrics_w_file(gt_file, loc_file, key,
         if filter_list and instance_id in filter_list: continue # filter
         if selected_list and instance_id not in selected_list: continue
         if not gt_dict[instance_id]: continue
+
+        full_gt_locs.append(gt_dict[instance_id])
         
         if instance_id not in pred_dict:
-            pred_locs = []
+            pred_locs_full = []
         else:
-            pred_locs = pred_dict[instance_id][: max_k]
+            pred_locs_full = pred_dict[instance_id]
+        full_pred_locs.append(pred_locs_full)
+
+        pred_locs = pred_locs_full[: max_k]
                 
         gt_labels = [0 for _ in range(max_k)]
         pred_labels = [0 for _ in range(max_k)]
@@ -258,8 +309,13 @@ def cal_metrics_w_file(gt_file, loc_file, key,
         metric_func = METRIC_FUNC[metric]
         name = METRIC_NAME[metric]
         for k in k_values:
-            value = metric_func(_pred_target, _ideal_target, k=k)
-            result[f'{name}@{k}'] = round(value.item(), 4)
+            if k == -1:
+                value = _calc_full_metric_from_lists(metric, full_pred_locs, full_gt_locs)
+                suffix = 'full'
+            else:
+                value = metric_func(_pred_target, _ideal_target, k=k).item()
+                suffix = k
+            result[f'{name}@{suffix}'] = round(value, 4)
             
     return result
 
@@ -296,7 +352,8 @@ def cal_metrics_w_dataset(loc_file, key,
                 selected_list=None,
                 ):
     assert key in ['found_files', 'found_modules', 'found_entities', 'docs']
-    max_k = max(k_values)
+    positive_k_values = [k for k in k_values if k != -1]
+    max_k = max(positive_k_values) if positive_k_values else 0
     
     # load localization labels
     bench_data = load_dataset(dataset, split=split)
@@ -356,9 +413,9 @@ def cal_metrics_w_dataset(loc_file, key,
                 if eval_level == 'function':
                     if func_n.endswith('.__init__'):
                         func_n = func_n[:(len(func_n)-len('.__init__'))]
-                    pred_funcs[i] = f'{fle}.py:{func_n.strip('/').replace('/', '.')}'
+                    pred_funcs[i] = f"{fle}.py:{func_n.strip('/').replace('/', '.')}"
                 elif eval_level == 'module':
-                    module_name = f'{fle}.py:{func_n.strip('/').split('/')[0]}'
+                    module_name = f"{fle}.py:{func_n.strip('/').split('/')[0]}"
                     if module_name not in pred_modules:
                         pred_modules.append(module_name)
                     pred_dict[ins] = pred_modules
@@ -368,15 +425,22 @@ def cal_metrics_w_dataset(loc_file, key,
         
     _gt_labels = []
     _pred_labels = []
+    full_pred_locs = []
+    full_gt_locs = []
     
     for instance_id in gt_dict.keys():
         if selected_list and instance_id not in selected_list: continue
         if not gt_dict[instance_id]: continue
+
+        full_gt_locs.append(gt_dict[instance_id])
         
         if instance_id not in pred_dict:
-            pred_locs = []
+            pred_locs_full = []
         else:
-            pred_locs = pred_dict[instance_id][: max_k]
+            pred_locs_full = pred_dict[instance_id]
+        full_pred_locs.append(pred_locs_full)
+
+        pred_locs = pred_locs_full[: max_k]
                 
         gt_labels = [0 for _ in range(max_k)]
         pred_labels = [0 for _ in range(max_k)]
@@ -402,9 +466,13 @@ def cal_metrics_w_dataset(loc_file, key,
         metric_func = METRIC_FUNC[metric]
         name = METRIC_NAME[metric]
         for k in k_values:
-            value = metric_func(_pred_target, _ideal_target, k=k)
-            suffix = "full" if k == -1 else k
-            result[f'{name}@{suffix}'] = round(value.item(), 4)
+            if k == -1:
+                value = _calc_full_metric_from_lists(metric, full_pred_locs, full_gt_locs)
+                suffix = "full"
+            else:
+                value = metric_func(_pred_target, _ideal_target, k=k).item()
+                suffix = k
+            result[f'{name}@{suffix}'] = round(value, 4)
             
     return result
 
