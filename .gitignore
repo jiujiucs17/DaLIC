@@ -186,4 +186,5 @@ wandb/
 
 # DaLIC tracing results
 DaLIC/vt_results*
+DaLIC/outputs/*
 outputs/*

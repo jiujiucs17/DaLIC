@@ -221,7 +221,8 @@ def auto_search_process(result_queue,
                 continue 
                 
         last_message = response.choices[0].message.content
-        print(response.choices[0].message)
+        if os.environ.get("DALIC_SILENCE_LITELLM_STDOUT") != "1":
+            print(response.choices[0].message)
         messages.append(convert_to_json(raw_response.choices[0].message))
         traj_msgs.append(convert_to_json(raw_response.choices[0].message))
         prompt_tokens += response.usage.prompt_tokens
@@ -375,16 +376,24 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                         bug, include_pr=True, include_hint=True
                     )
                     dalic_context = build_instance_dalic_info_prompt(
-                        with_data_deps=False, instance_id=instance_id
+                        with_data_deps=args.use_data_deps, instance_id=instance_id
                     )
-                    messages.append({
-                        "role": "user",
-                        "content": (
-                            f"{task_instruction}\n\n"
-                            "Supplemental context information:\n"
-                            f"{dalic_context}"
-                        ),
-                    })
+                    if args.use_dalic:
+                        logger.info(f"==== {instance_id} include DaLIC context ({"with" if args.use_data_deps else "without"} data_deps) in prompt ====")
+                        messages.append({
+                            "role": "user",
+                            "content": (
+                                f"{task_instruction}\n\n"
+                                "Supplemental context information:\n"
+                                f"{dalic_context}"
+                            ),
+                        })
+                    else:
+                        logger.info(f"==== {instance_id} no DaLIC context in prompt ====")
+                        messages.append({
+                            "role": "user",
+                            "content": task_instruction,
+                        })
                     
                     tools = None
                     # if args.use_function_calling:
@@ -559,7 +568,7 @@ def localize(args):
                         "bug": bug,
                         "log_queue": log_queue,
                         "output_file_lock": output_file_lock,
-                        "traj_file_lock": traj_file_lock,
+                        "traj_file_lock": traj_file_lock
                     },
                 )
                 process.start()
@@ -589,7 +598,7 @@ def localize(args):
                 elapsed = time.time() - proc_info["start_time"]
                 if elapsed > args.timeout:
                     logging.warning(
-                        f"{bug['instance_id']} exceeded top-level timeout ({args.timeout}s). Terminating issue process."
+                        f"localization for {bug['instance_id']} failed, exceeded top-level timeout ({args.timeout}s). Terminating issue process."
                     )
                     process.terminate()
                     process.join()
