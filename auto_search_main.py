@@ -1,4 +1,5 @@
 import argparse
+import ast
 import os
 import json
 import logging
@@ -47,9 +48,23 @@ from util.runtime.fn_call_converter import (
     STOP_WORDS as NON_FNCALL_STOP_WORDS
 )
 
-from DaLIC.prompt_generator import build_instance_dalic_info_prompt
+from DaLIC.prompt_generator import (
+    build_dalic_tool_followup_reminder,
+    build_dalic_tool_usage_prompt,
+)
 # litellm.set_verbose=True
 # os.environ['LITELLM_LOG'] = 'DEBUG
+
+
+TRANSIENT_LITELLM_ERRORS = (
+    litellm.NotFoundError,
+    litellm.APIConnectionError,
+    litellm.APIError,
+    litellm.InternalServerError,
+    litellm.ServiceUnavailableError,
+    litellm.RateLimitError,
+    litellm.Timeout,
+)
 
 
 def filter_dataset(dataset, filter_column: str, used_list: str):
@@ -125,6 +140,31 @@ def has_valid_loc_output(instance_id: str, raw_output: str) -> bool:
         return False
 
     return bool(found_files and found_files[0])
+
+
+def normalize_ipython_output(raw_output):
+    if raw_output is None:
+        return ""
+
+    if not isinstance(raw_output, str):
+        return str(raw_output)
+
+    stripped_output = raw_output.strip()
+    if not stripped_output:
+        return raw_output
+
+    try:
+        parsed_output = json.loads(stripped_output)
+    except json.JSONDecodeError:
+        try:
+            parsed_output = ast.literal_eval(stripped_output)
+        except (ValueError, SyntaxError):
+            return raw_output
+    if isinstance(parsed_output, str):
+        return parsed_output
+    if isinstance(parsed_output, (dict, list)):
+        return json.dumps(parsed_output, ensure_ascii=False, indent=2)
+    return str(parsed_output)
 
 
 def auto_search_process(result_queue,
@@ -285,13 +325,14 @@ def auto_search_process(result_queue,
             elif action.action_type == ActionType.RUN_IPYTHON:
                 ipython_code = action.code.strip('`')
                 logging.info(f"Executing code:\n```\n{ipython_code}\n```")
+                if action.function_name in {"get_trace_artifacts", "get_trace_data_dependencies"}:
+                    logging.info(
+                        "TOOL_CALL instance_id=%s tool=%s",
+                        instance_id,
+                        action.function_name,
+                    )
                 function_response = execute_ipython(ipython_code)
-                try:
-                    function_response = eval(function_response)
-                except SyntaxError:
-                    function_response = function_response
-                if not isinstance(function_response, str):
-                    function_response = str(function_response)
+                function_response = normalize_ipython_output(function_response)
                 
                 logging.info("OBSERVATION:\n" + function_response)
                 if not tools:
@@ -416,24 +457,31 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                     task_instruction = get_task_instruction(
                         bug, include_pr=True, include_hint=True
                     )
-                    dalic_context = build_instance_dalic_info_prompt(
-                        with_data_deps=args.use_data_deps, instance_id=instance_id
+                    tool_usage_prompt = build_dalic_tool_usage_prompt(
+                        use_trace_artifact_tool=args.use_trace_artifact_tool,
+                        use_trace_data_dependency_tool=args.use_trace_data_dependency_tool,
                     )
-                    if args.use_dalic:
-                        data_deps_label = "with" if args.use_data_deps else "without"
+                    followup_reminder = build_dalic_tool_followup_reminder(
+                        use_trace_artifact_tool=args.use_trace_artifact_tool,
+                        use_trace_data_dependency_tool=args.use_trace_data_dependency_tool,
+                    )
+                    fake_user_msg = auto_search.FAKE_USER_MSG_FOR_LOC
+                    if followup_reminder:
+                        fake_user_msg += followup_reminder + "\n"
+
+                    if tool_usage_prompt:
                         logger.info(
-                            f"==== {instance_id} include DaLIC context ({data_deps_label} data_deps) in prompt ===="
+                            "==== %s enable DaLIC raw tools (trace=%s, data_deps=%s) ====",
+                            instance_id,
+                            args.use_trace_artifact_tool,
+                            args.use_trace_data_dependency_tool,
                         )
                         messages.append({
                             "role": "user",
-                            "content": (
-                                f"{task_instruction}\n\n"
-                                "Supplemental context information:\n"
-                                f"{dalic_context}"
-                            ),
+                            "content": f"{task_instruction}{tool_usage_prompt}",
                         })
                     else:
-                        logger.info(f"==== {instance_id} no DaLIC context in prompt ====")
+                        logger.info(f"==== {instance_id} no DaLIC raw tools enabled ====")
                         messages.append({
                             "role": "user",
                             "content": task_instruction,
@@ -445,6 +493,8 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                         codeact_enable_search_keyword=True,
                         codeact_enable_search_entity=True,
                         codeact_enable_tree_structure_traverser=True,
+                        codeact_enable_trace_artifact_tool=args.use_trace_artifact_tool,
+                        codeact_enable_trace_data_dependency_tool=args.use_trace_data_dependency_tool,
                         simple_desc = args.simple_desc,
                     )
                     result_queue = Queue()
@@ -455,7 +505,7 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                         result_queue=result_queue,
                         model_name=args.model,
                         messages=messages,
-                        fake_user_msg=auto_search.FAKE_USER_MSG_FOR_LOC,
+                        fake_user_msg=fake_user_msg,
                         temp=1,
                         tools=tools,
                         use_function_calling=args.use_function_calling,
@@ -486,6 +536,15 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                     continue
                 except APITimeoutError:
                     logger.warning(f"APITimeoutError. Try again.")
+                    sleep(10)
+                    continue
+                except TRANSIENT_LITELLM_ERRORS as e:
+                    logger.warning(
+                        "Transient model API error while localizing %s: %s. Try again.",
+                        instance_id,
+                        e,
+                    )
+                    max_attempt_num = max_attempt_num - 1
                     sleep(10)
                     continue
                 except litellm.exceptions.ContextWindowExceededError as e:
@@ -744,6 +803,16 @@ def main():
     parser.add_argument("--log_level", type=str, default='INFO')
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--rerun_empty_location", action="store_true")
+    parser.add_argument(
+        "--use_trace_artifact_tool",
+        action="store_true",
+        help="Enable the raw DaLIC execution-trace tool backed by unique_artifacts.json.",
+    )
+    parser.add_argument(
+        "--use_trace_data_dependency_tool",
+        action="store_true",
+        help="Enable the raw DaLIC data-dependency tool backed by unique_dep_tree.json.",
+    )
     args = parser.parse_args()
 
     args.output_file = os.path.join(args.output_folder, args.output_file)

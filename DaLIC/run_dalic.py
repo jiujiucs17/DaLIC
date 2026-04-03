@@ -15,7 +15,7 @@ litellm.set_verbose=False
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
 os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://4kw5qrmteq7x9q-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://cqbzsqtync43nr-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
 
@@ -45,7 +45,7 @@ selected_ids = [
      "pandas-dev__pandas-60526",
      "pandas-dev__pandas-60518",
      "pandas-dev__pandas-60457", 
-    #  "pandas-dev__pandas-60415", # frequently exceeds context window
+     "pandas-dev__pandas-60415", # frequently exceeds context window
      "pandas-dev__pandas-60277",
      "pandas-dev__pandas-60247",
      "pandas-dev__pandas-60187",
@@ -61,9 +61,8 @@ k_values_list = [
     [1, 3, 5, 10, -1]
 ]
 config = {
-    "original": (False, False),
-    "with_dalic": (True, False),
-    "with_dalic_data_deps": (True, True),
+    "with_dalic_trace_tool_raw": (True, False),
+    "with_dalic_trace_data_deps_tool_raw": (True, True),
 }
 output_folder_root = os.path.join(os.path.dirname(__file__), "outputs")
 
@@ -81,8 +80,8 @@ def save_eval_results_txt(args,eval_results, output_file):
             f.write("\n\n")
 
 def get_arg(output_folder = None,
-            use_dalic=False,
-            use_data_deps=False):
+            use_trace_artifact_tool=False,
+            use_trace_data_dependency_tool=False):
     parser = argparse.ArgumentParser()
     # 是否开启“代码定位”（localization）主流程
     parser.add_argument("--localize", action="store_true")
@@ -146,9 +145,16 @@ def get_arg(output_folder = None,
     # 重新运行之前未能找到合法预测文件的 instance_id
     parser.add_argument("--rerun_empty_location", action="store_true")
 
-    # DaLIC related arguments
-    parser.add_argument("--use_dalic", action="store_true", help="Whether to use DaLIC for localization.")
-    parser.add_argument("--use_data_deps", action="store_true", help="Whether to include data dependencies in the context for localization.")
+    parser.add_argument(
+        "--use_trace_artifact_tool",
+        action="store_true",
+        help="Whether to expose the raw DaLIC execution-trace tool.",
+    )
+    parser.add_argument(
+        "--use_trace_data_dependency_tool",
+        action="store_true",
+        help="Whether to expose the raw DaLIC data-dependency tool.",
+    )
     args = parser.parse_args()
 
     # set arguments according to the parameters of the function
@@ -157,8 +163,8 @@ def get_arg(output_folder = None,
     args.output_file = os.path.join(args.output_folder, args.output_file)
     os.makedirs(args.output_folder, exist_ok=True)
 
-    args.use_dalic = use_dalic# Whether to use DaLIC for localization.
-    args.use_data_deps = use_data_deps  # Whether to include data dependencies in the context for
+    args.use_trace_artifact_tool = use_trace_artifact_tool
+    args.use_trace_data_dependency_tool = use_trace_data_dependency_tool
 
     logging.basicConfig(
         level=logging.getLevelName(args.log_level),
@@ -176,16 +182,18 @@ if __name__ == "__main__":
     # # print start time
     arg = None
     print(f"Start time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
-    for config_name, (use_dalic, use_data_deps) in config.items():
+    whole_start_time = time.time()
+    for config_name, (use_trace_artifact_tool, use_trace_data_dependency_tool) in config.items():
         for i in tqdm(range(5), desc=f"Running {config_name}"):
             output_folder_runtime = os.path.join(output_folder_root, f"{config_name}_run_{i+1}")
             arg = get_arg(output_folder=output_folder_runtime, 
-                          use_dalic=use_dalic, 
-                          use_data_deps=use_data_deps)
+                          use_trace_artifact_tool=use_trace_artifact_tool,
+                          use_trace_data_dependency_tool=use_trace_data_dependency_tool)
             arg.localize = True
             arg.dataset = "JJcs17/Loc-Bench-add_fixed_commit"
             arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
             arg.num_processes = 5
+            arg.rerun_empty_location=True
 
             # write the arguments
             with open(f"{arg.output_folder}/args.json", "w") as f:
@@ -222,9 +230,14 @@ if __name__ == "__main__":
         eval_results[f"{config_name}_average"] = avg_eval_df
         print(f"Finished evaluating results for {config_name}.")
 
-    eval_results_file = os.path.join(output_folder_root, "eval_results.txt")
+    eval_results_file = os.path.join(output_folder_root, "eval_results_trace_tools.txt")
     save_eval_results_txt(arg,eval_results, eval_results_file)
     print(f"Saved evaluation results to {eval_results_file}.")
+    # print passed time in format of hh:mm:ss
+    whole_end_time = time.time()
+    consumed_time = whole_end_time - whole_start_time
+    print(f"Whole process finished. Consumed time: {time.strftime('%H:%M:%S', time.gmtime(consumed_time))}")
+    
 
 
 

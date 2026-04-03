@@ -1,0 +1,86 @@
+Evaluation results for dataset: JJcs17/Loc-Bench-add_fixed_commit, split: test
+Model: hosted_vllm/czlll/Qwen2.5-Coder-7B-CL
+===== with_dalic_trace_tool_raw_run_1 =====
+           P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                            
+file      0.85  0.3333  0.20  0.100  0.5408    0.7625    0.8875    0.8875     0.8875       0.8875
+module    0.15  0.1167  0.11  0.095  0.1400    0.1500    0.2267    0.3933     0.5537       0.6296
+function  0.15  0.1167  0.12  0.085  0.1135    0.1500    0.1933    0.3517     0.4371       0.5239
+
+===== with_dalic_trace_tool_raw_run_2 =====
+           P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                            
+file      0.80  0.3333  0.21  0.105  0.4800    0.7125    0.8750      0.90     0.9000       0.9000
+module    0.15  0.1667  0.14  0.090  0.0921    0.1063    0.3688      0.48     0.5508       0.6708
+function  0.15  0.1333  0.11  0.075  0.0779    0.1063    0.2037      0.31     0.3796       0.4619
+
+===== with_dalic_trace_tool_raw_run_3 =====
+           P@1     P@3   P@5  P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                           
+file      0.85  0.3333  0.20  0.10  0.4933    0.7625    0.8875    0.8875     0.8875       0.8875
+module    0.20  0.1667  0.12  0.07  0.1511    0.1562    0.4125    0.5125     0.5238       0.6746
+function  0.10  0.1333  0.09  0.07  0.1410    0.0562    0.3125    0.3292     0.4321       0.5712
+
+===== with_dalic_trace_tool_raw_run_4 =====
+           P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                            
+file      0.75  0.3333  0.20  0.100  0.4842    0.7000    0.8875    0.8875     0.8875       0.8875
+module    0.20  0.1333  0.10  0.065  0.1077    0.1562    0.2688    0.3250     0.4417       0.7017
+function  0.15  0.1167  0.09  0.050  0.0937    0.1063    0.2188    0.2750     0.2917       0.5416
+
+===== with_dalic_trace_tool_raw_run_5 =====
+          P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                           
+file      0.8  0.3333  0.20  0.100  0.5225    0.7375    0.8500    0.8500     0.8500       0.8500
+module    0.2  0.1167  0.09  0.055  0.1041    0.2000    0.2767    0.2983     0.3983       0.6317
+function  0.2  0.1167  0.08  0.050  0.0984    0.2000    0.2717    0.2767     0.3433       0.4855
+
+===== with_dalic_trace_tool_raw_average =====
+           P@1      P@3    P@5   P@10   P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                               
+file      0.81  0.33330  0.202  0.101  0.50416   0.73500    0.8775   0.88250    0.88250      0.88250
+function  0.15  0.12334  0.098  0.066  0.10490   0.12376    0.2400   0.30852    0.37676      0.51682
+module    0.18  0.14002  0.112  0.075  0.11900   0.15374    0.3107   0.40182    0.49366      0.66168
+
+===== with_dalic_trace_data_deps_tool_raw_run_1 =====
+           P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                            
+file      0.90  0.3167  0.20  0.100  0.4683    0.8125    0.8625    0.8875     0.8875       0.8875
+module    0.20  0.1667  0.13  0.085  0.1267    0.1562    0.3688    0.4300     0.5412       0.6379
+function  0.15  0.1333  0.12  0.080  0.1069    0.1063    0.2287    0.3150     0.3596       0.4506
+
+===== with_dalic_trace_data_deps_tool_raw_run_2 =====
+           P@1     P@3   P@5  P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                           
+file      0.90  0.3333  0.20  0.10  0.4533    0.8125    0.8875    0.8875     0.8875       0.8875
+module    0.15  0.1333  0.08  0.06  0.0943    0.1063    0.2342    0.2342     0.4008       0.5558
+function  0.15  0.1167  0.07  0.06  0.0782    0.1063    0.1958    0.1958     0.3425       0.4858
+
+===== with_dalic_trace_data_deps_tool_raw_run_3 =====
+           P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                            
+file      0.75  0.3333  0.20  0.100  0.5392    0.6625    0.8875    0.8875     0.8875       0.8875
+module    0.15  0.1333  0.13  0.085  0.1521    0.1500    0.3113    0.4738     0.6071       0.6754
+function  0.10  0.0833  0.11  0.075  0.1468    0.1000    0.1813    0.3204     0.4471       0.5481
+
+===== with_dalic_trace_data_deps_tool_raw_run_4 =====
+          P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                           
+file      0.9  0.3500  0.21  0.105  0.4933    0.8125    0.9000    0.9000     0.9000       0.9000
+module    0.1  0.1500  0.14  0.100  0.1366    0.1000    0.2308    0.3621     0.5517       0.6617
+function  0.1  0.1333  0.13  0.085  0.1192    0.1000    0.1546    0.2942     0.3838       0.5133
+
+===== with_dalic_trace_data_deps_tool_raw_run_5 =====
+           P@1     P@3   P@5   P@10  P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                            
+file      0.85  0.3000  0.18  0.090  0.4642    0.7625    0.7875    0.7875     0.7875       0.7875
+module    0.20  0.1333  0.09  0.065  0.1448    0.1562    0.2342    0.2842     0.4404       0.6412
+function  0.15  0.1000  0.08  0.055  0.1250    0.1063    0.1792    0.2342     0.2738       0.4878
+
+===== with_dalic_trace_data_deps_tool_raw_average =====
+           P@1      P@3    P@5   P@10   P@full  Recall@1  Recall@3  Recall@5  Recall@10  Recall@full
+level                                                                                               
+file      0.86  0.32666  0.198  0.099  0.48366   0.77250   0.86500   0.87000    0.87000      0.87000
+function  0.13  0.11332  0.102  0.071  0.11522   0.10378   0.18792   0.27192    0.36136      0.49712
+module    0.16  0.14332  0.114  0.079  0.13090   0.13374   0.27586   0.35686    0.50824      0.63440
+

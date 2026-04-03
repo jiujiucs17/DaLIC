@@ -18,10 +18,17 @@ from util.actions.action import (
 from .finish import FinishTool
 from .structure_tools import ExploreTreeStructure, ExploreTreeStructure_simple
 from .content_tools import SearchEntityTool, SearchRepoTool
+from .dalic_tools import TraceArtifactsTool, TraceDataDependenciesTool
 import logging
 logger = logging.getLogger()
 
-ALL_FUNCTIONS = ['explore_tree_structure', 'search_code_snippets', 'get_entity_contents']
+ALL_FUNCTIONS = [
+    'explore_tree_structure',
+    'search_code_snippets',
+    'get_entity_contents',
+    'get_trace_artifacts',
+    'get_trace_data_dependencies',
+]
 
 SYSTEM_PROMPT = """You are a helpful assistant that can interact with a computer to solve tasks.
 <IMPORTANT>
@@ -96,6 +103,8 @@ def get_tools(
         codeact_enable_search_keyword: bool = False,
         codeact_enable_search_entity: bool = False,
         codeact_enable_tree_structure_traverser: bool = False,
+        codeact_enable_trace_artifact_tool: bool = False,
+        codeact_enable_trace_data_dependency_tool: bool = False,
         simple_desc: bool = False,
         
 ) -> list[ChatCompletionToolParam]:
@@ -111,6 +120,9 @@ def get_tools(
             tools.append(ExploreTreeStructure_simple)
         else:
             tools.append(ExploreTreeStructure)
+    if codeact_enable_trace_artifact_tool:
+        tools.append(TraceArtifactsTool)
+    if codeact_enable_trace_data_dependency_tool:
+        tools.append(TraceDataDependenciesTool)
     return tools
-
 

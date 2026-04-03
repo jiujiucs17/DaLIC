@@ -1,6 +1,7 @@
 from inspect import signature
 
 from plugins.location_tools import repo_ops, retriever
+from DaLIC import raw_tools
 from plugins.location_tools.utils.dependency import import_functions
 
 # import_functions(
@@ -10,7 +11,10 @@ from plugins.location_tools.utils.dependency import import_functions
 import_functions(
     module=repo_ops, function_names=repo_ops.__all__, target_globals=globals()
 )
-__all__ = repo_ops.__all__ # + retriever.__all__
+import_functions(
+    module=raw_tools, function_names=raw_tools.__all__, target_globals=globals()
+)
+__all__ = repo_ops.__all__ + raw_tools.__all__  # + retriever.__all__
 
 DOCUMENTATION = ''
 for func_name in __all__:

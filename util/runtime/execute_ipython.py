@@ -5,6 +5,10 @@ from plugins.location_tools.repo_ops.repo_ops import (
     explore_graph_structure,
     explore_tree_structure,
 )
+from DaLIC.raw_tools import (
+    get_trace_artifacts,
+    get_trace_data_dependencies,
+)
 
 from IPython.utils.capture import capture_output
 from IPython.terminal.interactiveshell import TerminalInteractiveShell
@@ -19,6 +23,8 @@ def execute_ipython(code_to_execute):
     ipython_shell.user_ns['get_entity_contents'] = get_entity_contents
     ipython_shell.user_ns['explore_graph_structure'] = explore_graph_structure
     ipython_shell.user_ns['explore_tree_structure'] = explore_tree_structure
+    ipython_shell.user_ns['get_trace_artifacts'] = get_trace_artifacts
+    ipython_shell.user_ns['get_trace_data_dependencies'] = get_trace_data_dependencies
     # ipython_shell.user_ns['explore_repo_structure'] = explore_repo_structure
     # ipython_shell.user_ns['search_interactions_among_modules'] = search_interactions_among_modules
 

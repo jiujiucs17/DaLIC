@@ -39,6 +39,24 @@ Assume the issue sent to you is a feature request requesting feature F.
 - It can help you understand how the unique artifacts are related to each other and how they are related to other parts of the codebase.
 """
 
+
+TRACE_TOOL_USAGE_INSTRUCTION = """
+Supplemental DaLIC evidence is available through tools for this instance.
+
+Suggested workflow:
+- At the beginning of analyzing a new data point, first inspect the raw execution-trace evidence with `get_trace_artifacts`.
+- During the analysis, you may call `get_trace_artifacts` again with narrower filters such as `path_contains` or `name_contains`.
+- When available, use `get_trace_data_dependencies` whenever you need a more precise dataflow slice around a traced symbol, scope, or file path.
+- You can revisit these tools at any point in the investigation; they are not only for the beginning.
+- Treat these tool outputs as compact raw evidence and verify them with the regular repository tools before finishing.
+"""
+
+
+TRACE_FOLLOWUP_REMINDER = """
+DaLIC raw evidence tools remain available throughout the investigation.
+If your current evidence is too broad or incomplete, call `get_trace_artifacts` or `get_trace_data_dependencies` again with more precise filters before finishing.
+"""
+
 def build_instance_dalic_info_prompt(with_data_deps: bool = False, instance_id: str = None) -> str:
     """Build a prompt that provides information about the current instance to the agent.
 
@@ -85,6 +103,46 @@ def build_instance_dalic_info_prompt(with_data_deps: bool = False, instance_id: 
         message += data_deps
     
     return message
+
+
+def build_dalic_tool_usage_prompt(
+    use_trace_artifact_tool: bool = False,
+    use_trace_data_dependency_tool: bool = False,
+) -> str:
+    if not use_trace_artifact_tool and not use_trace_data_dependency_tool:
+        return ""
+
+    message = TRACE_TOOL_USAGE_INSTRUCTION.strip()
+    if not use_trace_artifact_tool:
+        message = message.replace(
+            "- At the beginning of analyzing a new data point, first inspect the raw execution-trace evidence with `get_trace_artifacts`.\n",
+            "",
+        )
+        message = message.replace(
+            "- During the analysis, you may call `get_trace_artifacts` again with narrower filters such as `path_contains` or `name_contains`.\n",
+            "",
+        )
+    if not use_trace_data_dependency_tool:
+        message = message.replace(
+            "- When available, use `get_trace_data_dependencies` whenever you need a more precise dataflow slice around a traced symbol, scope, or file path.\n",
+            "",
+        )
+    return "\n\n" + message
+
+
+def build_dalic_tool_followup_reminder(
+    use_trace_artifact_tool: bool = False,
+    use_trace_data_dependency_tool: bool = False,
+) -> str:
+    if not use_trace_artifact_tool and not use_trace_data_dependency_tool:
+        return ""
+    reminder = TRACE_FOLLOWUP_REMINDER.strip()
+    if not use_trace_data_dependency_tool:
+        reminder = reminder.replace(
+            "`get_trace_artifacts` or `get_trace_data_dependencies`",
+            "`get_trace_artifacts`",
+        )
+    return reminder
 
 
 def calculate_prompt_context_size(prompt: str, model: str = "gpt-4o", verbose: bool = False) -> dict:

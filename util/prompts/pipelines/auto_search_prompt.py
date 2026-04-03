@@ -24,7 +24,7 @@ Follow these steps to localize the issue:
     - Identify main entry points triggering the feature described in the issue.
     - Trace function calls, class interactions, and sequences of events.
     - Identify potential relevant points in the code workflow of the codebase.
-    - Use the unique artifacts provided to you to complement your understanding of the execution flow, or use as a hint.
+    - If execution-trace or data-dependency tools are available, use them as compact hints to complement your understanding of the execution flow.
     Important: Keep the reconstructed flow focused on the problem, avoiding irrelevant details.
 
 ## Step 4: Locate Areas for Feature Implementation
