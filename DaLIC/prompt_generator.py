@@ -39,9 +39,36 @@ Assume the issue sent to you is a feature request requesting feature F.
 - It can help you understand how the unique artifacts are related to each other and how they are related to other parts of the codebase.
 """
 
+TRACE_TOOL_USAGE_INSTRUCTION_ONLY_TRACE = """
+Supplemental evidence from software dynamic analysis is available through a tool for this instance: `get_trace_artifacts`. 
+This tool provides compact raw slices of DaLIC execution-trace artifacts, more specifically:
+- `get_trace_artifacts`: The unique execution trace artifacts are obtained through a Software Reconnaissance-style analysis. 
+    This analysis involves executing two Python scripts describing the same process with (A.py) and without (B.py) the feature enabled, 
+    tracing their execution, and subtracting the overlapping parts from execution trace of A.py. 
+    The tool returns the non-overlapping artifacts that only appear in A.py, which are likely to be related to the feature and thus to the issue.
 
-TRACE_TOOL_USAGE_INSTRUCTION = """
-Supplemental DaLIC evidence is available through tools for this instance.
+Suggested workflow:
+- At the beginning of analyzing a new data point, first inspect the raw execution-trace evidence with `get_trace_artifacts`.
+- During the analysis, you may call `get_trace_artifacts` again with narrower filters such as `path_contains` or `name_contains`.
+- You can revisit this tool at any point in the investigation; they are not only for the beginning.
+- Treat these tool outputs as compact raw evidence and verify them with the regular repository tools before finishing.
+
+Note: 
+- Use the supplemental evidence to identify candidate files, classes, functions, and execution paths that may be relevant to the issue.
+- Cross-check it against the issue description and the repository evidence you collect.
+- Do not assume every artifact is important.
+- Do not assume the provided context is sufficient by itself.
+"""
+
+TRACE_TOOL_USAGE_INSTRUCTION_BOTH = """
+Supplemental evidence from software dynamic analysis is available through a tool for this instance: `get_trace_artifacts` and `get_trace_data_dependencies`. 
+These tools provide compact raw slices of DaLIC execution-trace artifacts and data-dependency evidence, respectively:
+- `get_trace_artifacts`: The unique execution trace artifacts are obtained through a Software Reconnaissance-style analysis. 
+    This analysis involves executing two Python scripts describing the same process with (A.py) and without (B.py) the feature enabled, 
+    tracing their execution, and subtracting the overlapping parts from execution trace of A.py. 
+    The tool returns the non-overlapping artifacts that only appear in A.py, which are likely to be related to the feature and thus to the issue.
+- `get_trace_data_dependencies`: The unique dependency tree is obtained by further analyzing the data dependencies of the unique artifacts. 
+    It contains the dataflows associated with the unique artifacts, which can help you understand how the unique artifacts are related to each other and how they are related to other parts of the codebase.
 
 Suggested workflow:
 - At the beginning of analyzing a new data point, first inspect the raw execution-trace evidence with `get_trace_artifacts`.
@@ -49,12 +76,17 @@ Suggested workflow:
 - When available, use `get_trace_data_dependencies` whenever you need a more precise dataflow slice around a traced symbol, scope, or file path.
 - You can revisit these tools at any point in the investigation; they are not only for the beginning.
 - Treat these tool outputs as compact raw evidence and verify them with the regular repository tools before finishing.
-"""
 
+Note: 
+- Use the supplemental evidence to identify candidate files, classes, functions, and execution paths that may be relevant to the issue.
+- Cross-check it against the issue description and the repository evidence you collect.
+- Do not assume every artifact is important.
+- Do not assume the provided context is sufficient by itself.
+"""
 
 TRACE_FOLLOWUP_REMINDER = """
 DaLIC raw evidence tools remain available throughout the investigation.
-If your current evidence is too broad or incomplete, call `get_trace_artifacts` or `get_trace_data_dependencies` again with more precise filters before finishing.
+If your current evidence is either too broad, too few or incomplete, call `get_trace_artifacts` or `get_trace_data_dependencies` again with more precise filters before finishing.
 """
 
 def build_instance_dalic_info_prompt(with_data_deps: bool = False, instance_id: str = None) -> str:
@@ -112,22 +144,12 @@ def build_dalic_tool_usage_prompt(
     if not use_trace_artifact_tool and not use_trace_data_dependency_tool:
         return ""
 
-    message = TRACE_TOOL_USAGE_INSTRUCTION.strip()
-    if not use_trace_artifact_tool:
-        message = message.replace(
-            "- At the beginning of analyzing a new data point, first inspect the raw execution-trace evidence with `get_trace_artifacts`.\n",
-            "",
-        )
-        message = message.replace(
-            "- During the analysis, you may call `get_trace_artifacts` again with narrower filters such as `path_contains` or `name_contains`.\n",
-            "",
-        )
-    if not use_trace_data_dependency_tool:
-        message = message.replace(
-            "- When available, use `get_trace_data_dependencies` whenever you need a more precise dataflow slice around a traced symbol, scope, or file path.\n",
-            "",
-        )
-    return "\n\n" + message
+    if use_trace_artifact_tool and use_trace_data_dependency_tool:
+        return "\n\n" + TRACE_TOOL_USAGE_INSTRUCTION_BOTH.strip()
+    elif use_trace_artifact_tool:   
+        return "\n\n" + TRACE_TOOL_USAGE_INSTRUCTION_ONLY_TRACE.strip()
+    else:
+        raise ValueError("Invalid combination of tool usage. `get_trace_artifacts` tool must be used if `get_trace_data_dependencies` tool is used.")
 
 
 def build_dalic_tool_followup_reminder(
