@@ -18,7 +18,7 @@
     "num_processes": 5,
     "log_level": "INFO",
     "timeout": 2100,
-    "rerun_empty_location": false,
+    "rerun_empty_location": true,
     "use_dalic": true,
     "use_data_deps": true
 }

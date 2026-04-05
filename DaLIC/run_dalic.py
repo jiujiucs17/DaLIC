@@ -15,7 +15,7 @@ litellm.set_verbose=False
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
 os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://4kw5qrmteq7x9q-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://743ufhwkweuqa7-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
 
@@ -45,7 +45,7 @@ selected_ids = [
      "pandas-dev__pandas-60526",
      "pandas-dev__pandas-60518",
      "pandas-dev__pandas-60457", 
-    #  "pandas-dev__pandas-60415", # frequently exceeds context window
+     "pandas-dev__pandas-60415", # frequently exceeds context window
      "pandas-dev__pandas-60277",
      "pandas-dev__pandas-60247",
      "pandas-dev__pandas-60187",
@@ -186,6 +186,7 @@ if __name__ == "__main__":
             arg.dataset = "JJcs17/Loc-Bench-add_fixed_commit"
             arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
             arg.num_processes = 5
+            arg.rerun_empty_location = True
 
             # write the arguments
             with open(f"{arg.output_folder}/args.json", "w") as f:
