@@ -18,14 +18,14 @@ Follow these steps to localize the issue:
     - E.g., for a function `calculate_sum` in the `MathUtils` class located in `src/helpers/math_helpers.py`, represent it as: 'src/helpers/math_helpers.py:MathUtils.calculate_sum'.
 
 ## Step 3: Analyze the feature
-- Clarify the Purpose of the Issue
-    - If expanding capabilities: Identify where and how are the new behavior, fields, or modules incorporated.
-- Reconstruct the execution flow
-    - Identify main entry points triggering the feature described in the issue.
-    - Trace function calls, class interactions, and sequences of events.
-    - Identify potential relevant points in the code workflow of the codebase.
-    - Use the unique artifacts provided to you to complement your understanding of the execution flow, or use as a hint.
-    Important: Keep the reconstructed flow focused on the problem, avoiding irrelevant details.
+- Understand the Purpose of the Feature in the Context of the Codebase
+    - Understand what the feature is supposed to do.
+    - Understand why it is needed.
+    - Understand how it fits into the overall functionality of the codebase.
+- Analyze the Feature's Relationship with the Codebase
+    - Identify the key affected components of the feature.
+    - Understand how these components interact with each other and with existing code.
+    - Consider the inputs, outputs, and side effects of the feature.
 
 ## Step 4: Locate Areas for Feature Implementation
 - Locate specific files, functions, or lines of code implementing the key part of the requested feature or containing critical information for resolving the issue.

@@ -138,6 +138,18 @@ def auto_search_process(result_queue,
                         final_output_validator=None,
                         invalid_output_reminder: str = "",
                         max_format_retry_num: int = 2):
+    def _preview_text(content, limit: int = 300):
+        if content is None:
+            return "<None>"
+        if isinstance(content, str):
+            text = content
+        else:
+            text = str(content)
+        text = text.replace("\n", "\\n")
+        if len(text) > limit:
+            return text[:limit] + "...<truncated>"
+        return text
+
     if tools and ('hosted_vllm' in model_name or 'qwen' in model_name.lower() 
     #             #   or model_name=='azure/gpt-4o' 
     #             #   or model_name == 'litellm_proxy/o3-mini-2025-01-31'
@@ -167,6 +179,11 @@ def auto_search_process(result_queue,
     format_retry_num = max_format_retry_num
     while not finish:
         cur_interation_num += 1
+        logging.info(
+            "==== %s auto_search iteration %d ====",
+            instance_id,
+            cur_interation_num,
+        )
         if cur_interation_num == max_iteration_num:
             messages.append({
                 'role': 'user',
@@ -219,6 +236,11 @@ def auto_search_process(result_queue,
             continue
         
         raw_response = deepcopy(response)
+        logging.info(
+            "%s raw response preview: %s",
+            instance_id,
+            _preview_text(response.choices[0].message.content),
+        )
         # logging.info('response.choices[0].message')
         if tools and ('hosted_vllm' in model_name or 'qwen' in model_name.lower()
                       or 'deepseek' in model_name
@@ -236,8 +258,13 @@ def auto_search_process(result_queue,
                         **fn_call_response_message
                     )
                 response.choices[0].message = fn_call_response_message
-            except:
-                logging.info('convert none fncall messages failed.')
+            except Exception as e:
+                logging.info(
+                    "%s convert non-fncall messages failed: %s | preview=%s",
+                    instance_id,
+                    repr(e),
+                    _preview_text(response.choices[0].message.content),
+                )
                 continue 
                 
         last_message = response.choices[0].message.content
@@ -251,6 +278,20 @@ def auto_search_process(result_queue,
         actions = parser.parse(response)
         if not isinstance(actions, List):
             actions = [actions]
+        parsed_action_labels = []
+        for action in actions:
+            action_type = getattr(action, "action_type", None)
+            if hasattr(action_type, "name"):
+                parsed_action_labels.append(action_type.name)
+            elif action_type is not None:
+                parsed_action_labels.append(str(action_type))
+            else:
+                parsed_action_labels.append(type(action).__name__)
+        logging.info(
+            "%s parsed actions: %s",
+            instance_id,
+            parsed_action_labels,
+        )
         retry_for_format = False
         for action in actions:
             logging.debug(action.action_type)
@@ -277,7 +318,11 @@ def auto_search_process(result_queue,
                 logging.info("\nFinal Response:=\n" + final_output)
                 finish = True # break
             elif action.action_type == ActionType.MESSAGE:
-                logging.debug("thought:\n" + action.content)
+                logging.info(
+                    "%s parsed MESSAGE action, re-prompting. Preview=%s",
+                    instance_id,
+                    _preview_text(action.content),
+                )
                 # check if enough
                 messages.append({"role": "user", "content": fake_user_msg})
                 traj_msgs.append({"role": "user", "content": fake_user_msg})
@@ -729,6 +774,8 @@ def main():
                  # fine-tuned model
                  "openai/qwen-7B", "openai/qwen-7B-128k", "openai/ft-qwen-7B", "openai/ft-qwen-7B-128k",
                  "openai/qwen-32B", "openai/qwen-32B-128k", "openai/ft-qwen-32B", "openai/ft-qwen-32B-128k",
+                 "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL", "openai/czlll/Qwen2.5-Coder-32B-CL",
+                 "hosted_vllm/JJcs17/Qwen2.5-Coder-32B-Instruct-128k", "hosted_vllm/czlll/Qwen2.5-Coder-32B-CL",
         ]
     )
     parser.add_argument("--use_function_calling", action="store_true",
