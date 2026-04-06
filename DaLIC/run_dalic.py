@@ -15,7 +15,7 @@ litellm.set_verbose=False
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
 os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://0a8b2wa13sjh4b-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://9lydd0mhjz9u13-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
 
@@ -60,10 +60,14 @@ k_values_list = [
     [1, 3, 5, 10, -1],
     [1, 3, 5, 10, -1]
 ]
+# config for different settings, value: (use_dalic, use_data_deps, use_graph)
 config = {
-    "original": (False, False),
-    "with_dalic": (True, False),
-    "with_dalic_data_deps": (True, True),
+    "original": (False, False, True),
+    "original_without_graph": (False, False, False),
+    "with_dalic": (True, False, True),
+    "with_dalic_without_graph": (True, False, False),
+    "with_dalic_data_deps": (True, True, True),
+    "with_dalic_data_deps_without_graph": (True, True, False),
 }
 output_folder_root = os.path.join(os.path.dirname(__file__), "outputs")
 
@@ -82,7 +86,8 @@ def save_eval_results_txt(args,eval_results, output_file):
 
 def get_arg(output_folder = None,
             use_dalic=False,
-            use_data_deps=False):
+            use_data_deps=False,
+            use_graph=True):
     parser = argparse.ArgumentParser()
     # 是否开启“代码定位”（localization）主流程
     parser.add_argument("--localize", action="store_true")
@@ -149,6 +154,12 @@ def get_arg(output_folder = None,
     # DaLIC related arguments
     parser.add_argument("--use_dalic", action="store_true", help="Whether to use DaLIC for localization.")
     parser.add_argument("--use_data_deps", action="store_true", help="Whether to include data dependencies in the context for localization.")
+    parser.add_argument(
+        "--use_graph",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Whether to allow the graph traversal tool during localization.",
+    )
     args = parser.parse_args()
 
     # set arguments according to the parameters of the function
@@ -159,6 +170,7 @@ def get_arg(output_folder = None,
 
     args.use_dalic = use_dalic# Whether to use DaLIC for localization.
     args.use_data_deps = use_data_deps  # Whether to include data dependencies in the context for
+    args.use_graph = use_graph
 
     logging.basicConfig(
         level=logging.getLevelName(args.log_level),
@@ -176,17 +188,27 @@ if __name__ == "__main__":
     # # print start time
     arg = None
     print(f"Start time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
-    for config_name, (use_dalic, use_data_deps) in config.items():
+    for config_name, (use_dalic, use_data_deps, use_graph) in config.items():
         for i in tqdm(range(5), desc=f"Running {config_name}"):
             output_folder_runtime = os.path.join(output_folder_root, f"{config_name}_run_{i+1}")
             arg = get_arg(output_folder=output_folder_runtime, 
                           use_dalic=use_dalic, 
-                          use_data_deps=use_data_deps)
+                          use_data_deps=use_data_deps,
+                          use_graph=use_graph)
             arg.localize = True
             arg.dataset = "JJcs17/Loc-Bench-add_fixed_commit"
             arg.model = "hosted_vllm/JJcs17/Qwen2.5-Coder-32B-Instruct-128k"
             arg.num_processes = 5
             arg.rerun_empty_location = True
+
+            logging.info(
+                "Run config: name=%s run=%d use_dalic=%s use_data_deps=%s use_graph=%s",
+                config_name,
+                i + 1,
+                arg.use_dalic,
+                arg.use_data_deps,
+                arg.use_graph,
+            )
 
             # write the arguments
             with open(f"{arg.output_folder}/args.json", "w") as f:

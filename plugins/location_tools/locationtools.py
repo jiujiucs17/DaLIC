@@ -12,15 +12,34 @@ import_functions(
 )
 __all__ = repo_ops.__all__ # + retriever.__all__
 
-DOCUMENTATION = ''
-for func_name in __all__:
-    func = globals()[func_name]
+GRAPH_TOOL_NAMES = {
+    "explore_graph_structure",
+    "explore_tree_structure",
+}
 
-    cur_doc = func.__doc__
-    # remove indentation from docstring and extra empty lines
-    cur_doc = '\n'.join(filter(None, map(lambda x: x.strip(), cur_doc.split('\n'))))
-    # now add a consistent 4 indentation
-    cur_doc = '\n'.join(map(lambda x: ' ' * 4 + x, cur_doc.split('\n')))
 
-    fn_signature = f'{func.__name__}' + str(signature(func))
-    DOCUMENTATION += f'{fn_signature}:\n{cur_doc}\n\n'
+def build_documentation(include_graph: bool = True) -> str:
+    documentation = ''
+    function_names = __all__
+    if not include_graph:
+        function_names = [
+            func_name for func_name in function_names
+            if func_name not in GRAPH_TOOL_NAMES
+        ]
+
+    for func_name in function_names:
+        func = globals()[func_name]
+
+        cur_doc = func.__doc__
+        # remove indentation from docstring and extra empty lines
+        cur_doc = '\n'.join(filter(None, map(lambda x: x.strip(), cur_doc.split('\n'))))
+        # now add a consistent 4 indentation
+        cur_doc = '\n'.join(map(lambda x: ' ' * 4 + x, cur_doc.split('\n')))
+
+        fn_signature = f'{func.__name__}' + str(signature(func))
+        documentation += f'{fn_signature}:\n{cur_doc}\n\n'
+
+    return documentation
+
+
+DOCUMENTATION = build_documentation()

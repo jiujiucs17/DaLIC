@@ -11,8 +11,8 @@ Follow these steps to localize the issue:
 ## Step 2: Locate Referenced Modules
 - Accurately determine specific modules
     - Explore the repo to familiarize yourself with its structure.
-    - Analyze the described execution flow to identify specific modules or components being referenced.
-- Pay special attention to distinguishing between modules with similar names using context and described execution flow.
+    - Analyze the described workflow to identify specific modules or components being referenced.
+- Pay special attention to distinguishing between modules with similar names using context and described workflow.
 - Output Format for collected relevant modules:
     - Use the format: 'file_path:QualifiedName'
     - E.g., for a function `calculate_sum` in the `MathUtils` class located in `src/helpers/math_helpers.py`, represent it as: 'src/helpers/math_helpers.py:MathUtils.calculate_sum'.
@@ -29,7 +29,7 @@ Follow these steps to localize the issue:
 
 ## Step 4: Locate Areas for Feature Implementation
 - Locate specific files, functions, or lines of code implementing the key part of the requested feature or containing critical information for resolving the issue.
-- Consider upstream and downstream dependencies that may affect or be affected by the issue.
+{dependency_analysis_instruction}
 - Think Thoroughly: List multiple potential solutions and consider edge cases that could impact the resolution.
 
 ## Output Format for Final Results:

@@ -20,5 +20,6 @@
     "timeout": 2100,
     "rerun_empty_location": true,
     "use_dalic": false,
-    "use_data_deps": false
+    "use_data_deps": false,
+    "use_graph": true
 }

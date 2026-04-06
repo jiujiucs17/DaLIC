@@ -28,7 +28,7 @@ from util.process_output import (
     get_loc_results_from_raw_outputs,
     merge_sample_locations,
 )
-from plugins import LocationToolsRequirement
+from plugins.location_tools import locationtools
 from plugins.location_tools.repo_ops.repo_ops import (
     set_current_issue,
     reset_current_issue,
@@ -71,14 +71,24 @@ def filter_dataset(dataset, filter_column: str, used_list: str):
     return dataset
 
 
-def get_task_instruction(instance: dict, task: str = 'auto_search', include_pr=False, include_hint=False):
+def get_task_instruction(
+    instance: dict,
+    task: str = 'auto_search',
+    include_pr=False,
+    include_hint=False,
+    use_graph: bool = True,
+):
     output_format = None
     instruction = ""
     
     # for auto-search pipeline
     if task.strip() == 'auto_search':
         task_description = auto_search.TASK_INSTRUECTION.format(
-            package_name=instance['instance_id'].split('_')[0]
+            package_name=instance['instance_id'].split('_')[0],
+            dependency_analysis_instruction=(
+                '- Consider upstream and downstream dependencies that may affect or be affected by the issue.'
+                if use_graph else ''
+            ),
         )
     
     elif task.strip() == 'simple_localize':
@@ -413,12 +423,20 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
     instance_id = bug["instance_id"]
     prompt_manager = PromptManager(
         prompt_dir=os.path.join(os.path.dirname(__file__), 'util/prompts'),
-        agent_skills_docs=LocationToolsRequirement.documentation,
+        agent_skills_docs=locationtools.build_documentation(include_graph=args.use_graph),
+        include_graph=args.use_graph,
     )
 
     try:
         logger.info("=" * 60)
         logger.info(f"==== rank {rank} setup localize {instance_id} ====")
+        logger.info(
+            "==== %s localization settings: use_dalic=%s use_data_deps=%s use_graph=%s ====",
+            instance_id,
+            getattr(args, "use_dalic", False),
+            getattr(args, "use_data_deps", False),
+            getattr(args, "use_graph", True),
+        )
         set_current_issue(instance_data=bug, rank=rank)
 
         # loc result
@@ -459,7 +477,7 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
 
                     logger.info(f"==== {instance_id} start auto search ====")
                     task_instruction = get_task_instruction(
-                        bug, include_pr=True, include_hint=True
+                        bug, include_pr=True, include_hint=True, use_graph=args.use_graph
                     )
                     dalic_context = build_instance_dalic_info_prompt(
                         with_data_deps=args.use_data_deps, instance_id=instance_id
@@ -489,7 +507,7 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                     tools = function_calling.get_tools(
                         codeact_enable_search_keyword=True,
                         codeact_enable_search_entity=True,
-                        codeact_enable_tree_structure_traverser=True,
+                        codeact_enable_tree_structure_traverser=args.use_graph,
                         simple_desc = args.simple_desc,
                     )
                     result_queue = Queue()
@@ -791,6 +809,8 @@ def main():
     parser.add_argument("--log_level", type=str, default='INFO')
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--rerun_empty_location", action="store_true")
+    parser.add_argument("--use_graph", action=argparse.BooleanOptionalAction, default=True,
+                        help="Whether to allow the graph traversal tool during localization.")
     args = parser.parse_args()
 
     args.output_file = os.path.join(args.output_folder, args.output_file)
