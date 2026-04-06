@@ -20,7 +20,9 @@ Apart from the standard Python library, the assistant can also use the following
 Function Usage Guidelines:
 - Issue Analysis and Retrieval: Begin by analyzing the issue and extracting relevant information for retrieval. Use the functions `search_in_repo` to gather more insights about the issue.
 - Accessing Files and Code: Use `get_file_structures` or `search_class_structures` to gain an overview of the files or classes; Call `get_file_content` to access the content of specific file relevant to the issue, and employ `search_class` or `search_method` to retrieve specific modules when you know the specific names of these modules.
+{% if include_graph %}
 - Comprehensive Dependency Analysis: Prioritize analyzing the code dependencies of functions, methods, or classes mentioned in the problem description or those identified in relevant locations. Use `search_invoke_and_reference` as the primary tool to ensure all interactions within the codebase are captured.
+{% endif %}
 - Repository Overview: Use `get_repo_structure` to gain an overview of the repository. This aids in independently searching for related files or analyzing results from previous steps. However, this tool is relatively expensive, use other tools to search files, classes or methods if you know their potential names.
 - File Limitations: You may search as many files as necessary, but make sure not include noise.
 - Exclusions: Do not include any existing test case files in your findings.

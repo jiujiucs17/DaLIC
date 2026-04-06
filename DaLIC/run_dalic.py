@@ -15,7 +15,7 @@ litellm.set_verbose=False
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
 os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://70zgc34ew2z8ul-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://gejyzo59c33myo-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
 
@@ -60,9 +60,12 @@ k_values_list = [
     [1, 3, 5, 10, -1],
     [1, 3, 5, 10, -1]
 ]
+# config for different settings, value: (use_trace_artifact_tool, use_trace_data_dependency_tool, use_graph)
 config = {
-    "with_dalic_trace_tool_raw": (True, False),
-    "with_dalic_trace_data_deps_tool_raw": (True, True),
+    "with_dalic_trace_tool_raw": (True, False, True),
+    "with_dalic_trace_tool_raw_without_graph": (True, False, False),
+    "with_dalic_trace_data_deps_tool_raw": (True, True, True),
+    "with_dalic_trace_data_deps_tool_raw_without_graph": (True, True, False),
 }
 output_folder_root = os.path.join(os.path.dirname(__file__), "outputs")
 
@@ -81,7 +84,8 @@ def save_eval_results_txt(args,eval_results, output_file):
 
 def get_arg(output_folder = None,
             use_trace_artifact_tool=False,
-            use_trace_data_dependency_tool=False):
+            use_trace_data_dependency_tool=False,
+            use_graph=True):
     parser = argparse.ArgumentParser()
     # 是否开启“代码定位”（localization）主流程
     parser.add_argument("--localize", action="store_true")
@@ -120,7 +124,7 @@ def get_arg(output_folder = None,
                  # fine-tuned model
                  "openai/qwen-7B", "openai/qwen-7B-128k", "openai/ft-qwen-7B", "openai/ft-qwen-7B-128k",
                  "openai/qwen-32B", "openai/qwen-32B-128k", "openai/ft-qwen-32B", "openai/ft-qwen-32B-128k",
-                 "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL", "openai/czlll/Qwen2.5-Coder-32B-CL"
+                 "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL", "openai/czlll/Qwen2.5-Coder-32B-CL", "hosted_vllm/JJcs17/Qwen2.5-Coder-32B-Instruct-128k"
         ]
     )
     # 是否启用 LLM 原生 Function Calling 能力
@@ -155,6 +159,12 @@ def get_arg(output_folder = None,
         action="store_true",
         help="Whether to expose the raw DaLIC data-dependency tool.",
     )
+    parser.add_argument(
+        "--use_graph",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Whether to allow the graph traversal tool during localization.",
+    )
     args = parser.parse_args()
 
     # set arguments according to the parameters of the function
@@ -165,6 +175,7 @@ def get_arg(output_folder = None,
 
     args.use_trace_artifact_tool = use_trace_artifact_tool
     args.use_trace_data_dependency_tool = use_trace_data_dependency_tool
+    args.use_graph = use_graph
 
     logging.basicConfig(
         level=logging.getLevelName(args.log_level),
@@ -183,17 +194,27 @@ if __name__ == "__main__":
     arg = None
     print(f"Start time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
     whole_start_time = time.time()
-    for config_name, (use_trace_artifact_tool, use_trace_data_dependency_tool) in config.items():
+    for config_name, (use_trace_artifact_tool, use_trace_data_dependency_tool, use_graph) in config.items():
         for i in tqdm(range(5), desc=f"Running {config_name}"):
             output_folder_runtime = os.path.join(output_folder_root, f"{config_name}_run_{i+1}")
             arg = get_arg(output_folder=output_folder_runtime, 
                           use_trace_artifact_tool=use_trace_artifact_tool,
-                          use_trace_data_dependency_tool=use_trace_data_dependency_tool)
+                          use_trace_data_dependency_tool=use_trace_data_dependency_tool,
+                          use_graph=use_graph)
             arg.localize = True
             arg.dataset = "JJcs17/Loc-Bench-add_fixed_commit"
-            arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
+            arg.model = "hosted_vllm/JJcs17/Qwen2.5-Coder-32B-Instruct-128k"
             arg.num_processes = 5
             arg.rerun_empty_location=True
+
+            logging.info(
+                "Run config: name=%s run=%d use_trace_artifact_tool=%s use_trace_data_dependency_tool=%s use_graph=%s",
+                config_name,
+                i + 1,
+                arg.use_trace_artifact_tool,
+                arg.use_trace_data_dependency_tool,
+                arg.use_graph,
+            )
 
             # write the arguments
             with open(f"{arg.output_folder}/args.json", "w") as f:
@@ -228,7 +249,16 @@ if __name__ == "__main__":
         avg_eval_df = pd.concat(config_eval_result).groupby(level=0).mean()
         avg_eval_df.index.name = "level"
         eval_results[f"{config_name}_average"] = avg_eval_df
-        print(f"Finished evaluating results for {config_name}.")
+
+        # calculate the std for the 5 runs of the same config
+        std_eval_df = pd.concat(config_eval_result).groupby(level=0).std()
+        std_eval_df.index.name = "level"
+        eval_results[f"{config_name}_std"] = std_eval_df
+
+        # calculate the CV for the 5 runs of the same config
+        cv_eval_df = std_eval_df / avg_eval_df
+        cv_eval_df.index.name = "level"
+        eval_results[f"{config_name}_cv"] = cv_eval_df
 
     eval_results_file = os.path.join(output_folder_root, "eval_results_trace_tools.txt")
     save_eval_results_txt(arg,eval_results, eval_results_file)

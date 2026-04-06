@@ -24,10 +24,12 @@ class PromptManager:
         self,
         prompt_dir: str,
         agent_skills_docs: str,
+        include_graph: bool = True,
         # micro_agent: MicroAgent | None = None,
     ):
         self.prompt_dir: str = prompt_dir
         self.agent_skills_docs: str = agent_skills_docs
+        self.include_graph: bool = include_graph
 
         self.system_template: Template = self._load_template('system_prompt')
         self.user_template: Template = self._load_template('user_prompt')
@@ -44,6 +46,7 @@ class PromptManager:
     def system_message(self) -> str:
         rendered = self.system_template.render(
             agent_skills_docs=self.agent_skills_docs,
+            include_graph=self.include_graph,
         ).strip()
         return rendered
 
@@ -59,6 +62,7 @@ class PromptManager:
         into a more specialized agent that is tailored to the user's task.
         """
         rendered = self.user_template.render(
-            micro_agent=None
+            micro_agent=None,
+            include_graph=self.include_graph,
         )
         return rendered.strip()

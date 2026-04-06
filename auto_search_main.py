@@ -29,7 +29,7 @@ from util.process_output import (
     get_loc_results_from_raw_outputs,
     merge_sample_locations,
 )
-from plugins import LocationToolsRequirement
+from plugins.location_tools import locationtools
 from plugins.location_tools.repo_ops.repo_ops import (
     set_current_issue,
     reset_current_issue,
@@ -86,14 +86,24 @@ def filter_dataset(dataset, filter_column: str, used_list: str):
     return dataset
 
 
-def get_task_instruction(instance: dict, task: str = 'auto_search', include_pr=False, include_hint=False):
+def get_task_instruction(
+    instance: dict,
+    task: str = 'auto_search',
+    include_pr=False,
+    include_hint=False,
+    use_graph: bool = True,
+):
     output_format = None
     instruction = ""
     
     # for auto-search pipeline
     if task.strip() == 'auto_search':
         task_description = auto_search.TASK_INSTRUECTION.format(
-            package_name=instance['instance_id'].split('_')[0]
+            package_name=instance['instance_id'].split('_')[0],
+            dependency_analysis_instruction=(
+                '- Consider upstream and downstream dependencies that may affect or be affected by the issue.'
+                if use_graph else ''
+            ),
         )
     
     elif task.strip() == 'simple_localize':
@@ -178,6 +188,18 @@ def auto_search_process(result_queue,
                         final_output_validator=None,
                         invalid_output_reminder: str = "",
                         max_format_retry_num: int = 2):
+    def _preview_text(content, limit: int = 300):
+        if content is None:
+            return "<None>"
+        if isinstance(content, str):
+            text = content
+        else:
+            text = str(content)
+        text = text.replace("\n", "\\n")
+        if len(text) > limit:
+            return text[:limit] + "...<truncated>"
+        return text
+
     if tools and ('hosted_vllm' in model_name or 'qwen' in model_name.lower() 
     #             #   or model_name=='azure/gpt-4o' 
     #             #   or model_name == 'litellm_proxy/o3-mini-2025-01-31'
@@ -207,6 +229,11 @@ def auto_search_process(result_queue,
     format_retry_num = max_format_retry_num
     while not finish:
         cur_interation_num += 1
+        logging.info(
+            "==== %s auto_search iteration %d ====",
+            instance_id,
+            cur_interation_num,
+        )
         if cur_interation_num == max_iteration_num:
             messages.append({
                 'role': 'user',
@@ -259,6 +286,11 @@ def auto_search_process(result_queue,
             continue
         
         raw_response = deepcopy(response)
+        logging.info(
+            "%s raw response preview: %s",
+            instance_id,
+            _preview_text(response.choices[0].message.content),
+        )
         # logging.info('response.choices[0].message')
         if tools and ('hosted_vllm' in model_name or 'qwen' in model_name.lower()
                       or 'deepseek' in model_name
@@ -276,8 +308,13 @@ def auto_search_process(result_queue,
                         **fn_call_response_message
                     )
                 response.choices[0].message = fn_call_response_message
-            except:
-                logging.info('convert none fncall messages failed.')
+            except Exception as e:
+                logging.info(
+                    "%s convert non-fncall messages failed: %s | preview=%s",
+                    instance_id,
+                    repr(e),
+                    _preview_text(response.choices[0].message.content),
+                )
                 continue 
                 
         last_message = response.choices[0].message.content
@@ -291,6 +328,20 @@ def auto_search_process(result_queue,
         actions = parser.parse(response)
         if not isinstance(actions, List):
             actions = [actions]
+        parsed_action_labels = []
+        for action in actions:
+            action_type = getattr(action, "action_type", None)
+            if hasattr(action_type, "name"):
+                parsed_action_labels.append(action_type.name)
+            elif action_type is not None:
+                parsed_action_labels.append(str(action_type))
+            else:
+                parsed_action_labels.append(type(action).__name__)
+        logging.info(
+            "%s parsed actions: %s",
+            instance_id,
+            parsed_action_labels,
+        )
         retry_for_format = False
         for action in actions:
             logging.debug(action.action_type)
@@ -317,7 +368,11 @@ def auto_search_process(result_queue,
                 logging.info("\nFinal Response:=\n" + final_output)
                 finish = True # break
             elif action.action_type == ActionType.MESSAGE:
-                logging.debug("thought:\n" + action.content)
+                logging.info(
+                    "%s parsed MESSAGE action, re-prompting. Preview=%s",
+                    instance_id,
+                    _preview_text(action.content),
+                )
                 # check if enough
                 messages.append({"role": "user", "content": fake_user_msg})
                 traj_msgs.append({"role": "user", "content": fake_user_msg})
@@ -409,12 +464,20 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
     instance_id = bug["instance_id"]
     prompt_manager = PromptManager(
         prompt_dir=os.path.join(os.path.dirname(__file__), 'util/prompts'),
-        agent_skills_docs=LocationToolsRequirement.documentation,
+        agent_skills_docs=locationtools.build_documentation(include_graph=args.use_graph),
+        include_graph=args.use_graph,
     )
 
     try:
         logger.info("=" * 60)
         logger.info(f"==== rank {rank} setup localize {instance_id} ====")
+        logger.info(
+            "==== %s localization settings: use_trace_artifact_tool=%s use_trace_data_dependency_tool=%s use_graph=%s ====",
+            instance_id,
+            getattr(args, "use_trace_artifact_tool", False),
+            getattr(args, "use_trace_data_dependency_tool", False),
+            getattr(args, "use_graph", True),
+        )
         set_current_issue(instance_data=bug, rank=rank)
 
         # loc result
@@ -455,7 +518,7 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
 
                     logger.info(f"==== {instance_id} start auto search ====")
                     task_instruction = get_task_instruction(
-                        bug, include_pr=True, include_hint=True
+                        bug, include_pr=True, include_hint=True, use_graph=args.use_graph
                     )
                     tool_usage_prompt = build_dalic_tool_usage_prompt(
                         use_trace_artifact_tool=args.use_trace_artifact_tool,
@@ -492,7 +555,7 @@ def run_localize_issue(rank, args, bug, log_queue, output_file_lock, traj_file_l
                     tools = function_calling.get_tools(
                         codeact_enable_search_keyword=True,
                         codeact_enable_search_entity=True,
-                        codeact_enable_tree_structure_traverser=True,
+                        codeact_enable_tree_structure_traverser=args.use_graph,
                         codeact_enable_trace_artifact_tool=args.use_trace_artifact_tool,
                         codeact_enable_trace_data_dependency_tool=args.use_trace_data_dependency_tool,
                         simple_desc = args.simple_desc,
@@ -788,6 +851,8 @@ def main():
                  # fine-tuned model
                  "openai/qwen-7B", "openai/qwen-7B-128k", "openai/ft-qwen-7B", "openai/ft-qwen-7B-128k",
                  "openai/qwen-32B", "openai/qwen-32B-128k", "openai/ft-qwen-32B", "openai/ft-qwen-32B-128k",
+                 "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL", "openai/czlll/Qwen2.5-Coder-32B-CL",
+                 "hosted_vllm/JJcs17/Qwen2.5-Coder-32B-Instruct-128k", "hosted_vllm/czlll/Qwen2.5-Coder-32B-CL",
         ]
     )
     parser.add_argument("--use_function_calling", action="store_true",
@@ -803,6 +868,8 @@ def main():
     parser.add_argument("--log_level", type=str, default='INFO')
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--rerun_empty_location", action="store_true")
+    parser.add_argument("--use_graph", action=argparse.BooleanOptionalAction, default=True,
+                        help="Whether to allow the graph traversal tool during localization.")
     parser.add_argument(
         "--use_trace_artifact_tool",
         action="store_true",
