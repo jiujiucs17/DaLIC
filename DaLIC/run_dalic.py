@@ -15,7 +15,7 @@ litellm.set_verbose=False
 os.environ["GRAPH_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/graph_index"
 os.environ["BM25_INDEX_DIR"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/bm25_index"
 os.environ["LOCAL_REPO_CACHE"] = "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/repo_cache"
-os.environ["HOSTED_VLLM_API_BASE"] = "https://gejyzo59c33myo-8000.proxy.runpod.net/v1"
+os.environ["HOSTED_VLLM_API_BASE"] = "https://wflz4x79jii1cd-8000.proxy.runpod.net/v1"
 os.environ["HOSTED_VLLM_API_KEY"] = "sk-352cab55f6fd755ca0c2011514de88677101c291e2bba77abeef2cc92c1fe6ea"
 
 
@@ -203,7 +203,7 @@ if __name__ == "__main__":
                           use_graph=use_graph)
             arg.localize = True
             arg.dataset = "JJcs17/Loc-Bench-add_fixed_commit"
-            arg.model = "hosted_vllm/JJcs17/Qwen2.5-Coder-32B-Instruct-128k"
+            arg.model = "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL"
             arg.num_processes = 5
             arg.rerun_empty_location=True
 
