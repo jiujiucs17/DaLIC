@@ -10,7 +10,7 @@
     "output_folder": "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/LocAgent/DaLIC/outputs/original_run_1",
     "output_file": "/Users/zhangmengqi/Documents/PhD/Working Documents/DaLIC_paper/validation_experiments/LocAgent/LocAgent/DaLIC/outputs/original_run_1/loc_outputs.jsonl",
     "merge_file": "merged_loc_outputs.jsonl",
-    "model": "hosted_vllm/JJcs17/Qwen2.5-Coder-32B-Instruct-128k",
+    "model": "hosted_vllm/czlll/Qwen2.5-Coder-7B-CL",
     "use_function_calling": false,
     "simple_desc": false,
     "max_attempt_num": 2,
