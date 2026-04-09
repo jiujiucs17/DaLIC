@@ -1,0 +1,1482 @@
+{
+  "matplotlib__matplotlib-29133": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0667,
+          0.0145,
+          0.0417,
+          0.1,
+          0.0667
+        ],
+        "standard_deviation": 0.028542,
+        "mean_avg_deviation": 0.023856
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0833,
+          0.0189,
+          0.0625,
+          0.1,
+          0.0714
+        ],
+        "standard_deviation": 0.027231,
+        "mean_avg_deviation": 0.021216
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.25,
+          0.25,
+          0.25,
+          0.2,
+          0.25
+        ],
+        "standard_deviation": 0.02,
+        "mean_avg_deviation": 0.016
+      }
+    }
+  },
+  "matplotlib__matplotlib-29265": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0667,
+          0.1,
+          0.1667,
+          0.0312,
+          0.0526
+        ],
+        "standard_deviation": 0.047258,
+        "mean_avg_deviation": 0.039928
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.5,
+          1.0,
+          0.5,
+          1.0
+        ],
+        "standard_deviation": 0.244949,
+        "mean_avg_deviation": 0.24
+      }
+    }
+  },
+  "numpy__numpy-17394": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.3333,
+          0.3333,
+          0.3333,
+          0.3333,
+          0.3333
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0071,
+          0.0139,
+          0.0345,
+          0.0139,
+          0.0122
+        ],
+        "standard_deviation": 0.009426,
+        "mean_avg_deviation": 0.007272
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.3333,
+          0.3333,
+          0.3333,
+          0.3333,
+          0.3333
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0135,
+          0.0217,
+          0.0417,
+          0.0227,
+          0.0233
+        ],
+        "standard_deviation": 0.009266,
+        "mean_avg_deviation": 0.006848
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.3333,
+          0.3333,
+          0.5,
+          0.25
+        ],
+        "standard_deviation": 0.100007,
+        "mean_avg_deviation": 0.093344
+      }
+    }
+  },
+  "pandas-dev__pandas-29944": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.0111,
+          0.2,
+          0.0135,
+          0.0128
+        ],
+        "standard_deviation": 0.19064,
+        "mean_avg_deviation": 0.162016
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.0152,
+          0.25,
+          0.0172,
+          0.0175
+        ],
+        "standard_deviation": 0.192544,
+        "mean_avg_deviation": 0.172016
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          1.0,
+          0.3333,
+          0.3333,
+          0.3333,
+          0.3333
+        ],
+        "standard_deviation": 0.26668,
+        "mean_avg_deviation": 0.213344
+      }
+    }
+  },
+  "pandas-dev__pandas-59900": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0455,
+          0.01,
+          0.0385,
+          0.0345,
+          0.0909
+        ],
+        "standard_deviation": 0.026375,
+        "mean_avg_deviation": 0.019456
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0556,
+          0.0156,
+          0.0476,
+          0.0417,
+          0.0909
+        ],
+        "standard_deviation": 0.024338,
+        "mean_avg_deviation": 0.018376
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.25,
+          0.2,
+          0.5,
+          0.25,
+          0.3333
+        ],
+        "standard_deviation": 0.105723,
+        "mean_avg_deviation": 0.087992
+      }
+    }
+  },
+  "pandas-dev__pandas-60187": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.037,
+          0.0714,
+          0.0137,
+          0.0333,
+          0.05
+        ],
+        "standard_deviation": 0.019109,
+        "mean_avg_deviation": 0.015696
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0476,
+          0.0909,
+          0.0213,
+          0.0476,
+          0.0588
+        ],
+        "standard_deviation": 0.022508,
+        "mean_avg_deviation": 0.017288
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.25,
+          0.3333,
+          0.2,
+          0.25,
+          0.3333
+        ],
+        "standard_deviation": 0.052266,
+        "mean_avg_deviation": 0.047984
+      }
+    }
+  },
+  "pandas-dev__pandas-60247": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0133,
+          0.0294,
+          0.0294,
+          0.011,
+          0.0132
+        ],
+        "standard_deviation": 0.00832,
+        "mean_avg_deviation": 0.008112
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0196,
+          0.0345,
+          0.0345,
+          0.0152,
+          0.0196
+        ],
+        "standard_deviation": 0.008177,
+        "mean_avg_deviation": 0.007856
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.5,
+          0.3333,
+          0.3333
+        ],
+        "standard_deviation": 0.081666,
+        "mean_avg_deviation": 0.080016
+      }
+    }
+  },
+  "pandas-dev__pandas-60277": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0294,
+          0.0909,
+          0.0333,
+          0.1667,
+          0.0323
+        ],
+        "standard_deviation": 0.053297,
+        "mean_avg_deviation": 0.046624
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.05,
+          0.1111,
+          0.0526,
+          0.2,
+          0.0455
+        ],
+        "standard_deviation": 0.059173,
+        "mean_avg_deviation": 0.050968
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.2,
+          0.25,
+          0.25,
+          0.3333,
+          0.25
+        ],
+        "standard_deviation": 0.042935,
+        "mean_avg_deviation": 0.030656
+      }
+    }
+  },
+  "pandas-dev__pandas-60415": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.125,
+          0.0357,
+          0.0323,
+          0.0189,
+          0.0556
+        ],
+        "standard_deviation": 0.03763,
+        "mean_avg_deviation": 0.02944
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.125,
+          0.05,
+          0.0455,
+          0.0278,
+          0.0714
+        ],
+        "standard_deviation": 0.033539,
+        "mean_avg_deviation": 0.027408
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.3333,
+          0.5,
+          0.5
+        ],
+        "standard_deviation": 0.06668,
+        "mean_avg_deviation": 0.053344
+      }
+    }
+  },
+  "pandas-dev__pandas-60457": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "standard_deviation": 0.4,
+        "mean_avg_deviation": 0.32
+      },
+      "precision": {
+        "raw_data": [
+          0.1667,
+          0.0833,
+          0.0556,
+          0.0,
+          0.1
+        ],
+        "standard_deviation": 0.05462,
+        "mean_avg_deviation": 0.042656
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "standard_deviation": 0.4,
+        "mean_avg_deviation": 0.32
+      },
+      "precision": {
+        "raw_data": [
+          0.2,
+          0.1,
+          0.0588,
+          0.0,
+          0.1111
+        ],
+        "standard_deviation": 0.065787,
+        "mean_avg_deviation": 0.051664
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "standard_deviation": 0.4,
+        "mean_avg_deviation": 0.32
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.3333,
+          0.0,
+          0.5
+        ],
+        "standard_deviation": 0.194366,
+        "mean_avg_deviation": 0.160008
+      }
+    }
+  },
+  "pandas-dev__pandas-60518": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.1429,
+          0.05,
+          0.0476,
+          0.05,
+          0.2
+        ],
+        "standard_deviation": 0.062559,
+        "mean_avg_deviation": 0.05868
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.2,
+          0.0588,
+          0.0556,
+          0.0588,
+          0.2
+        ],
+        "standard_deviation": 0.069706,
+        "mean_avg_deviation": 0.068288
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.3333,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.26668,
+        "mean_avg_deviation": 0.213344
+      }
+    }
+  },
+  "pandas-dev__pandas-60526": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.625,
+          0.0,
+          0.625,
+          0.0,
+          0.625
+        ],
+        "standard_deviation": 0.306186,
+        "mean_avg_deviation": 0.3
+      },
+      "precision": {
+        "raw_data": [
+          0.3333,
+          0.0,
+          0.3333,
+          0.0,
+          0.2941
+        ],
+        "standard_deviation": 0.157533,
+        "mean_avg_deviation": 0.153712
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.625,
+          0.0,
+          0.625,
+          0.0,
+          0.625
+        ],
+        "standard_deviation": 0.306186,
+        "mean_avg_deviation": 0.3
+      },
+      "precision": {
+        "raw_data": [
+          0.3571,
+          0.0,
+          0.3571,
+          0.0,
+          0.3125
+        ],
+        "standard_deviation": 0.168449,
+        "mean_avg_deviation": 0.164272
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      }
+    }
+  },
+  "scikit-learn__scikit-learn-14800": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.3333,
+          0.6667,
+          0.6667,
+          0.6667,
+          0.6667
+        ],
+        "standard_deviation": 0.13336,
+        "mean_avg_deviation": 0.106688
+      },
+      "precision": {
+        "raw_data": [
+          0.0244,
+          0.0741,
+          0.0444,
+          0.087,
+          0.0282
+        ],
+        "standard_deviation": 0.024894,
+        "mean_avg_deviation": 0.023144
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.3333,
+          0.6667,
+          0.6667,
+          0.6667,
+          0.6667
+        ],
+        "standard_deviation": 0.13336,
+        "mean_avg_deviation": 0.106688
+      },
+      "precision": {
+        "raw_data": [
+          0.0312,
+          0.0833,
+          0.0588,
+          0.1053,
+          0.0377
+        ],
+        "standard_deviation": 0.027821,
+        "mean_avg_deviation": 0.024832
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          1.0
+        ],
+        "standard_deviation": 0.2,
+        "mean_avg_deviation": 0.16
+      }
+    }
+  },
+  "scikit-learn__scikit-learn-16948": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.2222,
+          0.2222,
+          0.1111,
+          0.2222,
+          0.1667
+        ],
+        "standard_deviation": 0.044435,
+        "mean_avg_deviation": 0.039984
+      },
+      "precision": {
+        "raw_data": [
+          0.05,
+          0.0339,
+          0.0235,
+          0.0513,
+          0.038
+        ],
+        "standard_deviation": 0.010382,
+        "mean_avg_deviation": 0.009048
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.4,
+          0.5,
+          0.2,
+          0.4,
+          0.4
+        ],
+        "standard_deviation": 0.09798,
+        "mean_avg_deviation": 0.072
+      },
+      "precision": {
+        "raw_data": [
+          0.0714,
+          0.0602,
+          0.0345,
+          0.069,
+          0.0678
+        ],
+        "standard_deviation": 0.013568,
+        "mean_avg_deviation": 0.010584
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.5,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.2,
+        "mean_avg_deviation": 0.16
+      }
+    }
+  },
+  "scikit-learn__scikit-learn-17443": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.1,
+          0.1,
+          0.1,
+          0.2,
+          0.1
+        ],
+        "standard_deviation": 0.04,
+        "mean_avg_deviation": 0.032
+      },
+      "precision": {
+        "raw_data": [
+          0.0175,
+          0.0169,
+          0.0112,
+          0.04,
+          0.0208
+        ],
+        "standard_deviation": 0.009856,
+        "mean_avg_deviation": 0.007488
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.2,
+          0.2,
+          0.2,
+          0.4,
+          0.2
+        ],
+        "standard_deviation": 0.08,
+        "mean_avg_deviation": 0.064
+      },
+      "precision": {
+        "raw_data": [
+          0.0213,
+          0.0204,
+          0.0147,
+          0.05,
+          0.0263
+        ],
+        "standard_deviation": 0.012294,
+        "mean_avg_deviation": 0.009384
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.5,
+          0.75,
+          0.5
+        ],
+        "standard_deviation": 0.1,
+        "mean_avg_deviation": 0.08
+      },
+      "precision": {
+        "raw_data": [
+          1.0,
+          0.5,
+          0.5,
+          0.75,
+          0.6667
+        ],
+        "standard_deviation": 0.185592,
+        "mean_avg_deviation": 0.153328
+      }
+    }
+  },
+  "scikit-learn__scikit-learn-24145": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.0,
+          0.6667,
+          0.0,
+          0.6667,
+          0.3333
+        ],
+        "standard_deviation": 0.298157,
+        "mean_avg_deviation": 0.266688
+      },
+      "precision": {
+        "raw_data": [
+          0.0,
+          0.1111,
+          0.0,
+          0.2,
+          0.2
+        ],
+        "standard_deviation": 0.089553,
+        "mean_avg_deviation": 0.081776
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0769,
+          0.0625,
+          0.1429,
+          0.125,
+          0.2
+        ],
+        "standard_deviation": 0.049199,
+        "mean_avg_deviation": 0.041408
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.3333,
+          1.0,
+          0.2,
+          1.0,
+          0.2
+        ],
+        "standard_deviation": 0.373337,
+        "mean_avg_deviation": 0.362672
+      }
+    }
+  },
+  "scikit-learn__scikit-learn-28678": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      }
+    }
+  },
+  "scikit-learn__scikit-learn-30128": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0048,
+          0.0099,
+          0.0085,
+          0.0091,
+          0.0091
+        ],
+        "standard_deviation": 0.001796,
+        "mean_avg_deviation": 0.001392
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0068,
+          0.0128,
+          0.0114,
+          0.012,
+          0.012
+        ],
+        "standard_deviation": 0.002147,
+        "mean_avg_deviation": 0.00168
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.3333,
+          0.3333,
+          0.3333,
+          0.3333,
+          0.3333
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      }
+    }
+  },
+  "scikit-learn__scikit-learn-30327": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          0.1429,
+          0.1429,
+          0.1429,
+          0.1429,
+          0.1429
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0345,
+          0.0833,
+          0.0833,
+          0.1,
+          0.0556
+        ],
+        "standard_deviation": 0.023291,
+        "mean_avg_deviation": 0.021032
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          0.1667,
+          0.1667,
+          0.1667,
+          0.1667,
+          0.3333
+        ],
+        "standard_deviation": 0.06664,
+        "mean_avg_deviation": 0.053312
+      },
+      "precision": {
+        "raw_data": [
+          0.0435,
+          0.1,
+          0.1,
+          0.125,
+          0.1429
+        ],
+        "standard_deviation": 0.033561,
+        "mean_avg_deviation": 0.025336
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          0.5,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.2,
+        "mean_avg_deviation": 0.16
+      },
+      "precision": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      }
+    }
+  },
+  "sympy__sympy-27325": {
+    "function": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0208,
+          0.0286,
+          0.0059,
+          0.0066,
+          0.0115
+        ],
+        "standard_deviation": 0.00876,
+        "mean_avg_deviation": 0.008016
+      }
+    },
+    "module": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.0278,
+          0.04,
+          0.0102,
+          0.012,
+          0.0196
+        ],
+        "standard_deviation": 0.010978,
+        "mean_avg_deviation": 0.009584
+      }
+    },
+    "file": {
+      "recall": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "precision": {
+        "raw_data": [
+          0.25,
+          0.25,
+          0.25,
+          0.5,
+          0.2
+        ],
+        "standard_deviation": 0.106771,
+        "mean_avg_deviation": 0.084
+      }
+    }
+  }
+}

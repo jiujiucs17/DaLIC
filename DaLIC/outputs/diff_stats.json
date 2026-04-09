@@ -1,0 +1,3613 @@
+{
+  "_meta": {
+    "num_resamples": 20000,
+    "effect_size_direction": "effect_size is mean(config_b - config_a). Positive means config_b performs better or is less variable, depending on the section.",
+    "p_explanation": "p is the two-sided permutation-test p-value under the null hypothesis of no real difference.",
+    "one_minus_p_percent_explanation": "one_minus_p_percent is (1 - p) * 100. It is a descriptive transformation of p.",
+    "performance_stats_explanation": "performance_stats uses the mean of raw_data over the five runs.",
+    "stability_stats_explanation": "stability_stats uses per-instance SD or MAD computed from the five raw_data values.",
+    "sd_explanation": "SD is the per-instance standard deviation across the five runs.",
+    "mad_explanation": "MAD is the per-instance mean absolute deviation from the five-run mean.",
+    "3_levels_explanation": "3_levels pools function, module, and file samples together."
+  },
+  "original__vs__original_without_graph": {
+    "config_a_name": "original",
+    "config_b_name": "original_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.772911,
+          "one_minus_p_percent": 22.7089,
+          "effect_size": 0.00903,
+          "CI": [
+            -0.045223,
+            0.052673
+          ]
+        },
+        "module": {
+          "p": 0.60622,
+          "one_minus_p_percent": 39.378,
+          "effect_size": 0.012585,
+          "CI": [
+            -0.044,
+            0.061586
+          ]
+        },
+        "file": {
+          "p": 0.750762,
+          "one_minus_p_percent": 24.9238,
+          "effect_size": 0.015,
+          "CI": [
+            -0.02,
+            0.065
+          ]
+        },
+        "3_levels": {
+          "p": 0.416879,
+          "one_minus_p_percent": 58.3121,
+          "effect_size": 0.012205,
+          "CI": [
+            -0.016647,
+            0.039873
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.576171,
+          "one_minus_p_percent": 42.3829,
+          "effect_size": -0.011893,
+          "CI": [
+            -0.052457,
+            0.022192
+          ]
+        },
+        "module": {
+          "p": 0.572621,
+          "one_minus_p_percent": 42.7379,
+          "effect_size": -0.011933,
+          "CI": [
+            -0.050954,
+            0.021623
+          ]
+        },
+        "file": {
+          "p": 0.372331,
+          "one_minus_p_percent": 62.7669,
+          "effect_size": 0.028167,
+          "CI": [
+            -0.032331,
+            0.084501
+          ]
+        },
+        "3_levels": {
+          "p": 0.916304,
+          "one_minus_p_percent": 8.3696,
+          "effect_size": 0.001447,
+          "CI": [
+            -0.025834,
+            0.027165
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.921004,
+            "one_minus_p_percent": 7.8996,
+            "effect_size": 0.004454,
+            "CI": [
+              -0.048613,
+              0.0674
+            ]
+          },
+          "module": {
+            "p": 0.814509,
+            "one_minus_p_percent": 18.5491,
+            "effect_size": -0.007634,
+            "CI": [
+              -0.062134,
+              0.057866
+            ]
+          },
+          "file": {
+            "p": 0.621669,
+            "one_minus_p_percent": 37.8331,
+            "effect_size": -0.019,
+            "CI": [
+              -0.081,
+              0.037
+            ]
+          },
+          "3_levels": {
+            "p": 0.680516,
+            "one_minus_p_percent": 31.9484,
+            "effect_size": -0.007393,
+            "CI": [
+              -0.040994,
+              0.027418
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.872806,
+            "one_minus_p_percent": 12.7194,
+            "effect_size": 0.002592,
+            "CI": [
+              -0.060446,
+              0.072481
+            ]
+          },
+          "module": {
+            "p": 0.841008,
+            "one_minus_p_percent": 15.8992,
+            "effect_size": -0.004205,
+            "CI": [
+              -0.066376,
+              0.064785
+            ]
+          },
+          "file": {
+            "p": 0.622819,
+            "one_minus_p_percent": 37.7181,
+            "effect_size": -0.018371,
+            "CI": [
+              -0.086742,
+              0.045505
+            ]
+          },
+          "3_levels": {
+            "p": 0.726364,
+            "one_minus_p_percent": 27.3636,
+            "effect_size": -0.006661,
+            "CI": [
+              -0.044059,
+              0.030669
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.635618,
+            "one_minus_p_percent": 36.4382,
+            "effect_size": -0.007627,
+            "CI": [
+              -0.039623,
+              0.019049
+            ]
+          },
+          "module": {
+            "p": 0.59632,
+            "one_minus_p_percent": 40.368,
+            "effect_size": -0.008646,
+            "CI": [
+              -0.039536,
+              0.01919
+            ]
+          },
+          "file": {
+            "p": 0.038298,
+            "one_minus_p_percent": 96.1702,
+            "effect_size": -0.051197,
+            "CI": [
+              -0.098666,
+              -0.00879
+            ]
+          },
+          "3_levels": {
+            "p": 0.039248,
+            "one_minus_p_percent": 96.0752,
+            "effect_size": -0.02249,
+            "CI": [
+              -0.04414,
+              -0.002083
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.60557,
+            "one_minus_p_percent": 39.443,
+            "effect_size": -0.010958,
+            "CI": [
+              -0.049764,
+              0.020766
+            ]
+          },
+          "module": {
+            "p": 0.526724,
+            "one_minus_p_percent": 47.3276,
+            "effect_size": -0.012547,
+            "CI": [
+              -0.050326,
+              0.020299
+            ]
+          },
+          "file": {
+            "p": 0.026149,
+            "one_minus_p_percent": 97.3851,
+            "effect_size": -0.057024,
+            "CI": [
+              -0.10911,
+              -0.013072
+            ]
+          },
+          "3_levels": {
+            "p": 0.028799,
+            "one_minus_p_percent": 97.1201,
+            "effect_size": -0.026843,
+            "CI": [
+              -0.051492,
+              -0.004449
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original__vs__with_dalic": {
+    "config_a_name": "original",
+    "config_b_name": "with_dalic",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.19164,
+          "one_minus_p_percent": 80.836,
+          "effect_size": 0.034141,
+          "CI": [
+            -0.013749,
+            0.080141
+          ]
+        },
+        "module": {
+          "p": 0.054947,
+          "one_minus_p_percent": 94.5053,
+          "effect_size": 0.053584,
+          "CI": [
+            0.004334,
+            0.10817
+          ]
+        },
+        "file": {
+          "p": 0.316434,
+          "one_minus_p_percent": 68.3566,
+          "effect_size": 0.0325,
+          "CI": [
+            -0.0125,
+            0.085
+          ]
+        },
+        "3_levels": {
+          "p": 0.0074,
+          "one_minus_p_percent": 99.26,
+          "effect_size": 0.040075,
+          "CI": [
+            0.012185,
+            0.069528
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.467827,
+          "one_minus_p_percent": 53.2173,
+          "effect_size": -0.016255,
+          "CI": [
+            -0.058714,
+            0.020103
+          ]
+        },
+        "module": {
+          "p": 0.339233,
+          "one_minus_p_percent": 66.0767,
+          "effect_size": -0.021618,
+          "CI": [
+            -0.064059,
+            0.015686
+          ]
+        },
+        "file": {
+          "p": 0.376381,
+          "one_minus_p_percent": 62.3619,
+          "effect_size": 0.033664,
+          "CI": [
+            -0.035339,
+            0.105499
+          ]
+        },
+        "3_levels": {
+          "p": 0.930553,
+          "one_minus_p_percent": 6.9447,
+          "effect_size": -0.001403,
+          "CI": [
+            -0.032416,
+            0.02952
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.582821,
+            "one_minus_p_percent": 41.7179,
+            "effect_size": -0.0207,
+            "CI": [
+              -0.084832,
+              0.046002
+            ]
+          },
+          "module": {
+            "p": 0.169142,
+            "one_minus_p_percent": 83.0858,
+            "effect_size": -0.0507,
+            "CI": [
+              -0.118966,
+              0.013067
+            ]
+          },
+          "file": {
+            "p": 0.372281,
+            "one_minus_p_percent": 62.7719,
+            "effect_size": -0.037,
+            "CI": [
+              -0.106,
+              0.027
+            ]
+          },
+          "3_levels": {
+            "p": 0.068397,
+            "one_minus_p_percent": 93.1603,
+            "effect_size": -0.036133,
+            "CI": [
+              -0.0744,
+              0.000945
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.615319,
+            "one_minus_p_percent": 38.4681,
+            "effect_size": -0.021038,
+            "CI": [
+              -0.101335,
+              0.06046
+            ]
+          },
+          "module": {
+            "p": 0.229989,
+            "one_minus_p_percent": 77.0011,
+            "effect_size": -0.048068,
+            "CI": [
+              -0.1245,
+              0.024267
+            ]
+          },
+          "file": {
+            "p": 0.373281,
+            "one_minus_p_percent": 62.6719,
+            "effect_size": -0.039495,
+            "CI": [
+              -0.118485,
+              0.035
+            ]
+          },
+          "3_levels": {
+            "p": 0.116844,
+            "one_minus_p_percent": 88.3156,
+            "effect_size": -0.036201,
+            "CI": [
+              -0.080751,
+              0.008281
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.727514,
+            "one_minus_p_percent": 27.2486,
+            "effect_size": -0.007494,
+            "CI": [
+              -0.047996,
+              0.033088
+            ]
+          },
+          "module": {
+            "p": 0.434978,
+            "one_minus_p_percent": 56.5022,
+            "effect_size": -0.017135,
+            "CI": [
+              -0.057748,
+              0.022791
+            ]
+          },
+          "file": {
+            "p": 0.140743,
+            "one_minus_p_percent": 85.9257,
+            "effect_size": -0.035199,
+            "CI": [
+              -0.077929,
+              0.010132
+            ]
+          },
+          "3_levels": {
+            "p": 0.114894,
+            "one_minus_p_percent": 88.5106,
+            "effect_size": -0.019943,
+            "CI": [
+              -0.044092,
+              0.004509
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.694115,
+            "one_minus_p_percent": 30.5885,
+            "effect_size": -0.010626,
+            "CI": [
+              -0.062109,
+              0.039219
+            ]
+          },
+          "module": {
+            "p": 0.421779,
+            "one_minus_p_percent": 57.8221,
+            "effect_size": -0.021862,
+            "CI": [
+              -0.073198,
+              0.029251
+            ]
+          },
+          "file": {
+            "p": 0.275486,
+            "one_minus_p_percent": 72.4514,
+            "effect_size": -0.030456,
+            "CI": [
+              -0.08232,
+              0.020164
+            ]
+          },
+          "3_levels": {
+            "p": 0.168992,
+            "one_minus_p_percent": 83.1008,
+            "effect_size": -0.020981,
+            "CI": [
+              -0.050646,
+              0.008161
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original__vs__with_dalic_data_deps": {
+    "config_a_name": "original",
+    "config_b_name": "with_dalic_data_deps",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.159092,
+          "one_minus_p_percent": 84.0908,
+          "effect_size": 0.025417,
+          "CI": [
+            -0.002502,
+            0.056
+          ]
+        },
+        "module": {
+          "p": 0.092545,
+          "one_minus_p_percent": 90.7455,
+          "effect_size": 0.055086,
+          "CI": [
+            0.00125,
+            0.118418
+          ]
+        },
+        "file": {
+          "p": 0.253637,
+          "one_minus_p_percent": 74.6363,
+          "effect_size": 0.0275,
+          "CI": [
+            0.0,
+            0.06
+          ]
+        },
+        "3_levels": {
+          "p": 0.0031,
+          "one_minus_p_percent": 99.69,
+          "effect_size": 0.036001,
+          "CI": [
+            0.013391,
+            0.061667
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.078646,
+          "one_minus_p_percent": 92.1354,
+          "effect_size": -0.051708,
+          "CI": [
+            -0.114715,
+            -0.003629
+          ]
+        },
+        "module": {
+          "p": 0.016449,
+          "one_minus_p_percent": 98.3551,
+          "effect_size": -0.057122,
+          "CI": [
+            -0.116114,
+            -0.011522
+          ]
+        },
+        "file": {
+          "p": 0.361382,
+          "one_minus_p_percent": 63.8618,
+          "effect_size": 0.036166,
+          "CI": [
+            -0.036005,
+            0.1115
+          ]
+        },
+        "3_levels": {
+          "p": 0.217989,
+          "one_minus_p_percent": 78.2011,
+          "effect_size": -0.024221,
+          "CI": [
+            -0.062871,
+            0.012315
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.437228,
+            "one_minus_p_percent": 56.2772,
+            "effect_size": -0.017878,
+            "CI": [
+              -0.057868,
+              0.013122
+            ]
+          },
+          "module": {
+            "p": 0.247038,
+            "one_minus_p_percent": 75.2962,
+            "effect_size": -0.0493,
+            "CI": [
+              -0.124006,
+              0.006167
+            ]
+          },
+          "file": {
+            "p": 0.247188,
+            "one_minus_p_percent": 75.2812,
+            "effect_size": -0.029,
+            "CI": [
+              -0.069,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.018999,
+            "one_minus_p_percent": 98.1001,
+            "effect_size": -0.032059,
+            "CI": [
+              -0.061994,
+              -0.007311
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.341233,
+            "one_minus_p_percent": 65.8767,
+            "effect_size": -0.022766,
+            "CI": [
+              -0.069488,
+              0.009259
+            ]
+          },
+          "module": {
+            "p": 0.267887,
+            "one_minus_p_percent": 73.2113,
+            "effect_size": -0.048959,
+            "CI": [
+              -0.124693,
+              0.005606
+            ]
+          },
+          "file": {
+            "p": 0.246338,
+            "one_minus_p_percent": 75.3662,
+            "effect_size": -0.029495,
+            "CI": [
+              -0.074495,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.021999,
+            "one_minus_p_percent": 97.8001,
+            "effect_size": -0.03374,
+            "CI": [
+              -0.065293,
+              -0.007649
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.080896,
+            "one_minus_p_percent": 91.9104,
+            "effect_size": -0.032263,
+            "CI": [
+              -0.066816,
+              0.000138
+            ]
+          },
+          "module": {
+            "p": 0.00065,
+            "one_minus_p_percent": 99.935,
+            "effect_size": -0.041458,
+            "CI": [
+              -0.070215,
+              -0.018199
+            ]
+          },
+          "file": {
+            "p": 0.063447,
+            "one_minus_p_percent": 93.6553,
+            "effect_size": -0.054398,
+            "CI": [
+              -0.106664,
+              -0.003059
+            ]
+          },
+          "3_levels": {
+            "p": 0.00035,
+            "one_minus_p_percent": 99.965,
+            "effect_size": -0.042707,
+            "CI": [
+              -0.065712,
+              -0.020327
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.074346,
+            "one_minus_p_percent": 92.5654,
+            "effect_size": -0.040031,
+            "CI": [
+              -0.082605,
+              -0.001292
+            ]
+          },
+          "module": {
+            "p": 0.00035,
+            "one_minus_p_percent": 99.965,
+            "effect_size": -0.051509,
+            "CI": [
+              -0.086822,
+              -0.023648
+            ]
+          },
+          "file": {
+            "p": 0.099845,
+            "one_minus_p_percent": 90.0155,
+            "effect_size": -0.053231,
+            "CI": [
+              -0.111596,
+              0.004295
+            ]
+          },
+          "3_levels": {
+            "p": 0.0007,
+            "one_minus_p_percent": 99.93,
+            "effect_size": -0.048257,
+            "CI": [
+              -0.074409,
+              -0.022591
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original__vs__with_dalic_data_deps_without_graph": {
+    "config_a_name": "original",
+    "config_b_name": "with_dalic_data_deps_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.099295,
+          "one_minus_p_percent": 90.0705,
+          "effect_size": 0.045239,
+          "CI": [
+            -0.003,
+            0.09524
+          ]
+        },
+        "module": {
+          "p": 0.028149,
+          "one_minus_p_percent": 97.1851,
+          "effect_size": 0.071334,
+          "CI": [
+            0.016991,
+            0.135667
+          ]
+        },
+        "file": {
+          "p": 0.253637,
+          "one_minus_p_percent": 74.6363,
+          "effect_size": 0.035,
+          "CI": [
+            0.0,
+            0.085
+          ]
+        },
+        "3_levels": {
+          "p": 0.00055,
+          "one_minus_p_percent": 99.945,
+          "effect_size": 0.050524,
+          "CI": [
+            0.022746,
+            0.081779
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.39438,
+          "one_minus_p_percent": 60.562,
+          "effect_size": -0.026504,
+          "CI": [
+            -0.082763,
+            0.015815
+          ]
+        },
+        "module": {
+          "p": 0.273086,
+          "one_minus_p_percent": 72.6914,
+          "effect_size": -0.033149,
+          "CI": [
+            -0.085225,
+            0.006569
+          ]
+        },
+        "file": {
+          "p": 0.906755,
+          "one_minus_p_percent": 9.3245,
+          "effect_size": -0.004168,
+          "CI": [
+            -0.072168,
+            0.067167
+          ]
+        },
+        "3_levels": {
+          "p": 0.214989,
+          "one_minus_p_percent": 78.5011,
+          "effect_size": -0.021274,
+          "CI": [
+            -0.054578,
+            0.010129
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.60252,
+            "one_minus_p_percent": 39.748,
+            "effect_size": -0.016815,
+            "CI": [
+              -0.077767,
+              0.040536
+            ]
+          },
+          "module": {
+            "p": 0.20824,
+            "one_minus_p_percent": 79.176,
+            "effect_size": -0.055502,
+            "CI": [
+              -0.134301,
+              0.008232
+            ]
+          },
+          "file": {
+            "p": 0.247188,
+            "one_minus_p_percent": 75.2812,
+            "effect_size": -0.049,
+            "CI": [
+              -0.113,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.030698,
+            "one_minus_p_percent": 96.9302,
+            "effect_size": -0.040439,
+            "CI": [
+              -0.078854,
+              -0.006622
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.709715,
+            "one_minus_p_percent": 29.0285,
+            "effect_size": -0.016016,
+            "CI": [
+              -0.091614,
+              0.055496
+            ]
+          },
+          "module": {
+            "p": 0.221439,
+            "one_minus_p_percent": 77.8561,
+            "effect_size": -0.054507,
+            "CI": [
+              -0.138898,
+              0.015245
+            ]
+          },
+          "file": {
+            "p": 0.246338,
+            "one_minus_p_percent": 75.3662,
+            "effect_size": -0.054495,
+            "CI": [
+              -0.123485,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.053097,
+            "one_minus_p_percent": 94.6903,
+            "effect_size": -0.041672,
+            "CI": [
+              -0.084253,
+              -0.002373
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.491425,
+            "one_minus_p_percent": 50.8575,
+            "effect_size": -0.01215,
+            "CI": [
+              -0.046127,
+              0.016627
+            ]
+          },
+          "module": {
+            "p": 0.271186,
+            "one_minus_p_percent": 72.8814,
+            "effect_size": -0.018458,
+            "CI": [
+              -0.050071,
+              0.007577
+            ]
+          },
+          "file": {
+            "p": 0.014299,
+            "one_minus_p_percent": 98.5701,
+            "effect_size": -0.06407,
+            "CI": [
+              -0.11127,
+              -0.02007
+            ]
+          },
+          "3_levels": {
+            "p": 0.00495,
+            "one_minus_p_percent": 99.505,
+            "effect_size": -0.031559,
+            "CI": [
+              -0.05398,
+              -0.010888
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.529674,
+            "one_minus_p_percent": 47.0326,
+            "effect_size": -0.014135,
+            "CI": [
+              -0.056364,
+              0.020814
+            ]
+          },
+          "module": {
+            "p": 0.253437,
+            "one_minus_p_percent": 74.6563,
+            "effect_size": -0.022738,
+            "CI": [
+              -0.061735,
+              0.008973
+            ]
+          },
+          "file": {
+            "p": 0.018749,
+            "one_minus_p_percent": 98.1251,
+            "effect_size": -0.065416,
+            "CI": [
+              -0.115924,
+              -0.017266
+            ]
+          },
+          "3_levels": {
+            "p": 0.00885,
+            "one_minus_p_percent": 99.115,
+            "effect_size": -0.034096,
+            "CI": [
+              -0.059403,
+              -0.010193
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original__vs__with_dalic_without_graph": {
+    "config_a_name": "original",
+    "config_b_name": "with_dalic_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.113094,
+          "one_minus_p_percent": 88.6906,
+          "effect_size": 0.042195,
+          "CI": [
+            -0.003222,
+            0.091558
+          ]
+        },
+        "module": {
+          "p": 0.031948,
+          "one_minus_p_percent": 96.8052,
+          "effect_size": 0.061417,
+          "CI": [
+            0.016,
+            0.118084
+          ]
+        },
+        "file": {
+          "p": 0.253637,
+          "one_minus_p_percent": 74.6363,
+          "effect_size": 0.0275,
+          "CI": [
+            0.0,
+            0.06
+          ]
+        },
+        "3_levels": {
+          "p": 0.0002,
+          "one_minus_p_percent": 99.98,
+          "effect_size": 0.043704,
+          "CI": [
+            0.019398,
+            0.070233
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.501225,
+          "one_minus_p_percent": 49.8775,
+          "effect_size": -0.016971,
+          "CI": [
+            -0.066702,
+            0.025926
+          ]
+        },
+        "module": {
+          "p": 0.501675,
+          "one_minus_p_percent": 49.8325,
+          "effect_size": -0.016694,
+          "CI": [
+            -0.065121,
+            0.025179
+          ]
+        },
+        "file": {
+          "p": 0.145343,
+          "one_minus_p_percent": 85.4657,
+          "effect_size": 0.056331,
+          "CI": [
+            -0.015338,
+            0.125501
+          ]
+        },
+        "3_levels": {
+          "p": 0.659917,
+          "one_minus_p_percent": 34.0083,
+          "effect_size": 0.007555,
+          "CI": [
+            -0.025642,
+            0.040177
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.315834,
+            "one_minus_p_percent": 68.4166,
+            "effect_size": -0.02859,
+            "CI": [
+              -0.079504,
+              0.012209
+            ]
+          },
+          "module": {
+            "p": 0.40618,
+            "one_minus_p_percent": 59.382,
+            "effect_size": -0.031302,
+            "CI": [
+              -0.096003,
+              0.016698
+            ]
+          },
+          "file": {
+            "p": 0.247188,
+            "one_minus_p_percent": 75.2812,
+            "effect_size": -0.029,
+            "CI": [
+              -0.069,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.033448,
+            "one_minus_p_percent": 96.6552,
+            "effect_size": -0.02963,
+            "CI": [
+              -0.058734,
+              -0.0051
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.356432,
+            "one_minus_p_percent": 64.3568,
+            "effect_size": -0.033437,
+            "CI": [
+              -0.097529,
+              0.017309
+            ]
+          },
+          "module": {
+            "p": 0.39823,
+            "one_minus_p_percent": 60.177,
+            "effect_size": -0.032475,
+            "CI": [
+              -0.104743,
+              0.020919
+            ]
+          },
+          "file": {
+            "p": 0.246338,
+            "one_minus_p_percent": 75.3662,
+            "effect_size": -0.029495,
+            "CI": [
+              -0.074495,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.052647,
+            "one_minus_p_percent": 94.7353,
+            "effect_size": -0.031802,
+            "CI": [
+              -0.065111,
+              -0.003204
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.885806,
+            "one_minus_p_percent": 11.4194,
+            "effect_size": -0.003275,
+            "CI": [
+              -0.04465,
+              0.041813
+            ]
+          },
+          "module": {
+            "p": 0.648368,
+            "one_minus_p_percent": 35.1632,
+            "effect_size": -0.010119,
+            "CI": [
+              -0.048955,
+              0.032869
+            ]
+          },
+          "file": {
+            "p": 0.057147,
+            "one_minus_p_percent": 94.2853,
+            "effect_size": -0.055198,
+            "CI": [
+              -0.109265,
+              -0.00513
+            ]
+          },
+          "3_levels": {
+            "p": 0.101795,
+            "one_minus_p_percent": 89.8205,
+            "effect_size": -0.022864,
+            "CI": [
+              -0.049961,
+              0.004723
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.927504,
+            "one_minus_p_percent": 7.2496,
+            "effect_size": -0.002516,
+            "CI": [
+              -0.054295,
+              0.052381
+            ]
+          },
+          "module": {
+            "p": 0.629719,
+            "one_minus_p_percent": 37.0281,
+            "effect_size": -0.01233,
+            "CI": [
+              -0.059627,
+              0.040388
+            ]
+          },
+          "file": {
+            "p": 0.114044,
+            "one_minus_p_percent": 88.5956,
+            "effect_size": -0.052044,
+            "CI": [
+              -0.111607,
+              0.005598
+            ]
+          },
+          "3_levels": {
+            "p": 0.176841,
+            "one_minus_p_percent": 82.3159,
+            "effect_size": -0.022297,
+            "CI": [
+              -0.053283,
+              0.009262
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original_without_graph__vs__with_dalic": {
+    "config_a_name": "original_without_graph",
+    "config_b_name": "with_dalic",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.411929,
+          "one_minus_p_percent": 58.8071,
+          "effect_size": 0.025111,
+          "CI": [
+            -0.026666,
+            0.082001
+          ]
+        },
+        "module": {
+          "p": 0.149293,
+          "one_minus_p_percent": 85.0707,
+          "effect_size": 0.040999,
+          "CI": [
+            -0.006668,
+            0.095332
+          ]
+        },
+        "file": {
+          "p": 0.625569,
+          "one_minus_p_percent": 37.4431,
+          "effect_size": 0.0175,
+          "CI": [
+            -0.02,
+            0.055
+          ]
+        },
+        "3_levels": {
+          "p": 0.053747,
+          "one_minus_p_percent": 94.6253,
+          "effect_size": 0.02787,
+          "CI": [
+            0.000611,
+            0.056891
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.784461,
+          "one_minus_p_percent": 21.5539,
+          "effect_size": -0.004362,
+          "CI": [
+            -0.0329,
+            0.025355
+          ]
+        },
+        "module": {
+          "p": 0.527024,
+          "one_minus_p_percent": 47.2976,
+          "effect_size": -0.009685,
+          "CI": [
+            -0.036603,
+            0.019026
+          ]
+        },
+        "file": {
+          "p": 0.906855,
+          "one_minus_p_percent": 9.3145,
+          "effect_size": 0.005497,
+          "CI": [
+            -0.07667,
+            0.090997
+          ]
+        },
+        "3_levels": {
+          "p": 0.862707,
+          "one_minus_p_percent": 13.7293,
+          "effect_size": -0.00285,
+          "CI": [
+            -0.032949,
+            0.029566
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.552522,
+            "one_minus_p_percent": 44.7478,
+            "effect_size": -0.025154,
+            "CI": [
+              -0.09969,
+              0.045959
+            ]
+          },
+          "module": {
+            "p": 0.248538,
+            "one_minus_p_percent": 75.1462,
+            "effect_size": -0.043066,
+            "CI": [
+              -0.111999,
+              0.018934
+            ]
+          },
+          "file": {
+            "p": 0.500625,
+            "one_minus_p_percent": 49.9375,
+            "effect_size": -0.018,
+            "CI": [
+              -0.07,
+              0.032
+            ]
+          },
+          "3_levels": {
+            "p": 0.142793,
+            "one_minus_p_percent": 85.7207,
+            "effect_size": -0.02874,
+            "CI": [
+              -0.067467,
+              0.008504
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.614969,
+            "one_minus_p_percent": 38.5031,
+            "effect_size": -0.023631,
+            "CI": [
+              -0.108582,
+              0.061664
+            ]
+          },
+          "module": {
+            "p": 0.267137,
+            "one_minus_p_percent": 73.2863,
+            "effect_size": -0.043863,
+            "CI": [
+              -0.120474,
+              0.028325
+            ]
+          },
+          "file": {
+            "p": 0.627569,
+            "one_minus_p_percent": 37.2431,
+            "effect_size": -0.021124,
+            "CI": [
+              -0.083371,
+              0.04
+            ]
+          },
+          "3_levels": {
+            "p": 0.19904,
+            "one_minus_p_percent": 80.096,
+            "effect_size": -0.029539,
+            "CI": [
+              -0.074043,
+              0.014068
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.99375,
+            "one_minus_p_percent": 0.625,
+            "effect_size": 0.000133,
+            "CI": [
+              -0.028669,
+              0.033066
+            ]
+          },
+          "module": {
+            "p": 0.59562,
+            "one_minus_p_percent": 40.438,
+            "effect_size": -0.008489,
+            "CI": [
+              -0.035227,
+              0.022493
+            ]
+          },
+          "file": {
+            "p": 0.523824,
+            "one_minus_p_percent": 47.6176,
+            "effect_size": 0.015998,
+            "CI": [
+              -0.030602,
+              0.063932
+            ]
+          },
+          "3_levels": {
+            "p": 0.819259,
+            "one_minus_p_percent": 18.0741,
+            "effect_size": 0.002547,
+            "CI": [
+              -0.018179,
+              0.024462
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.987301,
+            "one_minus_p_percent": 1.2699,
+            "effect_size": 0.000331,
+            "CI": [
+              -0.033652,
+              0.039707
+            ]
+          },
+          "module": {
+            "p": 0.634518,
+            "one_minus_p_percent": 36.5482,
+            "effect_size": -0.009315,
+            "CI": [
+              -0.040102,
+              0.027824
+            ]
+          },
+          "file": {
+            "p": 0.341983,
+            "one_minus_p_percent": 65.8017,
+            "effect_size": 0.026568,
+            "CI": [
+              -0.023952,
+              0.079503
+            ]
+          },
+          "3_levels": {
+            "p": 0.643768,
+            "one_minus_p_percent": 35.6232,
+            "effect_size": 0.005861,
+            "CI": [
+              -0.01785,
+              0.03095
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original_without_graph__vs__with_dalic_data_deps": {
+    "config_a_name": "original_without_graph",
+    "config_b_name": "with_dalic_data_deps",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.60787,
+          "one_minus_p_percent": 39.213,
+          "effect_size": 0.016387,
+          "CI": [
+            -0.03195,
+            0.071554
+          ]
+        },
+        "module": {
+          "p": 0.250637,
+          "one_minus_p_percent": 74.9363,
+          "effect_size": 0.042501,
+          "CI": [
+            -0.018003,
+            0.1105
+          ]
+        },
+        "file": {
+          "p": 0.620269,
+          "one_minus_p_percent": 37.9731,
+          "effect_size": 0.0125,
+          "CI": [
+            -0.025,
+            0.05
+          ]
+        },
+        "3_levels": {
+          "p": 0.138043,
+          "one_minus_p_percent": 86.1957,
+          "effect_size": 0.023796,
+          "CI": [
+            -0.006277,
+            0.056408
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.026649,
+          "one_minus_p_percent": 97.3351,
+          "effect_size": -0.039815,
+          "CI": [
+            -0.078356,
+            -0.008749
+          ]
+        },
+        "module": {
+          "p": 0.019099,
+          "one_minus_p_percent": 98.0901,
+          "effect_size": -0.045189,
+          "CI": [
+            -0.085465,
+            -0.011088
+          ]
+        },
+        "file": {
+          "p": 0.853457,
+          "one_minus_p_percent": 14.6543,
+          "effect_size": 0.007999,
+          "CI": [
+            -0.069832,
+            0.091503
+          ]
+        },
+        "3_levels": {
+          "p": 0.131893,
+          "one_minus_p_percent": 86.8107,
+          "effect_size": -0.025668,
+          "CI": [
+            -0.057524,
+            0.007814
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.531073,
+            "one_minus_p_percent": 46.8927,
+            "effect_size": -0.022332,
+            "CI": [
+              -0.091866,
+              0.040801
+            ]
+          },
+          "module": {
+            "p": 0.317584,
+            "one_minus_p_percent": 68.2416,
+            "effect_size": -0.041666,
+            "CI": [
+              -0.125133,
+              0.033667
+            ]
+          },
+          "file": {
+            "p": 0.811209,
+            "one_minus_p_percent": 18.8791,
+            "effect_size": -0.01,
+            "CI": [
+              -0.068,
+              0.046
+            ]
+          },
+          "3_levels": {
+            "p": 0.235738,
+            "one_minus_p_percent": 76.4262,
+            "effect_size": -0.024666,
+            "CI": [
+              -0.065667,
+              0.014045
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.526174,
+            "one_minus_p_percent": 47.3826,
+            "effect_size": -0.025358,
+            "CI": [
+              -0.103231,
+              0.047863
+            ]
+          },
+          "module": {
+            "p": 0.379381,
+            "one_minus_p_percent": 62.0619,
+            "effect_size": -0.044754,
+            "CI": [
+              -0.134894,
+              0.038203
+            ]
+          },
+          "file": {
+            "p": 0.814959,
+            "one_minus_p_percent": 18.5041,
+            "effect_size": -0.011124,
+            "CI": [
+              -0.082247,
+              0.058876
+            ]
+          },
+          "3_levels": {
+            "p": 0.254587,
+            "one_minus_p_percent": 74.5413,
+            "effect_size": -0.027078,
+            "CI": [
+              -0.073114,
+              0.017504
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.015349,
+            "one_minus_p_percent": 98.4651,
+            "effect_size": -0.024636,
+            "CI": [
+              -0.042353,
+              -0.006512
+            ]
+          },
+          "module": {
+            "p": 0.00595,
+            "one_minus_p_percent": 99.405,
+            "effect_size": -0.032812,
+            "CI": [
+              -0.056698,
+              -0.011322
+            ]
+          },
+          "file": {
+            "p": 0.900355,
+            "one_minus_p_percent": 9.9645,
+            "effect_size": -0.003201,
+            "CI": [
+              -0.05107,
+              0.042468
+            ]
+          },
+          "3_levels": {
+            "p": 0.036298,
+            "one_minus_p_percent": 96.3702,
+            "effect_size": -0.020217,
+            "CI": [
+              -0.039268,
+              -0.001728
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.010099,
+            "one_minus_p_percent": 98.9901,
+            "effect_size": -0.029073,
+            "CI": [
+              -0.047802,
+              -0.009269
+            ]
+          },
+          "module": {
+            "p": 0.00335,
+            "one_minus_p_percent": 99.665,
+            "effect_size": -0.038963,
+            "CI": [
+              -0.066815,
+              -0.014926
+            ]
+          },
+          "file": {
+            "p": 0.883956,
+            "one_minus_p_percent": 11.6044,
+            "effect_size": 0.003793,
+            "CI": [
+              -0.047393,
+              0.053003
+            ]
+          },
+          "3_levels": {
+            "p": 0.043798,
+            "one_minus_p_percent": 95.6202,
+            "effect_size": -0.021414,
+            "CI": [
+              -0.041667,
+              -0.000898
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original_without_graph__vs__with_dalic_data_deps_without_graph": {
+    "config_a_name": "original_without_graph",
+    "config_b_name": "with_dalic_data_deps_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.19904,
+          "one_minus_p_percent": 80.096,
+          "effect_size": 0.036209,
+          "CI": [
+            -0.011096,
+            0.090459
+          ]
+        },
+        "module": {
+          "p": 0.042648,
+          "one_minus_p_percent": 95.7352,
+          "effect_size": 0.058749,
+          "CI": [
+            0.009499,
+            0.118998
+          ]
+        },
+        "file": {
+          "p": 0.377631,
+          "one_minus_p_percent": 62.2369,
+          "effect_size": 0.02,
+          "CI": [
+            -0.005,
+            0.05
+          ]
+        },
+        "3_levels": {
+          "p": 0.0067,
+          "one_minus_p_percent": 99.33,
+          "effect_size": 0.038319,
+          "CI": [
+            0.012398,
+            0.067664
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.318384,
+          "one_minus_p_percent": 68.1616,
+          "effect_size": -0.014611,
+          "CI": [
+            -0.042731,
+            0.009122
+          ]
+        },
+        "module": {
+          "p": 0.126244,
+          "one_minus_p_percent": 87.3756,
+          "effect_size": -0.021216,
+          "CI": [
+            -0.049569,
+            0.002003
+          ]
+        },
+        "file": {
+          "p": 0.468377,
+          "one_minus_p_percent": 53.1623,
+          "effect_size": -0.032335,
+          "CI": [
+            -0.116001,
+            0.049831
+          ]
+        },
+        "3_levels": {
+          "p": 0.154842,
+          "one_minus_p_percent": 84.5158,
+          "effect_size": -0.022721,
+          "CI": [
+            -0.053988,
+            0.007685
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.59072,
+            "one_minus_p_percent": 40.928,
+            "effect_size": -0.021269,
+            "CI": [
+              -0.094755,
+              0.044063
+            ]
+          },
+          "module": {
+            "p": 0.250387,
+            "one_minus_p_percent": 74.9613,
+            "effect_size": -0.047868,
+            "CI": [
+              -0.127069,
+              0.017864
+            ]
+          },
+          "file": {
+            "p": 0.369782,
+            "one_minus_p_percent": 63.0218,
+            "effect_size": -0.03,
+            "CI": [
+              -0.08,
+              0.01
+            ]
+          },
+          "3_levels": {
+            "p": 0.086946,
+            "one_minus_p_percent": 91.3054,
+            "effect_size": -0.033046,
+            "CI": [
+              -0.073068,
+              0.002769
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.682466,
+            "one_minus_p_percent": 31.7534,
+            "effect_size": -0.018608,
+            "CI": [
+              -0.100758,
+              0.056858
+            ]
+          },
+          "module": {
+            "p": 0.241638,
+            "one_minus_p_percent": 75.8362,
+            "effect_size": -0.050302,
+            "CI": [
+              -0.134724,
+              0.020689
+            ]
+          },
+          "file": {
+            "p": 0.377131,
+            "one_minus_p_percent": 62.2869,
+            "effect_size": -0.036124,
+            "CI": [
+              -0.1,
+              0.013876
+            ]
+          },
+          "3_levels": {
+            "p": 0.113594,
+            "one_minus_p_percent": 88.6406,
+            "effect_size": -0.035011,
+            "CI": [
+              -0.078385,
+              0.00532
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.587371,
+            "one_minus_p_percent": 41.2629,
+            "effect_size": -0.004522,
+            "CI": [
+              -0.020442,
+              0.010328
+            ]
+          },
+          "module": {
+            "p": 0.19749,
+            "one_minus_p_percent": 80.251,
+            "effect_size": -0.009812,
+            "CI": [
+              -0.024493,
+              0.003344
+            ]
+          },
+          "file": {
+            "p": 0.485076,
+            "one_minus_p_percent": 51.4924,
+            "effect_size": -0.012872,
+            "CI": [
+              -0.04761,
+              0.021326
+            ]
+          },
+          "3_levels": {
+            "p": 0.19424,
+            "one_minus_p_percent": 80.576,
+            "effect_size": -0.009069,
+            "CI": [
+              -0.022297,
+              0.00445
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.737063,
+            "one_minus_p_percent": 26.2937,
+            "effect_size": -0.003178,
+            "CI": [
+              -0.021434,
+              0.014866
+            ]
+          },
+          "module": {
+            "p": 0.241488,
+            "one_minus_p_percent": 75.8512,
+            "effect_size": -0.010191,
+            "CI": [
+              -0.026604,
+              0.0057
+            ]
+          },
+          "file": {
+            "p": 0.675366,
+            "one_minus_p_percent": 32.4634,
+            "effect_size": -0.008392,
+            "CI": [
+              -0.04535,
+              0.03018
+            ]
+          },
+          "3_levels": {
+            "p": 0.355782,
+            "one_minus_p_percent": 64.4218,
+            "effect_size": -0.007253,
+            "CI": [
+              -0.022035,
+              0.007862
+            ]
+          }
+        }
+      }
+    }
+  },
+  "original_without_graph__vs__with_dalic_without_graph": {
+    "config_a_name": "original_without_graph",
+    "config_b_name": "with_dalic_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.259537,
+          "one_minus_p_percent": 74.0463,
+          "effect_size": 0.033165,
+          "CI": [
+            -0.017168,
+            0.088332
+          ]
+        },
+        "module": {
+          "p": 0.024199,
+          "one_minus_p_percent": 97.5801,
+          "effect_size": 0.048832,
+          "CI": [
+            0.011,
+            0.096998
+          ]
+        },
+        "file": {
+          "p": 0.620269,
+          "one_minus_p_percent": 37.9731,
+          "effect_size": 0.0125,
+          "CI": [
+            -0.025,
+            0.05
+          ]
+        },
+        "3_levels": {
+          "p": 0.019599,
+          "one_minus_p_percent": 98.0401,
+          "effect_size": 0.031499,
+          "CI": [
+            0.005831,
+            0.058722
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.651467,
+          "one_minus_p_percent": 34.8533,
+          "effect_size": -0.005078,
+          "CI": [
+            -0.027116,
+            0.015743
+          ]
+        },
+        "module": {
+          "p": 0.695265,
+          "one_minus_p_percent": 30.4735,
+          "effect_size": -0.004761,
+          "CI": [
+            -0.028114,
+            0.017054
+          ]
+        },
+        "file": {
+          "p": 0.437878,
+          "one_minus_p_percent": 56.2122,
+          "effect_size": 0.028164,
+          "CI": [
+            -0.039503,
+            0.09333
+          ]
+        },
+        "3_levels": {
+          "p": 0.640318,
+          "one_minus_p_percent": 35.9682,
+          "effect_size": 0.006108,
+          "CI": [
+            -0.018664,
+            0.03151
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.363482,
+            "one_minus_p_percent": 63.6518,
+            "effect_size": -0.033044,
+            "CI": [
+              -0.09713,
+              0.017846
+            ]
+          },
+          "module": {
+            "p": 0.516424,
+            "one_minus_p_percent": 48.3576,
+            "effect_size": -0.023668,
+            "CI": [
+              -0.088537,
+              0.025737
+            ]
+          },
+          "file": {
+            "p": 0.811209,
+            "one_minus_p_percent": 18.8791,
+            "effect_size": -0.01,
+            "CI": [
+              -0.068,
+              0.046
+            ]
+          },
+          "3_levels": {
+            "p": 0.20354,
+            "one_minus_p_percent": 79.646,
+            "effect_size": -0.022237,
+            "CI": [
+              -0.05815,
+              0.009911
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.375131,
+            "one_minus_p_percent": 62.4869,
+            "effect_size": -0.036029,
+            "CI": [
+              -0.107419,
+              0.018816
+            ]
+          },
+          "module": {
+            "p": 0.481776,
+            "one_minus_p_percent": 51.8224,
+            "effect_size": -0.02827,
+            "CI": [
+              -0.099786,
+              0.025133
+            ]
+          },
+          "file": {
+            "p": 0.814959,
+            "one_minus_p_percent": 18.5041,
+            "effect_size": -0.011124,
+            "CI": [
+              -0.082247,
+              0.058876
+            ]
+          },
+          "3_levels": {
+            "p": 0.20984,
+            "one_minus_p_percent": 79.016,
+            "effect_size": -0.025141,
+            "CI": [
+              -0.065155,
+              0.011372
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.772711,
+            "one_minus_p_percent": 22.7289,
+            "effect_size": 0.004352,
+            "CI": [
+              -0.018587,
+              0.031182
+            ]
+          },
+          "module": {
+            "p": 0.920354,
+            "one_minus_p_percent": 7.9646,
+            "effect_size": -0.001473,
+            "CI": [
+              -0.02665,
+              0.026815
+            ]
+          },
+          "file": {
+            "p": 0.853207,
+            "one_minus_p_percent": 14.6793,
+            "effect_size": -0.004001,
+            "CI": [
+              -0.0466,
+              0.03333
+            ]
+          },
+          "3_levels": {
+            "p": 0.968202,
+            "one_minus_p_percent": 3.1798,
+            "effect_size": -0.000374,
+            "CI": [
+              -0.01862,
+              0.017366
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.684866,
+            "one_minus_p_percent": 31.5134,
+            "effect_size": 0.008441,
+            "CI": [
+              -0.019944,
+              0.043025
+            ]
+          },
+          "module": {
+            "p": 0.992,
+            "one_minus_p_percent": 0.8,
+            "effect_size": 0.000217,
+            "CI": [
+              -0.032184,
+              0.036594
+            ]
+          },
+          "file": {
+            "p": 0.841308,
+            "one_minus_p_percent": 15.8692,
+            "effect_size": 0.00498,
+            "CI": [
+              -0.042937,
+              0.048543
+            ]
+          },
+          "3_levels": {
+            "p": 0.695315,
+            "one_minus_p_percent": 30.4685,
+            "effect_size": 0.004546,
+            "CI": [
+              -0.016964,
+              0.026802
+            ]
+          }
+        }
+      }
+    }
+  },
+  "with_dalic__vs__with_dalic_data_deps": {
+    "config_a_name": "with_dalic",
+    "config_b_name": "with_dalic_data_deps",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.827909,
+          "one_minus_p_percent": 17.2091,
+          "effect_size": -0.008724,
+          "CI": [
+            -0.056502,
+            0.036553
+          ]
+        },
+        "module": {
+          "p": 1.0,
+          "one_minus_p_percent": 0.0,
+          "effect_size": 0.001502,
+          "CI": [
+            -0.044996,
+            0.046002
+          ]
+        },
+        "file": {
+          "p": 1.0,
+          "one_minus_p_percent": 0.0,
+          "effect_size": -0.005,
+          "CI": [
+            -0.035,
+            0.025
+          ]
+        },
+        "3_levels": {
+          "p": 0.741813,
+          "one_minus_p_percent": 25.8187,
+          "effect_size": -0.004074,
+          "CI": [
+            -0.028334,
+            0.019593
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.078596,
+          "one_minus_p_percent": 92.1404,
+          "effect_size": -0.035453,
+          "CI": [
+            -0.077164,
+            -0.00018
+          ]
+        },
+        "module": {
+          "p": 0.092845,
+          "one_minus_p_percent": 90.7155,
+          "effect_size": -0.035504,
+          "CI": [
+            -0.077065,
+            -4.5e-05
+          ]
+        },
+        "file": {
+          "p": 0.885906,
+          "one_minus_p_percent": 11.4094,
+          "effect_size": 0.002502,
+          "CI": [
+            -0.02983,
+            0.038168
+          ]
+        },
+        "3_levels": {
+          "p": 0.045148,
+          "one_minus_p_percent": 95.4852,
+          "effect_size": -0.022818,
+          "CI": [
+            -0.045883,
+            -0.001948
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.812559,
+            "one_minus_p_percent": 18.7441,
+            "effect_size": 0.002822,
+            "CI": [
+              -0.061068,
+              0.064886
+            ]
+          },
+          "module": {
+            "p": 1.0,
+            "one_minus_p_percent": 0.0,
+            "effect_size": 0.0014,
+            "CI": [
+              -0.0616,
+              0.0642
+            ]
+          },
+          "file": {
+            "p": 1.0,
+            "one_minus_p_percent": 0.0,
+            "effect_size": 0.008,
+            "CI": [
+              -0.04,
+              0.056
+            ]
+          },
+          "3_levels": {
+            "p": 0.80411,
+            "one_minus_p_percent": 19.589,
+            "effect_size": 0.004074,
+            "CI": [
+              -0.029778,
+              0.037385
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.920504,
+            "one_minus_p_percent": 7.9496,
+            "effect_size": -0.001727,
+            "CI": [
+              -0.078,
+              0.072467
+            ]
+          },
+          "module": {
+            "p": 0.841958,
+            "one_minus_p_percent": 15.8042,
+            "effect_size": -0.000891,
+            "CI": [
+              -0.076691,
+              0.070619
+            ]
+          },
+          "file": {
+            "p": 1.0,
+            "one_minus_p_percent": 0.0,
+            "effect_size": 0.01,
+            "CI": [
+              -0.05,
+              0.07
+            ]
+          },
+          "3_levels": {
+            "p": 0.897505,
+            "one_minus_p_percent": 10.2495,
+            "effect_size": 0.002461,
+            "CI": [
+              -0.038064,
+              0.042784
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.177991,
+            "one_minus_p_percent": 82.2009,
+            "effect_size": -0.024769,
+            "CI": [
+              -0.060035,
+              0.007744
+            ]
+          },
+          "module": {
+            "p": 0.171891,
+            "one_minus_p_percent": 82.8109,
+            "effect_size": -0.024323,
+            "CI": [
+              -0.058367,
+              0.00793
+            ]
+          },
+          "file": {
+            "p": 0.171591,
+            "one_minus_p_percent": 82.8409,
+            "effect_size": -0.019199,
+            "CI": [
+              -0.045466,
+              0.0054
+            ]
+          },
+          "3_levels": {
+            "p": 0.014899,
+            "one_minus_p_percent": 98.5101,
+            "effect_size": -0.022764,
+            "CI": [
+              -0.040933,
+              -0.005333
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.181941,
+            "one_minus_p_percent": 81.8059,
+            "effect_size": -0.029404,
+            "CI": [
+              -0.073231,
+              0.010262
+            ]
+          },
+          "module": {
+            "p": 0.166542,
+            "one_minus_p_percent": 83.3458,
+            "effect_size": -0.029647,
+            "CI": [
+              -0.071103,
+              0.009138
+            ]
+          },
+          "file": {
+            "p": 0.20444,
+            "one_minus_p_percent": 79.556,
+            "effect_size": -0.022775,
+            "CI": [
+              -0.056617,
+              0.00764
+            ]
+          },
+          "3_levels": {
+            "p": 0.016299,
+            "one_minus_p_percent": 98.3701,
+            "effect_size": -0.027276,
+            "CI": [
+              -0.050084,
+              -0.005833
+            ]
+          }
+        }
+      }
+    }
+  },
+  "with_dalic__vs__with_dalic_data_deps_without_graph": {
+    "config_a_name": "with_dalic",
+    "config_b_name": "with_dalic_data_deps_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.476376,
+          "one_minus_p_percent": 52.3624,
+          "effect_size": 0.011098,
+          "CI": [
+            -0.015138,
+            0.040998
+          ]
+        },
+        "module": {
+          "p": 0.311734,
+          "one_minus_p_percent": 68.8266,
+          "effect_size": 0.01775,
+          "CI": [
+            -0.014249,
+            0.053415
+          ]
+        },
+        "file": {
+          "p": 1.0,
+          "one_minus_p_percent": 0.0,
+          "effect_size": 0.0025,
+          "CI": [
+            -0.0175,
+            0.0275
+          ]
+        },
+        "3_levels": {
+          "p": 0.228989,
+          "one_minus_p_percent": 77.1011,
+          "effect_size": 0.010449,
+          "CI": [
+            -0.005287,
+            0.027695
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.553072,
+          "one_minus_p_percent": 44.6928,
+          "effect_size": -0.010249,
+          "CI": [
+            -0.04379,
+            0.01843
+          ]
+        },
+        "module": {
+          "p": 0.499925,
+          "one_minus_p_percent": 50.0075,
+          "effect_size": -0.011531,
+          "CI": [
+            -0.04473,
+            0.016796
+          ]
+        },
+        "file": {
+          "p": 0.246788,
+          "one_minus_p_percent": 75.3212,
+          "effect_size": -0.037832,
+          "CI": [
+            -0.097498,
+            0.021168
+          ]
+        },
+        "3_levels": {
+          "p": 0.123994,
+          "one_minus_p_percent": 87.6006,
+          "effect_size": -0.019871,
+          "CI": [
+            -0.045582,
+            0.004342
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.884356,
+            "one_minus_p_percent": 11.5644,
+            "effect_size": 0.003885,
+            "CI": [
+              -0.040379,
+              0.041998
+            ]
+          },
+          "module": {
+            "p": 0.875656,
+            "one_minus_p_percent": 12.4344,
+            "effect_size": -0.004802,
+            "CI": [
+              -0.0592,
+              0.042266
+            ]
+          },
+          "file": {
+            "p": 0.750462,
+            "one_minus_p_percent": 24.9538,
+            "effect_size": -0.012,
+            "CI": [
+              -0.052,
+              0.02
+            ]
+          },
+          "3_levels": {
+            "p": 0.740363,
+            "one_minus_p_percent": 25.9637,
+            "effect_size": -0.004306,
+            "CI": [
+              -0.030831,
+              0.019695
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.851007,
+            "one_minus_p_percent": 14.8993,
+            "effect_size": 0.005023,
+            "CI": [
+              -0.051334,
+              0.053158
+            ]
+          },
+          "module": {
+            "p": 0.871706,
+            "one_minus_p_percent": 12.8294,
+            "effect_size": -0.006439,
+            "CI": [
+              -0.074438,
+              0.051803
+            ]
+          },
+          "file": {
+            "p": 0.745963,
+            "one_minus_p_percent": 25.4037,
+            "effect_size": -0.015,
+            "CI": [
+              -0.065,
+              0.025
+            ]
+          },
+          "3_levels": {
+            "p": 0.742663,
+            "one_minus_p_percent": 25.7337,
+            "effect_size": -0.005472,
+            "CI": [
+              -0.038608,
+              0.024332
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.763912,
+            "one_minus_p_percent": 23.6088,
+            "effect_size": -0.004655,
+            "CI": [
+              -0.033553,
+              0.019645
+            ]
+          },
+          "module": {
+            "p": 0.930403,
+            "one_minus_p_percent": 6.9597,
+            "effect_size": -0.001323,
+            "CI": [
+              -0.029826,
+              0.021956
+            ]
+          },
+          "file": {
+            "p": 0.20564,
+            "one_minus_p_percent": 79.436,
+            "effect_size": -0.02887,
+            "CI": [
+              -0.0708,
+              0.011461
+            ]
+          },
+          "3_levels": {
+            "p": 0.241288,
+            "one_minus_p_percent": 75.8712,
+            "effect_size": -0.011616,
+            "CI": [
+              -0.031056,
+              0.006694
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.863907,
+            "one_minus_p_percent": 13.6093,
+            "effect_size": -0.003509,
+            "CI": [
+              -0.039022,
+              0.026415
+            ]
+          },
+          "module": {
+            "p": 0.966502,
+            "one_minus_p_percent": 3.3498,
+            "effect_size": -0.000876,
+            "CI": [
+              -0.035531,
+              0.027008
+            ]
+          },
+          "file": {
+            "p": 0.19444,
+            "one_minus_p_percent": 80.556,
+            "effect_size": -0.03496,
+            "CI": [
+              -0.084139,
+              0.013018
+            ]
+          },
+          "3_levels": {
+            "p": 0.265737,
+            "one_minus_p_percent": 73.4263,
+            "effect_size": -0.013115,
+            "CI": [
+              -0.036422,
+              0.009032
+            ]
+          }
+        }
+      }
+    }
+  },
+  "with_dalic__vs__with_dalic_without_graph": {
+    "config_a_name": "with_dalic",
+    "config_b_name": "with_dalic_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.782811,
+          "one_minus_p_percent": 21.7189,
+          "effect_size": 0.008054,
+          "CI": [
+            -0.050448,
+            0.058556
+          ]
+        },
+        "module": {
+          "p": 0.693715,
+          "one_minus_p_percent": 30.6285,
+          "effect_size": 0.007833,
+          "CI": [
+            -0.029998,
+            0.046333
+          ]
+        },
+        "file": {
+          "p": 1.0,
+          "one_minus_p_percent": 0.0,
+          "effect_size": -0.005,
+          "CI": [
+            -0.035,
+            0.025
+          ]
+        },
+        "3_levels": {
+          "p": 0.781511,
+          "one_minus_p_percent": 21.8489,
+          "effect_size": 0.003629,
+          "CI": [
+            -0.021871,
+            0.027184
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.963852,
+          "one_minus_p_percent": 3.6148,
+          "effect_size": -0.000716,
+          "CI": [
+            -0.030238,
+            0.030269
+          ]
+        },
+        "module": {
+          "p": 0.764362,
+          "one_minus_p_percent": 23.5638,
+          "effect_size": 0.004924,
+          "CI": [
+            -0.024867,
+            0.035262
+          ]
+        },
+        "file": {
+          "p": 0.478076,
+          "one_minus_p_percent": 52.1924,
+          "effect_size": 0.022667,
+          "CI": [
+            -0.038336,
+            0.081669
+          ]
+        },
+        "3_levels": {
+          "p": 0.483326,
+          "one_minus_p_percent": 51.6674,
+          "effect_size": 0.008958,
+          "CI": [
+            -0.015806,
+            0.03382
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.779661,
+            "one_minus_p_percent": 22.0339,
+            "effect_size": -0.00789,
+            "CI": [
+              -0.063,
+              0.038331
+            ]
+          },
+          "module": {
+            "p": 0.413229,
+            "one_minus_p_percent": 58.6771,
+            "effect_size": 0.019398,
+            "CI": [
+              -0.027202,
+              0.059062
+            ]
+          },
+          "file": {
+            "p": 1.0,
+            "one_minus_p_percent": 0.0,
+            "effect_size": 0.008,
+            "CI": [
+              -0.04,
+              0.056
+            ]
+          },
+          "3_levels": {
+            "p": 0.647518,
+            "one_minus_p_percent": 35.2482,
+            "effect_size": 0.006503,
+            "CI": [
+              -0.021571,
+              0.033223
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.657567,
+            "one_minus_p_percent": 34.2433,
+            "effect_size": -0.012398,
+            "CI": [
+              -0.078803,
+              0.043203
+            ]
+          },
+          "module": {
+            "p": 0.60957,
+            "one_minus_p_percent": 39.043,
+            "effect_size": 0.015593,
+            "CI": [
+              -0.038407,
+              0.059099
+            ]
+          },
+          "file": {
+            "p": 1.0,
+            "one_minus_p_percent": 0.0,
+            "effect_size": 0.01,
+            "CI": [
+              -0.05,
+              0.07
+            ]
+          },
+          "3_levels": {
+            "p": 0.79336,
+            "one_minus_p_percent": 20.664,
+            "effect_size": 0.004398,
+            "CI": [
+              -0.030448,
+              0.036013
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.850407,
+            "one_minus_p_percent": 14.9593,
+            "effect_size": 0.004219,
+            "CI": [
+              -0.035246,
+              0.045599
+            ]
+          },
+          "module": {
+            "p": 0.738613,
+            "one_minus_p_percent": 26.1387,
+            "effect_size": 0.007016,
+            "CI": [
+              -0.030338,
+              0.045947
+            ]
+          },
+          "file": {
+            "p": 0.468877,
+            "one_minus_p_percent": 53.1123,
+            "effect_size": -0.019999,
+            "CI": [
+              -0.072998,
+              0.031136
+            ]
+          },
+          "3_levels": {
+            "p": 0.824109,
+            "one_minus_p_percent": 17.5891,
+            "effect_size": -0.002921,
+            "CI": [
+              -0.028271,
+              0.022657
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.768562,
+            "one_minus_p_percent": 23.1438,
+            "effect_size": 0.00811,
+            "CI": [
+              -0.042755,
+              0.060173
+            ]
+          },
+          "module": {
+            "p": 0.724814,
+            "one_minus_p_percent": 27.5186,
+            "effect_size": 0.009532,
+            "CI": [
+              -0.038281,
+              0.059927
+            ]
+          },
+          "file": {
+            "p": 0.495825,
+            "one_minus_p_percent": 50.4175,
+            "effect_size": -0.021588,
+            "CI": [
+              -0.080764,
+              0.036298
+            ]
+          },
+          "3_levels": {
+            "p": 0.935953,
+            "one_minus_p_percent": 6.4047,
+            "effect_size": -0.001315,
+            "CI": [
+              -0.031829,
+              0.029778
+            ]
+          }
+        }
+      }
+    }
+  },
+  "with_dalic_data_deps__vs__with_dalic_data_deps_without_graph": {
+    "config_a_name": "with_dalic_data_deps",
+    "config_b_name": "with_dalic_data_deps_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.387381,
+          "one_minus_p_percent": 61.2619,
+          "effect_size": 0.019822,
+          "CI": [
+            -0.020941,
+            0.063584
+          ]
+        },
+        "module": {
+          "p": 0.304785,
+          "one_minus_p_percent": 69.5215,
+          "effect_size": 0.016248,
+          "CI": [
+            -0.009334,
+            0.046662
+          ]
+        },
+        "file": {
+          "p": 1.0,
+          "one_minus_p_percent": 0.0,
+          "effect_size": 0.0075,
+          "CI": [
+            -0.0075,
+            0.03
+          ]
+        },
+        "3_levels": {
+          "p": 0.127244,
+          "one_minus_p_percent": 87.2756,
+          "effect_size": 0.014523,
+          "CI": [
+            -0.003004,
+            0.033637
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.019599,
+          "one_minus_p_percent": 98.0401,
+          "effect_size": 0.025204,
+          "CI": [
+            0.006441,
+            0.043477
+          ]
+        },
+        "module": {
+          "p": 0.015749,
+          "one_minus_p_percent": 98.4251,
+          "effect_size": 0.023973,
+          "CI": [
+            0.006617,
+            0.041108
+          ]
+        },
+        "file": {
+          "p": 0.168092,
+          "one_minus_p_percent": 83.1908,
+          "effect_size": -0.040334,
+          "CI": [
+            -0.094166,
+            0.011998
+          ]
+        },
+        "3_levels": {
+          "p": 0.79136,
+          "one_minus_p_percent": 20.864,
+          "effect_size": 0.002948,
+          "CI": [
+            -0.018973,
+            0.023643
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.968802,
+            "one_minus_p_percent": 3.1198,
+            "effect_size": 0.001063,
+            "CI": [
+              -0.051205,
+              0.051865
+            ]
+          },
+          "module": {
+            "p": 0.836758,
+            "one_minus_p_percent": 16.3242,
+            "effect_size": -0.006202,
+            "CI": [
+              -0.048336,
+              0.026065
+            ]
+          },
+          "file": {
+            "p": 0.494325,
+            "one_minus_p_percent": 50.5675,
+            "effect_size": -0.02,
+            "CI": [
+              -0.056,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.505775,
+            "one_minus_p_percent": 49.4225,
+            "effect_size": -0.00838,
+            "CI": [
+              -0.032715,
+              0.01476
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.813959,
+            "one_minus_p_percent": 18.6041,
+            "effect_size": 0.00675,
+            "CI": [
+              -0.055873,
+              0.068559
+            ]
+          },
+          "module": {
+            "p": 0.899855,
+            "one_minus_p_percent": 10.0145,
+            "effect_size": -0.005548,
+            "CI": [
+              -0.057059,
+              0.031671
+            ]
+          },
+          "file": {
+            "p": 0.494925,
+            "one_minus_p_percent": 50.5075,
+            "effect_size": -0.025,
+            "CI": [
+              -0.07,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.59492,
+            "one_minus_p_percent": 40.508,
+            "effect_size": -0.007933,
+            "CI": [
+              -0.037986,
+              0.019849
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.039998,
+            "one_minus_p_percent": 96.0002,
+            "effect_size": 0.020114,
+            "CI": [
+              0.002236,
+              0.036957
+            ]
+          },
+          "module": {
+            "p": 0.017599,
+            "one_minus_p_percent": 98.2401,
+            "effect_size": 0.023,
+            "CI": [
+              0.005462,
+              0.040843
+            ]
+          },
+          "file": {
+            "p": 0.710814,
+            "one_minus_p_percent": 28.9186,
+            "effect_size": -0.009671,
+            "CI": [
+              -0.058207,
+              0.035931
+            ]
+          },
+          "3_levels": {
+            "p": 0.244988,
+            "one_minus_p_percent": 75.5012,
+            "effect_size": 0.011147,
+            "CI": [
+              -0.007682,
+              0.028604
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.035898,
+            "one_minus_p_percent": 96.4102,
+            "effect_size": 0.025895,
+            "CI": [
+              0.003158,
+              0.047467
+            ]
+          },
+          "module": {
+            "p": 0.015849,
+            "one_minus_p_percent": 98.4151,
+            "effect_size": 0.028772,
+            "CI": [
+              0.006921,
+              0.051387
+            ]
+          },
+          "file": {
+            "p": 0.653167,
+            "one_minus_p_percent": 34.6833,
+            "effect_size": -0.012185,
+            "CI": [
+              -0.063245,
+              0.036325
+            ]
+          },
+          "3_levels": {
+            "p": 0.181091,
+            "one_minus_p_percent": 81.8909,
+            "effect_size": 0.014161,
+            "CI": [
+              -0.006879,
+              0.033499
+            ]
+          }
+        }
+      }
+    }
+  },
+  "with_dalic_data_deps__vs__with_dalic_without_graph": {
+    "config_a_name": "with_dalic_data_deps",
+    "config_b_name": "with_dalic_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.438928,
+          "one_minus_p_percent": 56.1072,
+          "effect_size": 0.016778,
+          "CI": [
+            -0.019221,
+            0.052998
+          ]
+        },
+        "module": {
+          "p": 0.876256,
+          "one_minus_p_percent": 12.3744,
+          "effect_size": 0.006331,
+          "CI": [
+            -0.048669,
+            0.05333
+          ]
+        },
+        "file": {
+          "p": 1.0,
+          "one_minus_p_percent": 0.0,
+          "effect_size": 0.0,
+          "CI": [
+            0.0,
+            0.0
+          ]
+        },
+        "3_levels": {
+          "p": 0.486376,
+          "one_minus_p_percent": 51.3624,
+          "effect_size": 0.007703,
+          "CI": [
+            -0.014482,
+            0.027887
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.022749,
+          "one_minus_p_percent": 97.7251,
+          "effect_size": 0.034737,
+          "CI": [
+            0.008378,
+            0.066042
+          ]
+        },
+        "module": {
+          "p": 0.0079,
+          "one_minus_p_percent": 99.21,
+          "effect_size": 0.040428,
+          "CI": [
+            0.013113,
+            0.071678
+          ]
+        },
+        "file": {
+          "p": 0.575071,
+          "one_minus_p_percent": 42.4929,
+          "effect_size": 0.020165,
+          "CI": [
+            -0.048501,
+            0.084161
+          ]
+        },
+        "3_levels": {
+          "p": 0.020949,
+          "one_minus_p_percent": 97.9051,
+          "effect_size": 0.031777,
+          "CI": [
+            0.005258,
+            0.057508
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.687116,
+            "one_minus_p_percent": 31.2884,
+            "effect_size": -0.010712,
+            "CI": [
+              -0.052934,
+              0.023598
+            ]
+          },
+          "module": {
+            "p": 0.573621,
+            "one_minus_p_percent": 42.6379,
+            "effect_size": 0.017998,
+            "CI": [
+              -0.039205,
+              0.081997
+            ]
+          },
+          "file": {
+            "p": 1.0,
+            "one_minus_p_percent": 0.0,
+            "effect_size": 0.0,
+            "CI": [
+              0.0,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.866007,
+            "one_minus_p_percent": 13.3993,
+            "effect_size": 0.002429,
+            "CI": [
+              -0.021201,
+              0.027464
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.781311,
+            "one_minus_p_percent": 21.8689,
+            "effect_size": -0.010671,
+            "CI": [
+              -0.062619,
+              0.028264
+            ]
+          },
+          "module": {
+            "p": 0.617019,
+            "one_minus_p_percent": 38.2981,
+            "effect_size": 0.016484,
+            "CI": [
+              -0.04856,
+              0.084922
+            ]
+          },
+          "file": {
+            "p": 1.0,
+            "one_minus_p_percent": 0.0,
+            "effect_size": 0.0,
+            "CI": [
+              0.0,
+              0.0
+            ]
+          },
+          "3_levels": {
+            "p": 0.904455,
+            "one_minus_p_percent": 9.5545,
+            "effect_size": 0.001937,
+            "CI": [
+              -0.024994,
+              0.028647
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.018899,
+            "one_minus_p_percent": 98.1101,
+            "effect_size": 0.028988,
+            "CI": [
+              0.005857,
+              0.062193
+            ]
+          },
+          "module": {
+            "p": 0.013849,
+            "one_minus_p_percent": 98.6151,
+            "effect_size": 0.031339,
+            "CI": [
+              0.007043,
+              0.063923
+            ]
+          },
+          "file": {
+            "p": 0.978501,
+            "one_minus_p_percent": 2.1499,
+            "effect_size": -0.0008,
+            "CI": [
+              -0.052798,
+              0.051333
+            ]
+          },
+          "3_levels": {
+            "p": 0.088046,
+            "one_minus_p_percent": 91.1954,
+            "effect_size": 0.019843,
+            "CI": [
+              -0.002698,
+              0.04252
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.010099,
+            "one_minus_p_percent": 98.9901,
+            "effect_size": 0.037514,
+            "CI": [
+              0.00918,
+              0.078523
+            ]
+          },
+          "module": {
+            "p": 0.0067,
+            "one_minus_p_percent": 99.33,
+            "effect_size": 0.039179,
+            "CI": [
+              0.010884,
+              0.077913
+            ]
+          },
+          "file": {
+            "p": 0.971251,
+            "one_minus_p_percent": 2.8749,
+            "effect_size": 0.001187,
+            "CI": [
+              -0.058933,
+              0.061495
+            ]
+          },
+          "3_levels": {
+            "p": 0.060947,
+            "one_minus_p_percent": 93.9053,
+            "effect_size": 0.02596,
+            "CI": [
+              -0.000144,
+              0.052967
+            ]
+          }
+        }
+      }
+    }
+  },
+  "with_dalic_data_deps_without_graph__vs__with_dalic_without_graph": {
+    "config_a_name": "with_dalic_data_deps_without_graph",
+    "config_b_name": "with_dalic_without_graph",
+    "performance_stats": {
+      "recall": {
+        "function": {
+          "p": 0.976151,
+          "one_minus_p_percent": 2.3849,
+          "effect_size": -0.003044,
+          "CI": [
+            -0.061586,
+            0.038747
+          ]
+        },
+        "module": {
+          "p": 0.943453,
+          "one_minus_p_percent": 5.6547,
+          "effect_size": -0.009917,
+          "CI": [
+            -0.056917,
+            0.020415
+          ]
+        },
+        "file": {
+          "p": 1.0,
+          "one_minus_p_percent": 0.0,
+          "effect_size": -0.0075,
+          "CI": [
+            -0.03,
+            0.0075
+          ]
+        },
+        "3_levels": {
+          "p": 0.587071,
+          "one_minus_p_percent": 41.2929,
+          "effect_size": -0.00682,
+          "CI": [
+            -0.032616,
+            0.013194
+          ]
+        }
+      },
+      "precision": {
+        "function": {
+          "p": 0.465427,
+          "one_minus_p_percent": 53.4573,
+          "effect_size": 0.009533,
+          "CI": [
+            -0.01556,
+            0.034152
+          ]
+        },
+        "module": {
+          "p": 0.178491,
+          "one_minus_p_percent": 82.1509,
+          "effect_size": 0.016455,
+          "CI": [
+            -0.005636,
+            0.039598
+          ]
+        },
+        "file": {
+          "p": 0.105095,
+          "one_minus_p_percent": 89.4905,
+          "effect_size": 0.060499,
+          "CI": [
+            -0.001503,
+            0.130505
+          ]
+        },
+        "3_levels": {
+          "p": 0.026499,
+          "one_minus_p_percent": 97.3501,
+          "effect_size": 0.028829,
+          "CI": [
+            0.005,
+            0.055933
+          ]
+        }
+      }
+    },
+    "stability_stats": {
+      "recall": {
+        "MAD": {
+          "function": {
+            "p": 0.650367,
+            "one_minus_p_percent": 34.9633,
+            "effect_size": -0.011775,
+            "CI": [
+              -0.051484,
+              0.019134
+            ]
+          },
+          "module": {
+            "p": 0.489826,
+            "one_minus_p_percent": 51.0174,
+            "effect_size": 0.0242,
+            "CI": [
+              -0.012134,
+              0.0794
+            ]
+          },
+          "file": {
+            "p": 0.494325,
+            "one_minus_p_percent": 50.5675,
+            "effect_size": 0.02,
+            "CI": [
+              0.0,
+              0.056
+            ]
+          },
+          "3_levels": {
+            "p": 0.382781,
+            "one_minus_p_percent": 61.7219,
+            "effect_size": 0.010809,
+            "CI": [
+              -0.011066,
+              0.035682
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.569772,
+            "one_minus_p_percent": 43.0228,
+            "effect_size": -0.017421,
+            "CI": [
+              -0.068116,
+              0.021169
+            ]
+          },
+          "module": {
+            "p": 0.579021,
+            "one_minus_p_percent": 42.0979,
+            "effect_size": 0.022031,
+            "CI": [
+              -0.018767,
+              0.081124
+            ]
+          },
+          "file": {
+            "p": 0.494925,
+            "one_minus_p_percent": 50.5075,
+            "effect_size": 0.025,
+            "CI": [
+              0.0,
+              0.07
+            ]
+          },
+          "3_levels": {
+            "p": 0.492475,
+            "one_minus_p_percent": 50.7525,
+            "effect_size": 0.00987,
+            "CI": [
+              -0.015677,
+              0.03829
+            ]
+          }
+        }
+      },
+      "precision": {
+        "MAD": {
+          "function": {
+            "p": 0.629069,
+            "one_minus_p_percent": 37.0931,
+            "effect_size": 0.008874,
+            "CI": [
+              -0.017403,
+              0.04064
+            ]
+          },
+          "module": {
+            "p": 0.658517,
+            "one_minus_p_percent": 34.1483,
+            "effect_size": 0.008339,
+            "CI": [
+              -0.01704,
+              0.039805
+            ]
+          },
+          "file": {
+            "p": 0.716614,
+            "one_minus_p_percent": 28.3386,
+            "effect_size": 0.008872,
+            "CI": [
+              -0.035729,
+              0.056337
+            ]
+          },
+          "3_levels": {
+            "p": 0.418979,
+            "one_minus_p_percent": 58.1021,
+            "effect_size": 0.008695,
+            "CI": [
+              -0.01127,
+              0.029741
+            ]
+          }
+        },
+        "SD": {
+          "function": {
+            "p": 0.632418,
+            "one_minus_p_percent": 36.7582,
+            "effect_size": 0.011619,
+            "CI": [
+              -0.023456,
+              0.054121
+            ]
+          },
+          "module": {
+            "p": 0.679616,
+            "one_minus_p_percent": 32.0384,
+            "effect_size": 0.010408,
+            "CI": [
+              -0.023033,
+              0.051583
+            ]
+          },
+          "file": {
+            "p": 0.647818,
+            "one_minus_p_percent": 35.2182,
+            "effect_size": 0.013372,
+            "CI": [
+              -0.040146,
+              0.068642
+            ]
+          },
+          "3_levels": {
+            "p": 0.381181,
+            "one_minus_p_percent": 61.8819,
+            "effect_size": 0.011799,
+            "CI": [
+              -0.012779,
+              0.038391
+            ]
+          }
+        }
+      }
+    }
+  }
+}
