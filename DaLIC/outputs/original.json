@@ -22,6 +22,17 @@
         ],
         "standard_deviation": 0.01948,
         "mean_avg_deviation": 0.017296
+      },
+      "F1": {
+        "raw_data": [
+          0.0715,
+          0.0318,
+          0.0607,
+          0.1052,
+          0.125
+        ],
+        "standard_deviation": 0.032928,
+        "mean_avg_deviation": 0.029008
       }
     },
     "module": {
@@ -46,6 +57,17 @@
         ],
         "standard_deviation": 0.023001,
         "mean_avg_deviation": 0.021712
+      },
+      "F1": {
+        "raw_data": [
+          0.0801,
+          0.0476,
+          0.0741,
+          0.1538,
+          0.1428
+        ],
+        "standard_deviation": 0.041324,
+        "mean_avg_deviation": 0.038896
       }
     },
     "file": {
@@ -70,6 +92,17 @@
         ],
         "standard_deviation": 0.055362,
         "mean_avg_deviation": 0.051984
+      },
+      "F1": {
+        "raw_data": [
+          0.5,
+          0.5,
+          0.4,
+          0.3333,
+          0.5
+        ],
+        "standard_deviation": 0.068649,
+        "mean_avg_deviation": 0.064008
       }
     }
   },
@@ -87,6 +120,17 @@
         "mean_avg_deviation": 0.0
       },
       "precision": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "F1": {
         "raw_data": [
           0.0,
           0.0,
@@ -120,6 +164,17 @@
         ],
         "standard_deviation": 0.042049,
         "mean_avg_deviation": 0.03816
+      },
+      "F1": {
+        "raw_data": [
+          0.0526,
+          0.2501,
+          0.0952,
+          0.2,
+          0.1818
+        ],
+        "standard_deviation": 0.071895,
+        "mean_avg_deviation": 0.065632
       }
     },
     "file": {
@@ -144,6 +199,17 @@
         ],
         "standard_deviation": 0.305518,
         "mean_avg_deviation": 0.293344
+      },
+      "F1": {
+        "raw_data": [
+          0.5,
+          1.0,
+          0.5,
+          1.0,
+          0.6667
+        ],
+        "standard_deviation": 0.226076,
+        "mean_avg_deviation": 0.213328
       }
     }
   },
@@ -170,6 +236,17 @@
         ],
         "standard_deviation": 0.052214,
         "mean_avg_deviation": 0.041536
+      },
+      "F1": {
+        "raw_data": [
+          0.0416,
+          0.0141,
+          0.0149,
+          0.2,
+          0.0294
+        ],
+        "standard_deviation": 0.070733,
+        "mean_avg_deviation": 0.056
       }
     },
     "module": {
@@ -194,6 +271,17 @@
         ],
         "standard_deviation": 0.047681,
         "mean_avg_deviation": 0.037496
+      },
+      "F1": {
+        "raw_data": [
+          0.0741,
+          0.0318,
+          0.0358,
+          0.2,
+          0.0475
+        ],
+        "standard_deviation": 0.06284,
+        "mean_avg_deviation": 0.048864
       }
     },
     "file": {
@@ -218,6 +306,17 @@
         ],
         "standard_deviation": 0.048751,
         "mean_avg_deviation": 0.037328
+      },
+      "F1": {
+        "raw_data": [
+          0.3333,
+          0.3333,
+          0.4,
+          0.4,
+          0.5
+        ],
+        "standard_deviation": 0.061114,
+        "mean_avg_deviation": 0.048016
       }
     }
   },
@@ -244,6 +343,17 @@
         ],
         "standard_deviation": 0.008278,
         "mean_avg_deviation": 0.008064
+      },
+      "F1": {
+        "raw_data": [
+          0.0286,
+          0.0334,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.015263,
+        "mean_avg_deviation": 0.01488
       }
     },
     "module": {
@@ -268,6 +378,17 @@
         ],
         "standard_deviation": 0.19616,
         "mean_avg_deviation": 0.15676
+      },
+      "F1": {
+        "raw_data": [
+          0.0377,
+          0.0417,
+          0.0,
+          0.0,
+          0.6667
+        ],
+        "standard_deviation": 0.259352,
+        "mean_avg_deviation": 0.206992
       }
     },
     "file": {
@@ -292,6 +413,17 @@
         ],
         "standard_deviation": 0.105723,
         "mean_avg_deviation": 0.087992
+      },
+      "F1": {
+        "raw_data": [
+          0.3333,
+          0.5,
+          0.4,
+          0.4,
+          0.6667
+        ],
+        "standard_deviation": 0.116256,
+        "mean_avg_deviation": 0.09868
       }
     }
   },
@@ -318,6 +450,17 @@
         ],
         "standard_deviation": 0.016359,
         "mean_avg_deviation": 0.01572
+      },
+      "F1": {
+        "raw_data": [
+          0.1538,
+          0.087,
+          0.1538,
+          0.1053,
+          0.1538
+        ],
+        "standard_deviation": 0.028829,
+        "mean_avg_deviation": 0.027672
       }
     },
     "module": {
@@ -342,6 +485,17 @@
         ],
         "standard_deviation": 0.013861,
         "mean_avg_deviation": 0.012568
+      },
+      "F1": {
+        "raw_data": [
+          0.1667,
+          0.0999,
+          0.1538,
+          0.1251,
+          0.1538
+        ],
+        "standard_deviation": 0.024181,
+        "mean_avg_deviation": 0.021888
       }
     },
     "file": {
@@ -366,6 +520,17 @@
         ],
         "standard_deviation": 0.367423,
         "mean_avg_deviation": 0.36
+      },
+      "F1": {
+        "raw_data": [
+          0.4,
+          0.4,
+          1.0,
+          0.4,
+          1.0
+        ],
+        "standard_deviation": 0.293939,
+        "mean_avg_deviation": 0.288
       }
     }
   },
@@ -392,6 +557,17 @@
         ],
         "standard_deviation": 0.333687,
         "mean_avg_deviation": 0.257176
+      },
+      "F1": {
+        "raw_data": [
+          0.1667,
+          0.4,
+          0.2,
+          1.0,
+          0.5
+        ],
+        "standard_deviation": 0.300068,
+        "mean_avg_deviation": 0.237328
       }
     },
     "module": {
@@ -416,6 +592,17 @@
         ],
         "standard_deviation": 0.321161,
         "mean_avg_deviation": 0.250472
+      },
+      "F1": {
+        "raw_data": [
+          0.2501,
+          0.4,
+          0.2501,
+          1.0,
+          0.5
+        ],
+        "standard_deviation": 0.276734,
+        "mean_avg_deviation": 0.215968
       }
     },
     "file": {
@@ -437,6 +624,17 @@
           0.5,
           0.3333,
           0.5
+        ],
+        "standard_deviation": 0.081666,
+        "mean_avg_deviation": 0.080016
+      },
+      "F1": {
+        "raw_data": [
+          0.6667,
+          0.5,
+          0.6667,
+          0.5,
+          0.6667
         ],
         "standard_deviation": 0.081666,
         "mean_avg_deviation": 0.080016
@@ -466,6 +664,17 @@
         ],
         "standard_deviation": 0.017282,
         "mean_avg_deviation": 0.016256
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.0184,
+          0.0667,
+          0.018,
+          0.087
+        ],
+        "standard_deviation": 0.033024,
+        "mean_avg_deviation": 0.031064
       }
     },
     "module": {
@@ -490,6 +699,17 @@
         ],
         "standard_deviation": 0.015552,
         "mean_avg_deviation": 0.013016
+      },
+      "F1": {
+        "raw_data": [
+          0.0541,
+          0.0278,
+          0.0689,
+          0.027,
+          0.1053
+        ],
+        "standard_deviation": 0.029103,
+        "mean_avg_deviation": 0.024384
       }
     },
     "file": {
@@ -514,6 +734,17 @@
         ],
         "standard_deviation": 0.122189,
         "mean_avg_deviation": 0.095984
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.5,
+          0.5,
+          0.3333,
+          0.3333
+        ],
+        "standard_deviation": 0.182574,
+        "mean_avg_deviation": 0.133344
       }
     }
   },
@@ -540,6 +771,17 @@
         ],
         "standard_deviation": 0.046966,
         "mean_avg_deviation": 0.035784
+      },
+      "F1": {
+        "raw_data": [
+          0.2858,
+          0.0425,
+          0.1333,
+          0.1818,
+          0.1538
+        ],
+        "standard_deviation": 0.078558,
+        "mean_avg_deviation": 0.059488
       }
     },
     "module": {
@@ -564,6 +806,17 @@
         ],
         "standard_deviation": 0.053021,
         "mean_avg_deviation": 0.038408
+      },
+      "F1": {
+        "raw_data": [
+          0.3333,
+          0.0689,
+          0.1667,
+          0.2,
+          0.1818
+        ],
+        "standard_deviation": 0.084747,
+        "mean_avg_deviation": 0.061208
       }
     },
     "file": {
@@ -588,6 +841,17 @@
         ],
         "standard_deviation": 0.105415,
         "mean_avg_deviation": 0.100008
+      },
+      "F1": {
+        "raw_data": [
+          0.6667,
+          0.5,
+          0.6667,
+          0.4,
+          0.6667
+        ],
+        "standard_deviation": 0.110771,
+        "mean_avg_deviation": 0.104016
       }
     }
   },
@@ -614,6 +878,17 @@
         ],
         "standard_deviation": 0.099727,
         "mean_avg_deviation": 0.078216
+      },
+      "F1": {
+        "raw_data": [
+          0.0645,
+          0.2858,
+          0.3333,
+          0.5,
+          0.2
+        ],
+        "standard_deviation": 0.144264,
+        "mean_avg_deviation": 0.115576
       }
     },
     "module": {
@@ -638,6 +913,17 @@
         ],
         "standard_deviation": 0.09213,
         "mean_avg_deviation": 0.071032
+      },
+      "F1": {
+        "raw_data": [
+          0.0952,
+          0.3333,
+          0.3333,
+          0.5,
+          0.2501
+        ],
+        "standard_deviation": 0.131623,
+        "mean_avg_deviation": 0.103784
       }
     },
     "file": {
@@ -662,6 +948,17 @@
         ],
         "standard_deviation": 0.3,
         "mean_avg_deviation": 0.28
+      },
+      "F1": {
+        "raw_data": [
+          1.0,
+          1.0,
+          0.4,
+          0.6667,
+          0.6667
+        ],
+        "standard_deviation": 0.228614,
+        "mean_avg_deviation": 0.202656
       }
     }
   },
@@ -688,6 +985,17 @@
         ],
         "standard_deviation": 0.091578,
         "mean_avg_deviation": 0.083672
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.2858,
+          0.4,
+          0.1176,
+          0.3333
+        ],
+        "standard_deviation": 0.147094,
+        "mean_avg_deviation": 0.134832
       }
     },
     "module": {
@@ -712,6 +1020,17 @@
         ],
         "standard_deviation": 0.092452,
         "mean_avg_deviation": 0.085544
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.3333,
+          0.4,
+          0.1428,
+          0.3333
+        ],
+        "standard_deviation": 0.148351,
+        "mean_avg_deviation": 0.136384
       }
     },
     "file": {
@@ -736,6 +1055,17 @@
         ],
         "standard_deviation": 0.199993,
         "mean_avg_deviation": 0.186656
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.6667,
+          0.5,
+          0.5,
+          0.0
+        ],
+        "standard_deviation": 0.278895,
+        "mean_avg_deviation": 0.266672
       }
     }
   },
@@ -762,6 +1092,17 @@
         ],
         "standard_deviation": 0.086114,
         "mean_avg_deviation": 0.068448
+      },
+      "F1": {
+        "raw_data": [
+          0.087,
+          0.0371,
+          0.4,
+          0.0667,
+          0.087
+        ],
+        "standard_deviation": 0.133477,
+        "mean_avg_deviation": 0.105776
       }
     },
     "module": {
@@ -786,6 +1127,17 @@
         ],
         "standard_deviation": 0.115906,
         "mean_avg_deviation": 0.09232
+      },
+      "F1": {
+        "raw_data": [
+          0.1053,
+          0.0513,
+          0.5,
+          0.0801,
+          0.1053
+        ],
+        "standard_deviation": 0.166992,
+        "mean_avg_deviation": 0.13264
       }
     },
     "file": {
@@ -801,6 +1153,17 @@
         "mean_avg_deviation": 0.0
       },
       "precision": {
+        "raw_data": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "F1": {
         "raw_data": [
           1.0,
           1.0,
@@ -836,6 +1199,17 @@
         ],
         "standard_deviation": 0.345303,
         "mean_avg_deviation": 0.329704
+      },
+      "F1": {
+        "raw_data": [
+          0.7692,
+          0.1818,
+          0.2666,
+          0.7692,
+          0.7143
+        ],
+        "standard_deviation": 0.260192,
+        "mean_avg_deviation": 0.252816
       }
     },
     "module": {
@@ -860,6 +1234,17 @@
         ],
         "standard_deviation": 0.337291,
         "mean_avg_deviation": 0.322816
+      },
+      "F1": {
+        "raw_data": [
+          0.7692,
+          0.1818,
+          0.2963,
+          0.7692,
+          0.7143
+        ],
+        "standard_deviation": 0.254147,
+        "mean_avg_deviation": 0.245688
       }
     },
     "file": {
@@ -884,6 +1269,17 @@
         ],
         "standard_deviation": 0.3,
         "mean_avg_deviation": 0.24
+      },
+      "F1": {
+        "raw_data": [
+          1.0,
+          0.4,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "standard_deviation": 0.24,
+        "mean_avg_deviation": 0.192
       }
     }
   },
@@ -910,6 +1306,17 @@
         ],
         "standard_deviation": 0.119776,
         "mean_avg_deviation": 0.09496
+      },
+      "F1": {
+        "raw_data": [
+          0.0605,
+          0.0513,
+          0.4444,
+          0.1112,
+          0.0377
+        ],
+        "standard_deviation": 0.153712,
+        "mean_avg_deviation": 0.121352
       }
     },
     "module": {
@@ -934,6 +1341,17 @@
         ],
         "standard_deviation": 0.117216,
         "mean_avg_deviation": 0.092624
+      },
+      "F1": {
+        "raw_data": [
+          0.0817,
+          0.0589,
+          0.4444,
+          0.125,
+          0.0425
+        ],
+        "standard_deviation": 0.149543,
+        "mean_avg_deviation": 0.11756
       }
     },
     "file": {
@@ -958,6 +1376,17 @@
         ],
         "standard_deviation": 0.226085,
         "mean_avg_deviation": 0.173336
+      },
+      "F1": {
+        "raw_data": [
+          1.0,
+          0.6667,
+          0.5,
+          0.6667,
+          0.6667
+        ],
+        "standard_deviation": 0.163295,
+        "mean_avg_deviation": 0.119992
       }
     }
   },
@@ -984,6 +1413,17 @@
         ],
         "standard_deviation": 0.077008,
         "mean_avg_deviation": 0.060056
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.069,
+          0.0606,
+          0.1481,
+          0.0491
+        ],
+        "standard_deviation": 0.047787,
+        "mean_avg_deviation": 0.034552
       }
     },
     "module": {
@@ -1008,6 +1448,17 @@
         ],
         "standard_deviation": 0.114803,
         "mean_avg_deviation": 0.087328
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.1177,
+          0.1111,
+          0.3158,
+          0.0785
+        ],
+        "standard_deviation": 0.104343,
+        "mean_avg_deviation": 0.076472
       }
     },
     "file": {
@@ -1032,6 +1483,17 @@
         ],
         "standard_deviation": 0.38,
         "mean_avg_deviation": 0.372
+      },
+      "F1": {
+        "raw_data": [
+          0.2857,
+          0.6667,
+          0.6667,
+          0.3333,
+          0.6667
+        ],
+        "standard_deviation": 0.175638,
+        "mean_avg_deviation": 0.171456
       }
     }
   },
@@ -1058,6 +1520,17 @@
         ],
         "standard_deviation": 0.131915,
         "mean_avg_deviation": 0.105424
+      },
+      "F1": {
+        "raw_data": [
+          0.1538,
+          0.0267,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.059752,
+        "mean_avg_deviation": 0.04708
       }
     },
     "module": {
@@ -1082,6 +1555,17 @@
         ],
         "standard_deviation": 0.131487,
         "mean_avg_deviation": 0.104992
+      },
+      "F1": {
+        "raw_data": [
+          0.25,
+          0.0377,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.097331,
+        "mean_avg_deviation": 0.076984
       }
     },
     "file": {
@@ -1106,6 +1590,17 @@
         ],
         "standard_deviation": 0.208327,
         "mean_avg_deviation": 0.188
+      },
+      "F1": {
+        "raw_data": [
+          0.5,
+          0.75,
+          0.25,
+          0.25,
+          0.2222
+        ],
+        "standard_deviation": 0.20443,
+        "mean_avg_deviation": 0.184448
       }
     }
   },
@@ -1132,6 +1627,17 @@
         ],
         "standard_deviation": 0.086528,
         "mean_avg_deviation": 0.08356
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.3077,
+          0.2222,
+          0.0,
+          0.0534
+        ],
+        "standard_deviation": 0.125583,
+        "mean_avg_deviation": 0.118632
       }
     },
     "module": {
@@ -1156,6 +1662,17 @@
         ],
         "standard_deviation": 0.080687,
         "mean_avg_deviation": 0.075328
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.2222,
+          0.3333,
+          0.0,
+          0.0329
+        ],
+        "standard_deviation": 0.135868,
+        "mean_avg_deviation": 0.128056
       }
     },
     "file": {
@@ -1180,6 +1697,17 @@
         ],
         "standard_deviation": 0.351767,
         "mean_avg_deviation": 0.341344
+      },
+      "F1": {
+        "raw_data": [
+          0.3333,
+          1.0,
+          0.5,
+          1.0,
+          0.5
+        ],
+        "standard_deviation": 0.278895,
+        "mean_avg_deviation": 0.266672
       }
     }
   },
@@ -1206,6 +1734,17 @@
         ],
         "standard_deviation": 0.0,
         "mean_avg_deviation": 0.0
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
       }
     },
     "module": {
@@ -1230,6 +1769,17 @@
         ],
         "standard_deviation": 0.0,
         "mean_avg_deviation": 0.0
+      },
+      "F1": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
       }
     },
     "file": {
@@ -1245,6 +1795,17 @@
         "mean_avg_deviation": 0.0
       },
       "precision": {
+        "raw_data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "standard_deviation": 0.0,
+        "mean_avg_deviation": 0.0
+      },
+      "F1": {
         "raw_data": [
           0.0,
           0.0,
@@ -1280,6 +1841,17 @@
         ],
         "standard_deviation": 0.02087,
         "mean_avg_deviation": 0.016304
+      },
+      "F1": {
+        "raw_data": [
+          0.0833,
+          0.0247,
+          0.0308,
+          0.0435,
+          0.0357
+        ],
+        "standard_deviation": 0.020782,
+        "mean_avg_deviation": 0.01588
       }
     },
     "module": {
@@ -1304,6 +1876,17 @@
         ],
         "standard_deviation": 0.021635,
         "mean_avg_deviation": 0.01664
+      },
+      "F1": {
+        "raw_data": [
+          0.0869,
+          0.0282,
+          0.0363,
+          0.0526,
+          0.0416
+        ],
+        "standard_deviation": 0.020484,
+        "mean_avg_deviation": 0.016504
       }
     },
     "file": {
@@ -1328,6 +1911,17 @@
         ],
         "standard_deviation": 0.097181,
         "mean_avg_deviation": 0.079992
+      },
+      "F1": {
+        "raw_data": [
+          0.4,
+          0.4,
+          0.4,
+          0.5,
+          0.6667
+        ],
+        "standard_deviation": 0.104149,
+        "mean_avg_deviation": 0.088008
       }
     }
   },
@@ -1354,6 +1948,17 @@
         ],
         "standard_deviation": 0.023111,
         "mean_avg_deviation": 0.019304
+      },
+      "F1": {
+        "raw_data": [
+          0.0801,
+          0.0434,
+          0.087,
+          0.054,
+          0.1111
+        ],
+        "standard_deviation": 0.024136,
+        "mean_avg_deviation": 0.021136
       }
     },
     "module": {
@@ -1378,6 +1983,17 @@
         ],
         "standard_deviation": 0.05242,
         "mean_avg_deviation": 0.046112
+      },
+      "F1": {
+        "raw_data": [
+          0.1818,
+          0.0526,
+          0.0953,
+          0.1212,
+          0.2353
+        ],
+        "standard_deviation": 0.064469,
+        "mean_avg_deviation": 0.057048
       }
     },
     "file": {
@@ -1402,6 +2018,17 @@
         ],
         "standard_deviation": 0.211452,
         "mean_avg_deviation": 0.176008
+      },
+      "F1": {
+        "raw_data": [
+          0.6667,
+          0.6667,
+          0.6667,
+          0.8,
+          0.5714
+        ],
+        "standard_deviation": 0.072886,
+        "mean_avg_deviation": 0.05028
       }
     }
   },
@@ -1428,6 +2055,17 @@
         ],
         "standard_deviation": 0.041002,
         "mean_avg_deviation": 0.0332
+      },
+      "F1": {
+        "raw_data": [
+          0.2501,
+          0.0455,
+          0.087,
+          0.1428,
+          0.1667
+        ],
+        "standard_deviation": 0.070099,
+        "mean_avg_deviation": 0.057736
       }
     },
     "module": {
@@ -1452,6 +2090,17 @@
         ],
         "standard_deviation": 0.039218,
         "mean_avg_deviation": 0.034776
+      },
+      "F1": {
+        "raw_data": [
+          0.2501,
+          0.0667,
+          0.1251,
+          0.1538,
+          0.2222
+        ],
+        "standard_deviation": 0.066158,
+        "mean_avg_deviation": 0.058056
       }
     },
     "file": {
@@ -1476,6 +2125,17 @@
         ],
         "standard_deviation": 0.105415,
         "mean_avg_deviation": 0.100008
+      },
+      "F1": {
+        "raw_data": [
+          0.6667,
+          0.5,
+          0.6667,
+          0.4,
+          0.6667
+        ],
+        "standard_deviation": 0.110771,
+        "mean_avg_deviation": 0.104016
       }
     }
   }

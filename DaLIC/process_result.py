@@ -21,6 +21,7 @@ LEVEL2KEY = {
 }
 LEVEL_ORDER = ["function", "module", "file"]
 METRIC_ORDER = ["recall", "precision"]
+SUMMARY_METRIC_ORDER = [*METRIC_ORDER, "F1"]
 RUN_DIR_PATTERN = re.compile(r"(.+)_run_(\d+)$")
 DEFAULT_DATASET = "JJcs17/Loc-Bench-add_fixed_commit"
 DEFAULT_SPLIT = "test"
@@ -215,6 +216,12 @@ def calc_mean_avg_deviation(values):
     return sum(abs(value - mean_value) for value in values) / len(values)
 
 
+def calc_f1_score(recall, precision):
+    if recall + precision == 0:
+        return 0.0
+    return 2 * recall * precision / (recall + precision)
+
+
 def summarize_config(config_name, run_dirs, gt_by_level, instance_ids):
     sorted_run_ids = sorted(run_dirs)
     summary = {
@@ -225,7 +232,7 @@ def summarize_config(config_name, run_dirs, gt_by_level, instance_ids):
                     "standard_deviation": 0.0,
                     "mean_avg_deviation": 0.0,
                 }
-                for metric in METRIC_ORDER
+                for metric in SUMMARY_METRIC_ORDER
             }
             for level in LEVEL_ORDER
         }
@@ -241,10 +248,15 @@ def summarize_config(config_name, run_dirs, gt_by_level, instance_ids):
                     summary[instance_id][level][metric]["raw_data"].append(
                         run_scores[instance_id][level][metric]
                     )
+                recall = run_scores[instance_id][level]["recall"]
+                precision = run_scores[instance_id][level]["precision"]
+                summary[instance_id][level]["F1"]["raw_data"].append(
+                    round(calc_f1_score(recall, precision), 4)
+                )
 
     for instance_id in instance_ids:
         for level in LEVEL_ORDER:
-            for metric in METRIC_ORDER:
+            for metric in SUMMARY_METRIC_ORDER:
                 raw_data = summary[instance_id][level][metric]["raw_data"]
                 summary[instance_id][level][metric]["standard_deviation"] = round(
                     calc_standard_deviation(raw_data), 6

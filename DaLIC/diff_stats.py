@@ -12,7 +12,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 LEVEL_ORDER = ["function", "module", "file"]
-METRIC_ORDER = ["recall", "precision"]
+METRIC_ORDER = ["recall", "precision", "F1"]
 LEVEL_GROUPS = {
     "function": ["function"],
     "module": ["module"],
