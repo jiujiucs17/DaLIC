@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# Modified from the upstream LocAgent project for DaLIC-based localization experiments.
+
 import argparse
 import os
 import json
